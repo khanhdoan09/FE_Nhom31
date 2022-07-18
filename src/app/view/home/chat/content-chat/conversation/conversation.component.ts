@@ -8,12 +8,7 @@ import {LoadMessage} from "../../../../../service/content_chat/LoadMessage";
   styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
-
-  constructor(private loadMessage: LoadMessage) {
-    // loadMessage.get_nhom_ws.subscribe(msg => {
-    //   console.log("Response from websocket: " + msg);
-    // });
-  }
+  
   arrText = arrText;
   ngOnInit(): void {
   }

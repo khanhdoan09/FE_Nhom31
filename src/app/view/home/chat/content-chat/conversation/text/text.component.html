@@ -1,0 +1,27 @@
+<div *ngIf="text">
+  <div class="d-flex align-items-end"  *ngIf="!isDeleted; else textIsDeleted">
+    <div class="text px-3 py-2 d-flex flex-column">
+      <span>{{text}}</span>
+      <span class="time"><i class="fa-solid fa-clock"></i> 10:00</span>
+    </div>
+
+    <div mdbDropdown class="dropdown align-self-start mx-2">
+      <div
+        class=""
+        id="dropdownMenuButton"
+        aria-expanded="false"
+        mdbDropdownToggle
+      >
+        <i class="fas fa-ellipsis-v" style="cursor: pointer"></i>
+      </div>
+      <ul  mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" (click)="deleteText($event)">Delete</a></li>
+      </ul >
+    </div>
+  </div>
+
+</div>
+
+<ng-template #textIsDeleted>
+  <div class="container__delete">text has remove</div>
+</ng-template>

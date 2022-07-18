@@ -1,0 +1,62 @@
+.container__search {
+  background-color: #9aa1b9;
+  background: #36404a;
+  color: white;
+
+}
+.list-group {
+  cursor: pointer;
+  .user {
+    .img_user {
+      position: relative;
+      .user__status {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1px solid black;
+        border-radius: 100%;
+        bottom: -5%;
+        right: 10%;
+      }
+    }
+    .text__user {
+      margin-left: 10px;
+    }
+  }
+
+  .badge {
+    font-weight: lighter;
+    .time {
+      font-size: 14px;
+    }
+    .missing-message {
+      font-size: 14px;
+      background-color: #a20d0d;
+      padding: 5px;
+      margin: 5px 0;
+      width: fit-content;
+      border-radius: 10px;
+    }
+  }
+  li {
+    padding: 15px;
+    &:hover {
+      background-color: #92b9e7;
+    }
+  }
+}
+
+.carousel-item {
+  &.active, &.carousel-item-right, &.carousel-item-next {
+    display: flex !important;
+    flex-wrap: wrap
+  }
+}
+
+// carousel
+.owl-stage {
+  display: flex !important;
+  flex-wrap: wrap
+}
+

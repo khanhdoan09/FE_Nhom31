@@ -1,0 +1,33 @@
+.text {
+  background-color: red;
+  border-radius: 13px;
+  text-align: start;
+  position:relative;
+  margin-bottom: 5px;
+  &:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid red;
+    border-right: 10px solid transparent;
+    border-top: 10px solid red;
+    border-bottom: 10px solid transparent;
+    left: 0px;
+    bottom: -10px;
+  }
+  .time {
+    font-size: 12px;
+  }
+}
+
+.container__delete {
+  border: 1px solid grey;
+  padding: 3px 10px;
+  margin: 2px 0;
+  border-radius: 20px;
+}
+
+.dropdown-item {
+  cursor: pointer;  
+}

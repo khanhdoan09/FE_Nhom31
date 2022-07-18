@@ -1,0 +1,13 @@
+<div class="container__input px-3 py-4">
+  <form class="w-100 d-flex justify-content-between" novalidate #inputForm="ngForm" (submit)="onSubmit(inputForm)">
+    <mat-form-field appearance="outline" class="w-100">
+      <input class="w-100" matInput placeholder="Enter Message" [(ngModel)]="user.text" name="username">
+    </mat-form-field>
+    <div class="container__icon d-flex  align-items-center justify-content-center mx-1">
+      <i class="fa-solid fa-link"></i>
+      <i class="fa-solid fa-face-smile mx-3"></i>
+      <button mat-raised-button type="submit" class="btn btn-primary"><i class="fa-solid fa-play"></i></button>
+    </div>
+  </form>
+</div>
+

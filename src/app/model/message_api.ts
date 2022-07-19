@@ -1,4 +1,4 @@
-export interface MessageLogin{
+export interface MessageApi {
   status:String,
   data:String,
   mes:String

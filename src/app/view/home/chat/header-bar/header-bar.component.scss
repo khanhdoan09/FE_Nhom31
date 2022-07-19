@@ -1,0 +1,27 @@
+.container__top-bar {
+  border-bottom: 2px solid #f0eff5;
+  margin-bottom: 9px;
+}
+.container__status {
+  position: relative;
+  padding: 0 10px;
+  .status {
+    position: absolute;
+    top: 35%;
+    right: 0;
+    background-color: red;
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+  }
+  .colorActive {
+    background-color: #06D6A0;
+  }
+}
+
+.container__option {
+  .option {
+    width: fit-content;
+    background-color: white;
+  }
+}

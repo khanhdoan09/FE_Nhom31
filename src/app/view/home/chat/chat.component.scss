@@ -2,23 +2,19 @@
   overflow-y: scroll;
 }
 
-.container__top-bar {
-  border-bottom: 1px solid red !important;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.container__status {
-  position: relative;
-  padding: 0 10px;
-  .status {
-    position: absolute;
-    top: 35%;
-    right: 0;
-    background-color: red;
-    border-radius: 100%;
-    width: 13px;
-    height: 13px;
-  }
-  .colorActive {
-    background-color: #06D6A0;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
 }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(209,214,219);
+  border-radius: 10px;
+}
+

@@ -1,1 +1,61 @@
+<!--<div class="d-flex flex-column justify-content-between">-->
+<!--  <div>-->
+<!--    <a href="/home" class="home-link">-->
+<!--      <img class="chat-logo" src="http://localhost:63342/Lap_Trinh_Frontend_Nhom31/template/assets/images/logo.svg"-->
+<!--           alt="">-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mdb-tabs [vertical]="true">-->
+<!--      <mdb-tab title="Profile">-->
+<!--        <app-profile></app-profile>-->
+<!--      </mdb-tab>-->
+<!--      <mdb-tab title="Chats">-->
+<!--        <app-chats></app-chats>-->
+<!--      </mdb-tab>-->
+<!--      <mdb-tab title="  as">-->
+<!--        <ng-template title="as">-->
+<!--         conte-->
+<!--        </ng-template>-->
+<!--      </mdb-tab>-->
 
+<!--      <mdb-tab title="Contacts">Profile content</mdb-tab>-->
+<!--      <mdb-tab title="Setting">Messages content</mdb-tab>-->
+<!--    </mdb-tabs>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+
+<mdb-tabs [vertical]="true" class="pt-5 side">
+  <mdb-tab>
+    <ng-template mdbTabTitle>
+      <span> Profile</span>
+    </ng-template>
+    <app-profile></app-profile>
+  </mdb-tab>
+  <mdb-tab>
+    <ng-template mdbTabTitle>
+      <span>Chats</span>
+    </ng-template>
+    <app-chats></app-chats>
+  </mdb-tab>
+  <mdb-tab>
+    <ng-template mdbTabTitle>
+      <span> Groups</span>
+    </ng-template>
+    Tab content 3
+  </mdb-tab>
+  <mdb-tab>
+    <ng-template mdbTabTitle>
+      <span> Contacts</span>
+    </ng-template>
+    Tab content contacts
+  </mdb-tab>
+  <mdb-tab>
+    <ng-template mdbTabTitle>
+      <span> Settings</span>
+    </ng-template>
+    Tab content setting
+  </mdb-tab>
+</mdb-tabs>

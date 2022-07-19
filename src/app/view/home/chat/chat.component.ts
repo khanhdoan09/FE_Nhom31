@@ -14,8 +14,6 @@ export class ChatComponent implements OnInit {
   constructor() {
   }
 
-
-  isActive = true;
   ngOnInit() {
   }
 }

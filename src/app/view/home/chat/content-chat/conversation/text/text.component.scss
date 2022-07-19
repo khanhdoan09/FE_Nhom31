@@ -1,5 +1,6 @@
 .text {
-  background-color: red;
+  background-color: rgb(114,105,239);
+  color: rgb(252,248,252);
   border-radius: 13px;
   text-align: start;
   position:relative;
@@ -9,15 +10,16 @@
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 10px solid red;
+    border-left: 10px solid rgb(114,105,239);
     border-right: 10px solid transparent;
-    border-top: 10px solid red;
+    border-top: 10px solid rgb(114,105,239);
     border-bottom: 10px solid transparent;
     left: 0px;
     bottom: -10px;
   }
   .time {
     font-size: 12px;
+    color: rgb(252,248,252);
   }
 }
 
@@ -29,5 +31,5 @@
 }
 
 .dropdown-item {
-  cursor: pointer;  
+  cursor: pointer;
 }

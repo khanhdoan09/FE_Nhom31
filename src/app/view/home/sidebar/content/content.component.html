@@ -1,49 +1,22 @@
-<!--<mdb-tabs [vertical]="true" class="pt-5 side">-->
-<!--  <mdb-tab>-->
-<!--    <ng-template mdbTabTitle>-->
-<!--      <span> Profile</span>-->
-<!--    </ng-template>-->
-<!--    <app-profile></app-profile>-->
-<!--  </mdb-tab>-->
-<!--  <mdb-tab>-->
-<!--    <ng-template mdbTabTitle>-->
-<!--      <span>Chats</span>-->
-<!--    </ng-template>-->
-<!--    <app-chats></app-chats>-->
-<!--  </mdb-tab>-->
-<!--  <mdb-tab>-->
-<!--    <ng-template mdbTabTitle>-->
-<!--      <span> Groups</span>-->
-<!--    </ng-template>-->
-<!--    Tab content 3-->
-<!--  </mdb-tab>-->
-<!--  <mdb-tab>-->
-<!--    <ng-template mdbTabTitle>-->
-<!--      <span> Contacts</span>-->
-<!--    </ng-template>-->
-<!--    Tab content contacts-->
-<!--  </mdb-tab>-->
-<!--  <mdb-tab>-->
-<!--    <ng-template mdbTabTitle>-->
-<!--      <span> Settings</span>-->
-<!--    </ng-template>-->
-<!--    Tab content setting-->
-<!--  </mdb-tab>-->
-<!--</mdb-tabs>-->
-
-
 <div class="row g-0  d-xl-flex d-xxl-flex d-lg-flex d-md-none d-none">
-    <div class="col-md-4 bg-light">
-    <div class="d-flex flex-column px-4 pt-4">
-      <ul class="list-tabs">
+  <div class="col-md-4 bg-light sha ">
+    <div class="chat-logo pt-4 pb-4">
+      <a routerLink="/home">
+        <img src="http://localhost:63342/Lap_Trinh_Frontend_Nhom31/template/assets/images/logo.svg" alt=""
+             class="chat-logo__img">
+      </a>
+    </div>
+    <div class="d-flex flex-column justify-content-center m-auto  px-4 pt-4">
+      <ul class="list-tabs ">
         <li id="profile" [class.tab-active]="status==='profile'" (click)="tabsChange('profile')">Profiles</li>
         <li id="chats" [class.tab-active]="status==='chats'" (click)="tabsChange('chats')">Chats</li>
         <li id="Groups" [class.tab-active]="status==='groups'" (click)="tabsChange('groups')">Groups</li>
         <li id="setting" [class.tab-active]="status==='setting'" (click)="tabsChange('setting')">Setting</li>
       </ul>
     </div>
+
   </div>
-  <div class="col-8">
+  <div class="col-8 shad">
     <div class=" px-4 pt-4 " *ngIf="status === 'profile'">
       <app-profile></app-profile>
     </div>
@@ -54,7 +27,7 @@
       <app-groups></app-groups>
     </div>
     <div class=" px-4 pt-4 " *ngIf="status === 'setting'">
-      <h3>setting content</h3>
+      <app-setting></app-setting>
     </div>
   </div>
 </div>
@@ -72,7 +45,7 @@
       <app-groups></app-groups>
     </div>
     <div class="px-4 pt-4 " *ngIf="status === 'setting'">
-      <h3>setting content</h3>
+      <app-setting></app-setting>
     </div>
   </div>
   <div class="col-md-4 bg-light">

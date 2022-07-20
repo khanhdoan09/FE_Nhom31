@@ -67,11 +67,12 @@ import {FormsModule} from "@angular/forms";
 import { TextComponent } from './view/home/chat/content-chat/conversation/text/text.component';
 
 import { HeaderBarComponent } from './view/home/chat/header-bar/header-bar.component';
+import { GroupsComponent } from './view/home/sidebar/content/groups/groups.component';
 
 
 @NgModule({
 // <<<<<<< Updated upstream
-  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent],
 // =======
 //   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, ChatsComponent],
 // >>>>>>> Stashed changes

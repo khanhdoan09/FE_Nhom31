@@ -65,11 +65,12 @@ import { ConversationComponent } from './view/home/chat/content-chat/conversatio
 import { InputChatComponent } from './view/home/chat/input-chat/input-chat.component';
 import {FormsModule} from "@angular/forms";
 import { TextComponent } from './view/home/chat/content-chat/conversation/text/text.component';
-import { ChatsComponent } from './view/home/sidebar/content/chats/chats.component';
+
+import { HeaderBarComponent } from './view/home/chat/header-bar/header-bar.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, SearchComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, ChatsComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, SearchComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent],
   imports: [
     CarouselModule,
     BrowserModule,

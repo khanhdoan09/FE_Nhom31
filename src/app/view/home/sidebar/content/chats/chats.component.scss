@@ -1,0 +1,124 @@
+.bg-chats {
+  //background-color: #f5f7fb;
+  height: 100vh;
+
+}
+
+
+#search-form {
+  position: relative;
+
+  & i {
+    position: absolute;
+    top: 27%;
+    left: 4%;
+  }
+
+  & input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding-top: 8px;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    padding-left: 50px;
+    line-height: 1.6rem;
+    background-color: #e6ebf5;
+  }
+}
+
+.chats {
+  overflow: scroll;
+  height: 800px;
+}
+#style-5::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+#style-5::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-5::-webkit-scrollbar-thumb
+{
+  background-color: #8ecdf1;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,
+    color-stop(.5, rgba(255, 255, 255, .2)),
+    color-stop(.5, transparent), to(transparent));
+}
+
+
+.chats a {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f5f7fb;
+  border-radius: 5px;
+  color: #333;
+  //margin-bottom: 15px;
+  &:hover{
+    background-color: #e6ebf5;
+    transition: all 0.3s all;
+  }
+}
+
+.chats-left {
+  display: flex;
+  align-items: center;
+}
+
+.chats-left__avatar {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  object-position: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.chats-left div {
+  margin-left: 20px;
+}
+
+.chats-left__name {
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.chats-left__messages {
+  width: 200px !important;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.chats-right {
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+}
+
+.chats-right__time {
+  font-size: 13px;
+}
+
+.chats-right__seen {
+  color: #fff;
+  background-color: #ff4742;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  font-size: 11px;
+  text-align: center;
+  padding-top: 3px;
+  margin-top: 4px;
+}

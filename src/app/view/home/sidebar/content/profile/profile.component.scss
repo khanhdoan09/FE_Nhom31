@@ -1,0 +1,18 @@
+.avatar {
+  width: 96px;
+  height: 96px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.user-status {
+  & i {
+    font-size: 14px;
+    color: #06d7a3;
+  }
+}
+
+.about{
+  border-top: 1px solid #c9c5c5;
+}

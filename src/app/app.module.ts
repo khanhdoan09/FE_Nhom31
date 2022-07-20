@@ -53,10 +53,10 @@ import { RecoverpwComponent } from './view/authentication/recoverpw/recoverpw.co
 import { HomeComponent } from './view/home/home.component';
 import { SidebarComponent } from './view/home/sidebar/sidebar.component';
 import { ChatComponent } from './view/home/chat/chat.component';
+import {ChatsComponent} from  './view/home/sidebar/content/chats/chats.component'
 import { MenuComponent } from './view/home/sidebar/menu/menu.component';
 import { ContentComponent } from './view/home/sidebar/content/content.component';
 import {ProfileComponent} from "./view/home/sidebar/content/profile/profile.component";
-import { SearchComponent } from './view/home/sidebar/content/search/search.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TimeComponent } from './view/home/chat/time/time.component';
@@ -67,10 +67,16 @@ import {FormsModule} from "@angular/forms";
 import { TextComponent } from './view/home/chat/content-chat/conversation/text/text.component';
 
 import { HeaderBarComponent } from './view/home/chat/header-bar/header-bar.component';
+import { GroupsComponent } from './view/home/sidebar/content/groups/groups.component';
+import { SettingComponent } from './view/home/sidebar/content/setting/setting.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, SearchComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent],
+// <<<<<<< Updated upstream
+  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent],
+// =======
+//   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, ChatsComponent],
+// >>>>>>> Stashed changes
   imports: [
     CarouselModule,
     BrowserModule,

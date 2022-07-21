@@ -1,3 +1,8 @@
+:root {
+  --background-color:rgb(114,105,239);
+  --left: 0;
+  --right: 0;
+}
 .text {
   background-color: rgb(114,105,239);
   color: rgb(252,248,252);
@@ -10,11 +15,12 @@
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 10px solid rgb(114,105,239);
+    border-left: 10px solid var(--background-color);
     border-right: 10px solid transparent;
-    border-top: 10px solid rgb(114,105,239);
+    border-top: 10px solid var(--background-color);
     border-bottom: 10px solid transparent;
-    left: 0px;
+    left: var(--left);
+    right: var(--right);
     bottom: -10px;
   }
   .time {

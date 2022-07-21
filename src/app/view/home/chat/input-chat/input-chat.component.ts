@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {arrText} from "../../../../model/content-chat";
-import {ConnectService} from "../../../../service/api/connectService";
+import {TestConnectService} from "../../../../service/api/testConnectService";
 import {WebSocketService} from "../../../../service/websocket/websocket_service";
 import {Api} from "../../../../service/api/api";
 
@@ -9,7 +9,7 @@ import {Api} from "../../../../service/api/api";
   selector: 'app-input-chat',
   templateUrl: './input-chat.component.html',
   styleUrls: ['./input-chat.component.scss'],
-  providers: [WebSocketService, ConnectService]
+  providers: [WebSocketService, TestConnectService]
 })
 export class InputChatComponent implements OnInit {
 

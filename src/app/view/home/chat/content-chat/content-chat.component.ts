@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MessageApi} from "../../../../model/message_api";
 
 @Component({
   selector: 'app-content-chat',
@@ -7,11 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentChatComponent implements OnInit {
 
+  messages: any = ['','']
+  loadMessage!:MessageApi
+  constructor () {
+    setTimeout(()=>{
+      this.loadMessage = JSON.parse(localStorage.getItem("loadMessage") || '{}')
+      console.log(this.loadMessage.data.length)
+      this.messages = this.loadMessage.data
+      for(let i = 0; i < this.messages.length; i++) {
+        console.log(this.messages[i])
+      }
 
-  constructor() { }
+     }, 3000)
+  }
 
-  list = []
+
   ngOnInit(): void {
+
   }
 
 }

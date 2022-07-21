@@ -8,7 +8,7 @@ import {Injectable} from "@angular/core";
 @Injectable({
   providedIn: 'root'
 })
-export class ConnectService {
+export class TestConnectService {
   public messages: Subject<any>;
 
   constructor(wsService: WebSocketService) {

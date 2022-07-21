@@ -1,25 +1,30 @@
 export class Api {
-  // default login with user ti
-  public static login = {
-    "action": "onchat",
-    "data": {
-      "event": "LOGIN",
+
+  public static login(name: string, password: string) {
+     // default login with user ti
+     return {
+      "action": "onchat",
       "data": {
-        "user": "ti",
-        "pass": "12345"
+        "event": "LOGIN",
+        "data": {
+          "user": name,
+          "pass": password
+        }
       }
     }
   }
 
   // default load message of user ti and user long
-  public static loadMessage = {
-    "action": "onchat",
-    "data": {
-      "event": "GET_PEOPLE_CHAT_MES",
-      "data": {
-        "name": "Long",
-        "page": "0"
-      }
-    }
+  public static loadMessage(name: string, page: number) {
+     return {
+       "action": "onchat",
+       "data": {
+         "event": "GET_PEOPLE_CHAT_MES",
+         "data": {
+           "name": name,
+           "page": page
+         }
+       }
+     }
   }
 }

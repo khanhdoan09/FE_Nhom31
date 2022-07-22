@@ -1,0 +1,52 @@
+.form-login {
+  background-color: #dedeff;
+  padding: 20px 20px 0 20px;
+  border-radius: 20px;
+}
+.form-login .div-input {
+  background: #f5f6fa;
+  border: 1px solid #ccc;
+}
+.form-login .div-input span {
+  padding: 6px 15px;
+}
+.form-login .div-input .input-control {
+  border: none;
+  background: #f5f6fa;
+  padding: 8px 18px;
+  width: 85%;
+  font-size: 14px;
+  border-left: 1px solid #ccc;
+}
+.form-login .div-input .input-control:focus {
+  outline: none !important;
+}
+.form-login .label-login {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+.form-login input[type=checkbox] {
+  border-radius: 5px;
+}
+.form-login input[type=checkbox]:checked {
+  background: #7269ef;
+  border: 1px solid #7269ef;
+}
+.form-login .check-label {
+  font-size: 14px;
+}
+.form-login button {
+  background: #7269ef;
+  color: white;
+}
+.form-login button:hover {
+  background: #584db7;
+}
+
+.font-size-13 {
+  font-size: 13px !important;
+  color: #005ef0 !important;
+}
+
+/*# sourceMappingURL=login.component.css.map */

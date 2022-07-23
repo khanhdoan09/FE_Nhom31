@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+  import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageApi} from "../../../../model/message_api";
 import {Api} from "../../../../service/api/api";
 import {AppComponent} from "../../../../app.component";
@@ -33,7 +33,7 @@ export class ContentChatComponent implements OnInit {
     setTimeout(()=>{
       // login default with user ti
       this.connect.messages.next(Api.login("", ""));
-    },150)
+    },1000)
   }
 
 

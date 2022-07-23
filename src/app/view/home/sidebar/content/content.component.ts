@@ -13,7 +13,7 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  status: any = "profile"
+  status: any = "chats"
 
   tabsChange(status: any) {
     this.status = status

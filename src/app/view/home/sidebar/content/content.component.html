@@ -1,29 +1,30 @@
-<div class="row g-0  d-xl-flex d-xxl-flex d-lg-flex d-md-none d-none">
+<div class="row g-0 d-xl-flex d-xxl-flex d-lg-flex ">
   <div class="col-md-4 bg-light sha ">
-    <div class="chat-logo pt-4 pb-4">
+    <div class="chat-logo pt-4 pb-4 d-xl-flex d-xxl-flex d-lg-flex d-md-none d-none">
       <a routerLink="/home">
-        <img src="http://localhost:63342/Lap_Trinh_Frontend_Nhom31/template/assets/images/logo.svg" alt=""
+        <img src="https://inkythuatso.com/uploads/images/2021/11/logo-telegram-inkyhtuatso-3-01-30-11-25-40.jpg" alt=""
              class="chat-logo__img">
       </a>
     </div>
-    <div class="d-flex flex-column justify-content-center m-auto  px-4 pt-4">
+    <div class="d-flex flex-column justify-content-center m-auto px-4 pt-4 d-xl-flex d-xxl-flex d-lg-flex d-md-none d-none">
       <ul class="list-tabs ">
-        <li id="profile" [class.tab-active]="status==='profile'" (click)="tabsChange('profile')">Profiles</li>
         <li id="chats" [class.tab-active]="status==='chats'" (click)="tabsChange('chats')">Chats</li>
+        <li id="profile" [class.tab-active]="status==='profile'" (click)="tabsChange('profile')">Profiles</li>
         <li id="Groups" [class.tab-active]="status==='groups'" (click)="tabsChange('groups')">Groups</li>
         <li id="setting" [class.tab-active]="status==='setting'" (click)="tabsChange('setting')">Setting</li>
       </ul>
     </div>
-
   </div>
-  <div class="col-8 shad">
-    <div class=" px-4 pt-4 " *ngIf="status === 'profile'">
-      <app-profile></app-profile>
-    </div>
-    <div class=" px-4 pt-4 " *ngIf="status === 'chats'">
+
+
+  <div class="col-lg-8 col-md-12 shad">
+    <div class="px-4 pt-4" *ngIf="status === 'chats'">
       <app-chats></app-chats>
     </div>
-    <div class="px-4 pt-4  " *ngIf="status === 'groups'">
+    <div class="px-4 pt-4" *ngIf="status === 'profile'">
+      <app-profile></app-profile>
+    </div>
+    <div class="px-4 pt-4" *ngIf="status === 'groups'">
       <app-groups></app-groups>
     </div>
     <div class=" px-4 pt-4 " *ngIf="status === 'setting'">
@@ -34,25 +35,11 @@
 
 <!--res md-->
 <div class="row  g-0 d-md-block d-lg-none d-xl-none d-xxl-none ">
-  <div class="col-lg-8 col-md-12 bg-content">
-    <div class="px-4 pt-4 " *ngIf="status === 'profile'">
-      <app-profile></app-profile>
-    </div>
-    <div class="px-4 pt-4 " *ngIf="status === 'chats'">
-      <app-chats></app-chats>
-    </div>
-    <div class="px-4 pt-4 " *ngIf="status === 'groups'">
-      <app-groups></app-groups>
-    </div>
-    <div class="px-4 pt-4 " *ngIf="status === 'setting'">
-      <app-setting></app-setting>
-    </div>
-  </div>
   <div class="col-md-4 bg-light">
     <div class="d-inline">
       <ul class="list-tabs-re">
-        <li [class.tab-active]="status==='profile'" (click)="tabsChange('profile')">Profiles</li>
         <li [class.tab-active]="status==='chats'" (click)="tabsChange('chats')">Chats</li>
+        <li [class.tab-active]="status==='profile'" (click)="tabsChange('profile')">Profiles</li>
         <li [class.tab-active]="status==='groups'" (click)="tabsChange('groups')">Groups</li>
         <li [class.tab-active]="status==='setting'" (click)="tabsChange('setting')">Setting</li>
       </ul>

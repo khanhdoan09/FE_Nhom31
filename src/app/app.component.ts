@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Api} from "./service/api/api";
 import {WebSocketService} from "./service/websocket/websocket_service";
 import {TestConnectService} from "./service/api/testConnectService";
@@ -14,7 +14,8 @@ import {Locale} from "ngx-bootstrap/chronos/locale/locale.class";
 export class AppComponent {
   title = 'mdb5-angular-ui-kit-pro-advanced';
   // test api
-  connectService!:TestConnectService;
+  connectService!: TestConnectService;
+
   constructor(private testConnectService: TestConnectService) {
     this.connectService = testConnectService
   }

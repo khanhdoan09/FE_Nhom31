@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MessageApi} from "../../../../model/message_api";
+import {Api} from "../../../../service/api/api";
+import {AppComponent} from "../../../../app.component";
+import {TestConnectService} from "../../../../service/api/testConnectService";
+import {WebSocketService} from "../../../../service/websocket/websocket_service";
+import {Subject} from "rxjs";
+import {configure} from "../../../../configure/Configure";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-content-chat',
@@ -9,22 +16,54 @@ import {MessageApi} from "../../../../model/message_api";
 export class ContentChatComponent implements OnInit {
 
   messages: any = ['','']
-  loadMessage!:MessageApi
-  constructor () {
-    setTimeout(()=>{
-      this.loadMessage = JSON.parse(localStorage.getItem("loadMessage") || '{}')
-      console.log(this.loadMessage.data.length)
-      this.messages = this.loadMessage.data
-      for(let i = 0; i < this.messages.length; i++) {
-        console.log(this.messages[i])
-      }
+  // public messagesApi!: Subject<any>;
 
-     }, 3000)
+  constructor(private connect: TestConnectService) {
+    localStorage.setItem("userName", "long");
+    // first invoke observable by subscribe function
+    const loginObservable = this.connect.messages.subscribe(msg => {
+      let user: MessageApi = msg;
+      if (user.status == 'success') {
+        // load message
+        this.updateMessage()
+      }
+    });
+
+    // second send signal next then observable will catch it
+    setTimeout(()=>{
+      // login default with user ti
+      this.connect.messages.next(Api.login("", ""));
+    },150)
+  }
+
+
+  // update message from api once 0.5s
+  updateMessage() {
+    setInterval(()=>{
+      this.getMessageFromApi()
+    }, 1500)
+  }
+
+  getMessageFromApi() {
+    // first invoke observable by subscribe function
+    const loadMessageObservable = this.connect.messages.subscribe(msg => {
+      this.renderMessage(msg)
+    });
+    // second send signal next then observable will catch it
+    setTimeout(()=>{
+      this.connect.messages.next(Api.loadMessageList("", 0));
+    }, 100)
+  }
+
+  // render message to screen
+  renderMessage(msg: any) {
+    this.messages = msg.data
   }
 
 
   ngOnInit(): void {
 
   }
+
 
 }

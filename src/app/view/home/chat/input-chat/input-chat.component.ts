@@ -1,33 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {arrText} from "../../../../model/content-chat";
-import {TestConnectService} from "../../../../service/api/testConnectService";
 import {WebSocketService} from "../../../../service/websocket/websocket_service";
 import {Api} from "../../../../service/api/api";
+import {MessageApi} from "../../../../model/message_api";
+import {AnotherTestConnectService} from "../../../../service/api/anotherTestConnectService";
+import {AppComponent} from "../../../../app.component";
+import {TestConnectService} from "../../../../service/api/testConnectService";
 
 @Component({
   selector: 'app-input-chat',
   templateUrl: './input-chat.component.html',
   styleUrls: ['./input-chat.component.scss'],
-  providers: [WebSocketService, TestConnectService]
+  providers: [WebSocketService, AnotherTestConnectService, AppComponent]
 })
 export class InputChatComponent implements OnInit {
 
-  constructor() {
+  constructor(private connect: TestConnectService) {
   }
+
   ngOnInit(): void {
   }
-
   user = {
-    userName: "mr A",
     text: "",
   }
-
-
-
   onSubmit(form: NgForm): void {
-    arrText.push(this.user.text)
-    this.user.text = ""
-  }
+    // first invoke observable by subscribe function
+    this.connect.messages.subscribe(msg => {
+    });
+    // second send signal next then observable will catch it
+    setTimeout(()=>{
+      this.connect.messages.next(Api.sendMessage("", this.user.text));
+      this.user.text = ""
+    },100)
 
+  }
 }

@@ -1,10 +1,10 @@
-<div *ngFor="let message of messages">
-  <div *ngIf="message.name == 'long'">
+<div *ngFor="let message of messages.reverse()">
+  <div *ngIf="message.name == 'ti'">
     <div class="d-flex flex-row">
       <app-conversation [name]="message.name" [mes]="message.mes" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
     </div>
   </div>
-  <div *ngIf="message.name == 'ti'">
+  <div *ngIf="message.name == 'long'">
     <div class="d-flex flex-row flex-row-reverse">
       <app-conversation [name]="message.name" [mes]="message.mes" [color_text]="'black'" [color_time]="'#7a7f9a'" [bg_color]="'rgb(245,247,251)'" [text_position]="'right'"  [flex_direction]="'row-reverse'" [left]="'unset'" [right]="'0'"></app-conversation>
     </div>

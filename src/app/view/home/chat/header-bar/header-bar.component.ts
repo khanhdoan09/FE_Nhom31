@@ -11,11 +11,8 @@ export class HeaderBarComponent implements OnInit {
   userName!:string
 
   constructor() {
-    setTimeout(()=>{
-      console.log(localStorage.getItem("userName"))
       this.isActive = true
       this.userName = localStorage.getItem("userName") || ""
-    }, 2000)
   }
 
   ngOnInit(): void {

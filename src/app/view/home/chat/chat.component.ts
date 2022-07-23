@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Api} from "../../../service/api/api";
 import {TestConnectService} from "../../../service/api/testConnectService";
 import {WebSocketService} from "../../../service/websocket/websocket_service";
+import {AppComponent} from "../../../app.component";
+import {MessageApi} from "../../../model/message_api";
 
 @Component({
   selector: 'app-chat',
@@ -10,7 +12,8 @@ import {WebSocketService} from "../../../service/websocket/websocket_service";
 })
 export class ChatComponent implements OnInit {
 
-  // test connection api
+  @ViewChild('content') content!: ElementRef;
+
   constructor() {
   }
 

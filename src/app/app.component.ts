@@ -14,27 +14,9 @@ import {Locale} from "ngx-bootstrap/chronos/locale/locale.class";
 export class AppComponent {
   title = 'mdb5-angular-ui-kit-pro-advanced';
   // test api
+  connectService!:TestConnectService;
   constructor(private testConnectService: TestConnectService) {
-    this.testConnectService.messages.subscribe(msg => {
-      let user: MessageApi = msg;
-      if (user.status == 'success') {
-        localStorage.setItem("userName", "ti");
-      }
-    });
-    setTimeout(()=>{
-      // first login with user ti
-      this.testConnectService.messages.next(Api.login("ti", "12345"));
-      // second load message of user ti with user long
-      this.loadMessage()
-    }, 1000)
-  }
-
-  loadMessage() {
-    setTimeout(()=>{
-      this.testConnectService.messages.subscribe(msg => {
-        localStorage.setItem("loadMessage", JSON.stringify(msg))
-      });
-      this.testConnectService.messages.next(Api.loadMessage("long", 0));
-    }, 1000)
+    this.connectService = testConnectService
   }
 }
+

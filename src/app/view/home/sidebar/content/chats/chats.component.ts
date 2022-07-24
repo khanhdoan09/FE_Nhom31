@@ -12,7 +12,7 @@ export class ChatsComponent implements OnInit {
   public userList: Array<any> = [];
 
 
-  constructor(private connect: TestConnectService) {
+  constructor(private _testConnectService: TestConnectService) {
     this.updateUser();
   }
 
@@ -20,12 +20,12 @@ export class ChatsComponent implements OnInit {
     // wait for login
     setTimeout(() => {
       // first invoke observable by subscribe function
-      this.connect.messages.subscribe(msg => {
+      this._testConnectService.messages.subscribe(msg => {
         this.renderListUser(msg);
       });
       setTimeout(() => {
         // second send signal next then observable will catch it
-        this.connect.messages.next(Api.loadUserList());
+        this._testConnectService.messages.next(Api.loadUserList());
       }, 250)
 
     }, 250)
@@ -40,9 +40,13 @@ export class ChatsComponent implements OnInit {
 
   // render message to screen
   renderListUser(msg: any) {
-
-    this.userList = msg.data;
-    console.log(this.userList);
+    console.log("Danh sach tin nhan don")
+    for (let u of msg.data) {
+      if (u.type === 0) {
+        this.userList.push(u);
+      }
+    }
+    console.log(this.userList)
   }
 
   ngOnInit(): void {

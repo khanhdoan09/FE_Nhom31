@@ -1,37 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-// import { Observable, Subject } from 'rxjs';
-// import { map, startWith, tap } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Api} from "../../../../../service/api/api";
+import {TestConnectService} from "../../../../../service/api/testConnectService";
+
 @Component({
   selector: 'app-chats',
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.scss']
 })
 export class ChatsComponent implements OnInit {
-  constructor() {
+
+  public userList: Array<any> = [];
+  txtSearch: any;
+
+  constructor(private _testConnectService: TestConnectService) {
+    this.updateUser();
   }
-  // searchText = new Subject<string>();
-  // results: Observable<string[]>;
-  // notFound = false;
-  // data = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
-  //
-  // constructor() {
-  //   this.results = this.searchText.pipe(
-  //     startWith(''),
-  //     map((value: string) => this.filter(value)),
-  //     tap((results: string[]) =>
-  //       results.length > 0 ? (this.notFound = false) : (this.notFound = true)
-  //     )
-  //   );
-  // }
-  //
-  // filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.data.filter((item: string) =>
-  //     item.toLowerCase().includes(filterValue)
-  //   );
-  // }
+
+  init = () => {
+    // wait for login
+    setTimeout(() => {
+      // first invoke observable by subscribe function
+      this._testConnectService.messages.subscribe(msg => {
+        this.renderListUser(msg);
+      });
+      setTimeout(() => {
+        // second send signal next then observable will catch it
+        this._testConnectService.messages.next(Api.loadUserList());
+      }, 250)
+
+    }, 250)
+  }
+
+  updateUser() {
+    // success  edit 'setTimeout' => 'setInterval'
+    setTimeout(() => {
+      this.init();
+    }, 1000)
+  }
+
+  // render message to screen
+
+  renderListUser(msg: any) {
+    for (let u of msg.data) {
+      if (u.type === 0) {
+        this.userList.push(u);
+      }
+    }
+  }
 
   ngOnInit(): void {
+
   }
+
+  selectMessage(u: any) {
+    localStorage.setItem('user', JSON.stringify(u));
+  }
+
 
 }

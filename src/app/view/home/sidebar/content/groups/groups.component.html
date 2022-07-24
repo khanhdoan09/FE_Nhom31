@@ -18,34 +18,34 @@
   <div class="modal-create-groupss__body">
     <div class="d-flex flex-column">
       <label>Group Name</label>
-      <input type="text" placeholder="Enter Group Name">
+      <input type="text" placeholder="Enter Group Name" >
     </div>
 
     <div class="d-flex flex-column">
       <label>Group Members</label>
-      <div class="modal-create-groupss__body--list-member style-5" >
-          <div class="modal-create-groupss__body--list-member__item">
-            <input type="checkbox" id="member1"  >
-            <label for="member1">Minh Chanh</label>
-          </div>
+      <div class="modal-create-groupss__body--list-member style-5">
         <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member2"  >
+          <input type="checkbox" id="member1">
+          <label for="member1">Minh Chanh</label>
+        </div>
+        <div class="modal-create-groupss__body--list-member__item">
+          <input type="checkbox" id="member2">
           <label for="member2">Phi Khanh</label>
         </div>
         <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member3"  >
+          <input type="checkbox" id="member3">
           <label for="member3">Hung</label>
         </div>
         <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member4"  >
+          <input type="checkbox" id="member4">
           <label for="member4">Nguyen Vass</label>
         </div>
         <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member5"  >
+          <input type="checkbox" id="member5">
           <label for="member5">Leesa Kaizas</label>
         </div>
         <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member6"  >
+          <input type="checkbox" id="member6">
           <label for="member6">Ruizz VaaMass</label>
         </div>
       </div>
@@ -59,168 +59,20 @@
 </div>
 
 
-<form action="" id="search-groups" class="mt-3">
+<div action="" id="search-groups" class="mt-3">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="text" placeholder="search groups..." class="search-input">
-</form>
-<div class="groups mt-4 style-5" >
-  <a href="" class="d-flex justify-content-between align-items-center">
+  <input type="text" placeholder="search groups..." class="search-input" [(ngModel)]="txtSearchGroup">
+</div>
+<div class="groups mt-4 style-5">
+  <a routerLink="home" class="d-flex justify-content-between align-items-center"
+     *ngFor="let group of groupList |filter:txtSearchGroup" (click)="selectMessage(group)">
     <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">G</span>
-      <span class="groups-left__name">#General General General General General</span>
+      <span class="groups-left__avatar ">{{group.name.substring(0, 1)}}</span>
+      <span class="groups-left__name">#{{group.name}}</span>
     </div>
     <div class="groups-right">
       <span class="groups-right__seen">+92323239</span>
     </div>
   </a>
 
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">D</span>
-      <span class="groups-left__name">#Deneral General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">K</span>
-      <span class="groups-left__name">#Kazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">M</span>
-      <span class="groups-left__name">#Miazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">G</span>
-      <span class="groups-left__name">#General General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">D</span>
-      <span class="groups-left__name">#Deneral General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">K</span>
-      <span class="groups-left__name">#Kazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">M</span>
-      <span class="groups-left__name">#Miazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">G</span>
-      <span class="groups-left__name">#General General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">D</span>
-      <span class="groups-left__name">#Deneral General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">K</span>
-      <span class="groups-left__name">#Kazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">M</span>
-      <span class="groups-left__name">#Miazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">G</span>
-      <span class="groups-left__name">#General General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">D</span>
-      <span class="groups-left__name">#Deneral General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">K</span>
-      <span class="groups-left__name">#Kazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
-
-  <a href="" class="d-flex justify-content-between align-items-center">
-    <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">M</span>
-      <span class="groups-left__name">#Miazair General General General General</span>
-    </div>
-    <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
-    </div>
-  </a>
 </div>

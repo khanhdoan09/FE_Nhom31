@@ -65,6 +65,7 @@ import { ConversationComponent } from './view/home/chat/content-chat/conversatio
 import { InputChatComponent } from './view/home/chat/input-chat/input-chat.component';
 import {FormsModule} from "@angular/forms";
 import { TextComponent } from './view/home/chat/content-chat/conversation/text/text.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { HeaderBarComponent } from './view/home/chat/header-bar/header-bar.component';
 import { GroupsComponent } from './view/home/sidebar/content/groups/groups.component';
@@ -124,6 +125,7 @@ import { SettingComponent } from './view/home/sidebar/content/setting/setting.co
     MdbMentionModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SearchPipeModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MdbCookiesManagementService, MdbStorageManagementService],

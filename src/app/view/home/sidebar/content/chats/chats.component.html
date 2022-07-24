@@ -1,13 +1,14 @@
 <div class="bg-chats">
   <h5>Chats</h5>
-  <form action="" id="search-form">
+  <div id="search-form">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="search messages or users" class="search-input">
-  </form>
+    <input type="text" placeholder="search messages or users" class="search-input"
+           [(ngModel)]="txtSearch">
+  </div>
 
   <h5 class="mt-4">Recent</h5>
-  <div class="chats style-5" >
-    <a routerLink="home" *ngFor="let u of userList" (click)="selectMessage(u)">
+  <div class="chats style-5">
+    <a routerLink="home" *ngFor="let u of userList| filter:txtSearch" (click)="selectMessage(u)">
       <div class="chats-left">
         <img class="chats-left__avatar"
              src="https://www.w3schools.com/howto/img_avatar.png" alt="">

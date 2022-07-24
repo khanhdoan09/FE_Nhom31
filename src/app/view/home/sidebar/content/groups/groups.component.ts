@@ -11,8 +11,7 @@ import {Api} from "../../../../../service/api/api";
 export class GroupsComponent implements OnInit {
   isShowing = false;
   groupList: Array<any> = [];
-  groupListAvavatar: Array<any> = [];
-  avatarG: any;
+  txtSearchGroup: any;
 
   constructor(
     private _testConnectService: TestConnectService

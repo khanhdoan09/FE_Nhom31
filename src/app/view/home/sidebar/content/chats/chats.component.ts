@@ -10,7 +10,7 @@ import {TestConnectService} from "../../../../../service/api/testConnectService"
 export class ChatsComponent implements OnInit {
 
   public userList: Array<any> = [];
-
+  txtSearch: any;
 
   constructor(private _testConnectService: TestConnectService) {
     this.updateUser();
@@ -39,21 +39,22 @@ export class ChatsComponent implements OnInit {
   }
 
   // render message to screen
+
   renderListUser(msg: any) {
-    console.log("Danh sach tin nhan don")
     for (let u of msg.data) {
       if (u.type === 0) {
         this.userList.push(u);
       }
     }
-    console.log(this.userList)
   }
 
   ngOnInit(): void {
 
   }
 
-  selectMessage(u:any) {
+  selectMessage(u: any) {
     localStorage.setItem('user', JSON.stringify(u));
   }
+
+
 }

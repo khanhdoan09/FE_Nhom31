@@ -52,4 +52,8 @@ export class ChatsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  selectMessage(u:any) {
+    localStorage.setItem('user', JSON.stringify(u));
+  }
 }

@@ -64,7 +64,7 @@
   <input type="text" placeholder="search groups..." class="search-input">
 </form>
 <div class="groups mt-4 style-5">
-  <a href="" class="d-flex justify-content-between align-items-center" *ngFor="let group of groupList">
+  <a routerLink="home" class="d-flex justify-content-between align-items-center" *ngFor="let group of groupList" (click)="selectMessage(group)">
     <div class="groups-left d-flex align-items-center ">
       <span class="groups-left__avatar ">{{group.name.substring(0, 1)}}</span>
       <span class="groups-left__name">#{{group.name}}</span>

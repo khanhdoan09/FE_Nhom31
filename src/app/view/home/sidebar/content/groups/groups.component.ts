@@ -10,9 +10,10 @@ import {Api} from "../../../../../service/api/api";
 })
 export class GroupsComponent implements OnInit {
   isShowing = false;
-  groupList : Array<any> = [];
-  groupListAvavatar : Array<any> = [];
-  avatarG:any;
+  groupList: Array<any> = [];
+  groupListAvavatar: Array<any> = [];
+  avatarG: any;
+
   constructor(
     private _testConnectService: TestConnectService
   ) {
@@ -36,21 +37,25 @@ export class GroupsComponent implements OnInit {
     }, 1500)
   }
 
-   renderGroupList(msg: any) {
-     console.log('Danh sách tin nhắn nhóm')
-     for (let u of msg.data) {
-       if (u.type === 1) {
-         this.groupList.push(u);
-       }
-     }
-     console.log(this.groupList);
-     return this.groupList;
-   }
+  renderGroupList(msg: any) {
+    console.log('Danh sách tin nhắn nhóm')
+    for (let u of msg.data) {
+      if (u.type === 1) {
+        this.groupList.push(u);
+      }
+    }
+    console.log(this.groupList);
+    return this.groupList;
+  }
 
   ngOnInit(): void {
   }
 
   openModal() {
 
+  }
+
+  selectMessage(group: any) {
+    localStorage.setItem('group', JSON.stringify(group));
   }
 }

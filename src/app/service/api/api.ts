@@ -44,7 +44,7 @@ export class Api {
        "data": {
          "event": "GET_PEOPLE_CHAT_MES",
          "data": {
-           "name": "chk1",
+           "name": name,
            "page": "0"
          }
        }

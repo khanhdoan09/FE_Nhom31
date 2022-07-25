@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Api} from "../../../../../service/api/api";
 import {TestConnectService} from "../../../../../service/api/testConnectService";
+import {ContactTo} from "../../../../../model/contact-to";
+import {User} from "../../../../../model/user";
 
 @Component({
   selector: 'app-chats',
@@ -58,9 +60,7 @@ export class ChatsComponent implements OnInit {
 
   }
 
-  selectMessage(u: any) {
-    localStorage.setItem('user', JSON.stringify(u));
+  selectMessage(u: User) {
+    ContactTo.contactTo.next(u);
   }
-
-
 }

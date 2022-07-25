@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {WebSocketService} from "../../../../service/websocket/websocket_service";
 import {Api} from "../../../../service/api/api";
-import {MessageApi} from "../../../../model/message_api";
 import {AnotherTestConnectService} from "../../../../service/api/anotherTestConnectService";
 import {AppComponent} from "../../../../app.component";
 import {TestConnectService} from "../../../../service/api/testConnectService";

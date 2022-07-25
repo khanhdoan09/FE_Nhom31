@@ -8,33 +8,42 @@ import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 import { DatePipe } from '@angular/common';
+import {ContactTo} from "../../../../model/contact-to";
+import {User} from "../../../../model/user";
 
 @Component({
   selector: 'app-content-chat',
   templateUrl: './content-chat.component.html',
-  styleUrls: ['./content-chat.component.scss']
+  styleUrls: ['./content-chat.component.scss'],
+  providers: [AppComponent]
 })
 export class ContentChatComponent implements OnInit {
-  date:any = null
 
-
-    updateDate(newDate: any) {
-      this.date = newDate
-      this.cd.detach()
-    return true
-  }
-
+  // first just default
+  toMessage = 'chk1'
+  typeMessage = 0
 
   messages: any = ['','']
-  // public messagesApi!: Subject<any>;
+  date:any = null
+  updateDate(newDate: any) {
+    this.cd.detach()
+    this.date = newDate
+    return true
+  }
 
   constructor(private connect: TestConnectService, private cd: ChangeDetectorRef) {
 
     localStorage.setItem("userName", "chk2");
+
     // first invoke observable by subscribe function
     const loginObservable = this.connect.messages.subscribe(msg => {
       let user: MessageApi = msg;
       if (user.status == 'success') {
+        ContactTo.contactTo.subscribe((msg:User)=>{
+          this.toMessage = msg.name
+          this.typeMessage = msg.type
+          this.date = null
+        })
         // load message
         this.updateMessage()
       }
@@ -50,37 +59,31 @@ export class ContentChatComponent implements OnInit {
 
   // update message from api once 0.5s
   updateMessage() {
-    setTimeout(()=>{
+    setInterval(()=>{
       this.getMessageFromApi()
     }, 1500)
   }
 
   getMessageFromApi() {
     // first invoke observable by subscribe function
-    const loadMessageObservable = this.connect.messages.subscribe(msg => {
+    this.connect.messages.subscribe(msg => {
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
     setTimeout(()=>{
-      this.connect.messages.next(Api.loadMessageList("", 0));
+        this.connect.messages.next(Api.loadMessageList(this.toMessage, 0));
     }, 1000)
   }
 
   // render message to screen
   renderMessage(msg: any) {
+    this.cd.reattach()
     this.messages = msg.data
-    console.log(msg)
+    this.date = null
   }
 
 
   ngOnInit(): void {
 
   }
-
-  @Output() update:EventEmitter<any> = new EventEmitter();
-
-  onUpdate(event: any) {
-    console.log(123)
-  }
-
 }

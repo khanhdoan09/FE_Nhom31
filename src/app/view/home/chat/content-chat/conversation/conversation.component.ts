@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {arrText} from "../../../../../model/content-chat";
 
 @Component({
   selector: 'app-conversation',
@@ -20,7 +19,6 @@ export class ConversationComponent implements OnInit {
   @Input() name: string = ""
   @Input() mes: string = ""
   @Input() time: string = ""
-  arrText = arrText;
   ngOnInit(): void {
   }
 

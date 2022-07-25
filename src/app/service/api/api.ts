@@ -7,7 +7,7 @@ export class Api {
       "data": {
         "event": "LOGIN",
         "data": {
-          "user": "long",
+          "user": "chk2",
           "pass": "12345"
         }
       }
@@ -39,16 +39,16 @@ export class Api {
 
   // default load message of user ti and user long
   public static loadMessageList(name: string, page: number) {
-    return {
-      "action": "onchat",
-      "data": {
-        "event": "GET_PEOPLE_CHAT_MES",
-        "data": {
-          "name": "ti",
-          "page": "0"
-        }
-      }
-    }
+     return {
+       "action": "onchat",
+       "data": {
+         "event": "GET_PEOPLE_CHAT_MES",
+         "data": {
+           "name": "chk1",
+           "page": "0"
+         }
+       }
+     }
   }
 
   // default send message from user long to user ti
@@ -59,7 +59,7 @@ export class Api {
         "event": "SEND_CHAT",
         "data": {
           "type": "people",
-          "to": "ti",
+          "to": "chk1",
           "mes": message
         }
       }

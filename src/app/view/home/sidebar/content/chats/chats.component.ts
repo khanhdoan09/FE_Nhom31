@@ -10,9 +10,11 @@ import {TestConnectService} from "../../../../../service/api/testConnectService"
 export class ChatsComponent implements OnInit {
 
   public userList: Array<any> = [];
+  statusUser: Array<any> = [];
   txtSearch: any;
-  test: any = true;
+  test: any = '';
   time: string = "";
+
   constructor(private _testConnectService: TestConnectService) {
     this.updateUser();
   }
@@ -28,15 +30,16 @@ export class ChatsComponent implements OnInit {
         // second send signal next then observable will catch it
         this._testConnectService.messages.next(Api.loadUserList());
       }, 250)
-
     }, 250)
   }
+
 
   updateUser() {
     // success  edit 'setTimeout' => 'setInterval'
     setTimeout(() => {
       this.init();
     }, 1000)
+
   }
 
   // render message to screen
@@ -48,6 +51,8 @@ export class ChatsComponent implements OnInit {
       }
     }
   }
+
+
 
   ngOnInit(): void {
 

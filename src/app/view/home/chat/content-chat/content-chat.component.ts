@@ -52,7 +52,7 @@ export class ContentChatComponent implements OnInit {
     // second send signal next then observable will catch it
     setTimeout(()=>{
       this.connect.messages.next(Api.loadMessageList("", 0));
-    }, 100)
+    }, 1000)
   }
 
   // render message to screen

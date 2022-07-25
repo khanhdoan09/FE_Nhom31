@@ -11,7 +11,8 @@ export class ChatsComponent implements OnInit {
 
   public userList: Array<any> = [];
   txtSearch: any;
-
+  test: any = true;
+  time: string = "";
   constructor(private _testConnectService: TestConnectService) {
     this.updateUser();
   }

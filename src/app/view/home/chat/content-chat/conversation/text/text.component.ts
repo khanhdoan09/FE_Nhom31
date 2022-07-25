@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class TextComponent implements OnInit {
 
   constructor() { }
+  // css
   @Input() flex_direction: string= ""
   @Input() left: string= ""
   @Input() right: string= ""
@@ -15,10 +16,13 @@ export class TextComponent implements OnInit {
   @Input() color_text: string= ""
   @Input() color_time: string= ""
 
+  // data
+  @Input() text: string = "";
+  @Input() time: string = ""
+
   ngOnInit(): void {
   }
 
-  @Input() text = "";
 
   isDeleted: boolean = false;
   deleteText(event: MouseEvent): void {

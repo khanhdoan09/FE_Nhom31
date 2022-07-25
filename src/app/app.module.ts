@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
@@ -73,11 +73,8 @@ import { SettingComponent } from './view/home/sidebar/content/setting/setting.co
 
 
 @NgModule({
-// <<<<<<< Updated upstream
   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent],
-// =======
-//   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, ChatsComponent],
-// >>>>>>> Stashed changes
+
   imports: [
     CarouselModule,
     BrowserModule,
@@ -128,7 +125,7 @@ import { SettingComponent } from './view/home/sidebar/content/setting/setting.co
     Ng2SearchPipeModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [MdbCookiesManagementService, MdbStorageManagementService],
+  providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,6 +8,7 @@ import {arrText} from "../../../../../model/content-chat";
 })
 export class ConversationComponent implements OnInit {
 
+  //ss
   @Input() left: string= ""
   @Input() right: string= ""
   @Input() flex_direction: string= ""
@@ -15,8 +16,10 @@ export class ConversationComponent implements OnInit {
   @Input() bg_color: string= ""
   @Input() color_text: string= ""
   @Input() color_time: string= ""
-  @Input() name: string= ""
-  @Input() mes: string= ""
+  // data
+  @Input() name: string = ""
+  @Input() mes: string = ""
+  @Input() time: string = ""
   arrText = arrText;
   ngOnInit(): void {
   }

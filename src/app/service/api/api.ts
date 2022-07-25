@@ -7,7 +7,7 @@ export class Api {
       "data": {
         "event": "LOGIN",
         "data": {
-          "user": "long",
+          "user": "chk2",
           "pass": "12345"
         }
       }
@@ -32,7 +32,7 @@ export class Api {
        "data": {
          "event": "GET_PEOPLE_CHAT_MES",
          "data": {
-           "name": "ti",
+           "name": "chk1",
            "page": "0"
          }
        }
@@ -47,7 +47,7 @@ export class Api {
         "event": "SEND_CHAT",
         "data": {
           "type": "people",
-          "to": "ti",
+          "to": "chk1",
           "mes": message
         }
       }

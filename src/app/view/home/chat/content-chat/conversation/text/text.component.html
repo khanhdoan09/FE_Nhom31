@@ -3,7 +3,7 @@
     <div class="text px-3 py-2 d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text"
          [style.--background-color]="bg_color" [style.--left]="left" [style.--right]="right">
       <span>{{text}}</span>
-      <span class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> 10:00</span>
+      <span class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime'}}</span>
     </div>
 
     <div mdbDropdown class="dropdown align-self-start mx-2">

@@ -24,17 +24,17 @@ export class Api {
     }
   }
 
-  // public static searchUser(username: string) {
-  //   return {
-  //     "action": "onchat",
-  //     "data": {
-  //       "event": "CHECK_USER",
-  //       "data": {
-  //         "user": username
-  //       }
-  //     }
-  //   }
-  // }
+  public static get_user_list(username: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "CHECK_USER",
+        "data": {
+          "user": username
+        }
+      }
+    }
+  }
 
 
   // default load message of user ti and user long

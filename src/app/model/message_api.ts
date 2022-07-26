@@ -4,3 +4,6 @@ export interface MessageApi {
   mes:String
   event:string;
 }
+export interface StatusUser {
+  status: any;
+}

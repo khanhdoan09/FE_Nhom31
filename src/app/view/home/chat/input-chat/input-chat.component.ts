@@ -5,6 +5,7 @@ import {Api} from "../../../../service/api/api";
 import {AnotherTestConnectService} from "../../../../service/api/anotherTestConnectService";
 import {AppComponent} from "../../../../app.component";
 import {TestConnectService} from "../../../../service/api/testConnectService";
+import {InputChatService} from "../../../../service/home/chat/input-chat/input-chat.service";
 
 @Component({
   selector: 'app-input-chat',
@@ -14,23 +15,18 @@ import {TestConnectService} from "../../../../service/api/testConnectService";
 })
 export class InputChatComponent implements OnInit {
 
-  constructor(private connect: TestConnectService) {
+  constructor(private inputChatService: InputChatService) {
   }
 
   ngOnInit(): void {
   }
+  
   user = {
     text: "",
   }
-  onSubmit(form: NgForm): void {
-    // first invoke observable by subscribe function
-    this.connect.messages.subscribe(msg => {
-    });
-    // second send signal next then observable will catch it
-    setTimeout(()=>{
-      this.connect.messages.next(Api.sendMessage("", this.user.text));
-      this.user.text = ""
-    },100)
 
+  onSubmit(form: NgForm): void {
+    this.inputChatService.submitMessage(this.user.text)
+    this.user.text = ""
   }
 }

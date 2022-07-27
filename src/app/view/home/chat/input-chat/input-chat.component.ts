@@ -23,32 +23,16 @@ export class InputChatComponent implements OnInit {
 
   emojiSearch!: EmojiSearch
   name = 'Angular';
-  messageNotRenderIcon = ''
   message = '';
   showEmojiPicker = false;
   toggleEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
 
-  curText = ''
-  modelChanged(newObj: any) {
-    if (newObj.length == 0) {
-      // reset when user remove text input
-      this.message = ""
-      this.messageNotRenderIcon = ""
-      this.curText = ""
-    }
-    else {
-      this.messageNotRenderIcon += newObj.substring(this.curText.length)
-      this.curText = newObj
-    }
-  }
 
   addEmoji(event:any) {
     const { message } = this;
     const text = `${message}${event.emoji.native}`;
-    this.messageNotRenderIcon =`${this.messageNotRenderIcon}{${event.emoji.colons}}`;
-    this.curText = text
     this.message = text;
   }
 
@@ -60,10 +44,8 @@ export class InputChatComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-   // this.inputChatService.submitMessage(this.messageNotRenderIcon)
+    this.inputChatService.submitMessage(encodeURI(this.message))
     // reset
     this.message = ""
-    this.messageNotRenderIcon = ""
-    this.curText = ""
   }
 }

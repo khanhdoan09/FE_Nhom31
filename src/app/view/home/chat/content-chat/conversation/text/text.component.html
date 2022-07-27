@@ -1,9 +1,18 @@
 <div *ngIf="text">
   <div class="d-flex align-items-end" [style.flex-direction]="flex_direction"  *ngIf="!isDeleted; else textIsDeleted">
-    <div class="text px-3 py-2 d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text"
-         [style.--background-color]="bg_color" [style.--left]="left" [style.--right]="right">
-      <span>{{text}}</span>
-      <span class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime'}}</span>
+    <div class="text px-3 py-2  d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text">
+      <div class="d-flex flex-row"
+           [style.--background-color]="bg_color" [style.--left]="left" [style.--right]="right" style="display:inline;">
+        <div *ngFor="let i of arrMessage">
+        <span *ngIf="checkIsIcon(i)==false; else elseIcon">
+          {{i.value}}
+        </span>
+        </div>
+        <ng-template #elseIcon>
+          <ngx-emoji emoji={{colons}}></ngx-emoji>
+        </ng-template>
+      </div>
+      <div style="display: block" class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime'}}</div>
     </div>
 
     <div mdbDropdown class="dropdown align-self-start mx-2">

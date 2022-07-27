@@ -6,8 +6,10 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
+  userName: any;
 
   constructor() {
+    this.userName = localStorage.getItem("userName") || ""
   }
 
   ngOnInit(): void {

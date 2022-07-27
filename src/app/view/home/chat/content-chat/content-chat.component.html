@@ -1,4 +1,4 @@
-<div *ngFor="let message of this.contentChatService.messages.reverse()">
+<div *ngFor="let message of this.contentChatService.messages">
   <div *ngIf="(this.contentChatService.date) != (message.createAt | date: 'shortDate')? this.contentChatService.updateDate(message.createAt| date: 'shortDate') : false" class="container__time d-flex justify-content-center align-items-center">
     <hr>
     <span class="time">{{this.contentChatService.date}}</span>

@@ -30,9 +30,9 @@ export class ChatsSidebarService {
       setTimeout(() => {
         // second send signal next then observable will catch it
         this._testConnectService.messages.next(Api.loadUserList());
-      }, 250)
+      }, 300)
 
-    }, 250)
+    }, 300)
   }
 
   updateUser() {
@@ -45,11 +45,14 @@ export class ChatsSidebarService {
   // render message to screen
 
   renderListUser(msg: any) {
-    for (let u of msg.data) {
-      if (u.type === 0) {
+    var dataHandler:Array<any> = [];
+    dataHandler = msg.data;
+    for (let u of dataHandler) {
+      if ( u.type === 0) {
         this.userList.push(u);
       }
     }
+    console.log(this.userList)
   }
 
   selectMessage(u: User) {

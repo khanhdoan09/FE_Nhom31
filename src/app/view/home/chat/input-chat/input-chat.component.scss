@@ -13,13 +13,37 @@
 }
 
 .container__icon {
+  position: relative;
+  .contain__emoji {
+    position: absolute;
+    bottom: 70%;
+    right: 50%
+  }
   i {
     color: rgb(114,105,239);
+    cursor: pointer;
   }
   .button_submit {
     background-color: rgb(97,89,203);
     i {
       color: white;
+    }
+  }
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: 100% 0%;
+  width: 36%;
+
+  button {
+    background: transparent;
+    border: 0;
+    transform: translateX(-40px);
+    cursor: pointer;
+    &:focus {
+      outline: 0;
     }
   }
 }

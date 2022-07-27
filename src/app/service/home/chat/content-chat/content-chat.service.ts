@@ -49,7 +49,7 @@ export class ContentChatService {
 
   // update message from api once 0.5s
   updateMessage() {
-    setTimeout(()=>{
+    setInterval(()=>{
       this.getMessageFromApi()
     }, 1500)
   }
@@ -67,9 +67,8 @@ export class ContentChatService {
 
   // render message to screen
   renderMessage(msg: any) {
-    console.log(msg)
     this.cd.reattach()
-    this.messages = msg.data
+    this.messages = msg.data.reverse()
     this.date = null
   }
 }

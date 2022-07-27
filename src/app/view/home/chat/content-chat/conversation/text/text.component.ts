@@ -25,46 +25,8 @@ export class TextComponent implements OnInit {
 
   arrMessage: Message[] = []
   ngOnInit(): void {
-
-    const regex1 = /((?=\{:[\w|\W]+:\})|(?<=\{:[\w|\W]+:\}))/;
-    const regex2 = /{:[\w|-]+:}+/g
-
-    // colons and not colons
-    let arrAll = this.text.split(regex1)
-    let arrColons = this.text.match(regex2)
-    console.log(this.text+"~~"+arrColons)
-    if (arrAll != null) {
-      for (let i = 0; i <arrAll.length; i++) {
-        if (arrColons?.includes(arrAll[i])) {
-          this.arrMessage.push(this.toIconMessage(arrAll[i]))
-          this.colons = arrAll[i].slice(1, -1)
-        }
-        else {
-          this.arrMessage.push(this.toNormalMessage(arrAll[i]))
-        }
-      }
-    }
+    this.text = decodeURI(this.text)
   }
-
-  toNormalMessage(value: string): Message {
-    return {value: value, isIcon: false}
-  }
-
-  toIconMessage(value: string): Message {
-    value = value.slice(1,-1) // to remove { }
-    return {value: value, isIcon: true}
-  }
-
-  checkIsIcon(message: Message) {
-    if (message.isIcon) {
-      this.colons = message.value
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
   isDeleted: boolean = false;
   deleteText(event: MouseEvent): void {
     this.isDeleted = true

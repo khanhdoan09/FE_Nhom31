@@ -44,6 +44,7 @@ export class InputChatComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
+    this.showEmojiPicker = false;
     this.inputChatService.submitMessage(encodeURI(this.message))
     // reset
     this.message = ""

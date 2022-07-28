@@ -59,7 +59,7 @@ export class Api {
         "event": "SEND_CHAT",
         "data": {
           "type": "people",
-          "to": "chk1",
+          "to": to,
           "mes": message
         }
       }

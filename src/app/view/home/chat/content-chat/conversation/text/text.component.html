@@ -2,7 +2,7 @@
   <div class="d-flex align-items-end" [style.flex-direction]="flex_direction"  *ngIf="!isDeleted; else textIsDeleted">
     <div class="text px-3 py-2  d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text">
       {{this.text}}
-      <div style="display: block" class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime'}}</div>
+      <div style="display: block" class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime' | time_pipe}}</div>
     </div>
 
     <div mdbDropdown class="dropdown align-self-start mx-2">

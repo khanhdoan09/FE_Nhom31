@@ -71,10 +71,10 @@ import { GroupsComponent } from './view/home/sidebar/content/groups/groups.compo
 import { SettingComponent } from './view/home/sidebar/content/setting/setting.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
-
+import {TimePipe} from "./model/pipe/time-pipe";
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent, TimePipe],
 
     imports: [
         CarouselModule,

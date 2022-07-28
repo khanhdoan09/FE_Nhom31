@@ -8,8 +8,6 @@
     <input class="w-100 input_text" placeholder="Type a message. Hit Enter to send" type="text" (blur)="onBlur()" (focus)="onFocus()"
            name="message" [(ngModel)]="message">
     <div class="container__icon d-flex align-items-center justify-content-center mx-1">
-      <i class="fa-solid fa-link"></i>
-      <i class="fa-solid fa-face-smile mx-3" (click) ="toggleEmojiPicker()"></i>
       <div class="contain__emoji">
         <emoji-mart class="emoji-mart emoji" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
       </div>

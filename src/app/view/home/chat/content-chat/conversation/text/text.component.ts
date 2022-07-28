@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Message} from "../../../../../../model/message";
 
 @Component({
   selector: 'app-text',
@@ -23,9 +22,17 @@ export class TextComponent implements OnInit {
 
   colons=''
 
-  arrMessage: Message[] = []
+  arrText:string[] = []
+
   ngOnInit(): void {
     this.text = decodeURI(this.text)
+    this.arrText = this.text.split(/((?<=[\bhttp::\/\/\w+]\s+))/ig)
+    console.log(this.arrText)
+  }
+
+  checkIsLink(text: string) {
+    let regexp = new RegExp(/\bhttp[s]?:\/\/\S+/ig)
+    return regexp.test(text)
   }
   isDeleted: boolean = false;
   deleteText(event: MouseEvent): void {

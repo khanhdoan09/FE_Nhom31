@@ -27,7 +27,6 @@ export class TextComponent implements OnInit {
   ngOnInit(): void {
     this.text = decodeURI(this.text)
     this.arrText = this.text.split(/((?<=[\bhttp::\/\/\w+]\s+))/ig)
-    console.log(this.arrText)
   }
 
   checkIsLink(text: string) {

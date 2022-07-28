@@ -92,7 +92,7 @@
   height: 100vh;
 
   & a {
-    padding: 18px 15px;
+    //padding: 18px 15px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -106,6 +106,7 @@
 
 
   &-left {
+    padding: 18px 15px;
     &__avatar {
       width: 35px;
       height: 35px;

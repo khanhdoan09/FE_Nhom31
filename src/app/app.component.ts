@@ -12,6 +12,7 @@ import { AsyncSubject } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   providers: [WebSocketService, TestConnectService]
 })
+
 export class AppComponent {
   title = 'mdb5-angular-ui-kit-pro-advanced';
 

@@ -4,8 +4,10 @@ import {WebSocketService} from "../../../../service/websocket/websocket_service"
 import {AnotherTestConnectService} from "../../../../service/api/anotherTestConnectService";
 import {AppComponent} from "../../../../app.component";
 import {InputChatService} from "../../../../service/home/chat/input-chat/input-chat.service";
-import {EmojiSearch, EmojiFrequentlyService} from "@ctrl/ngx-emoji-mart";
+import {EmojiSearch} from "@ctrl/ngx-emoji-mart";
 
+
+declare const microlink:any;
 
 @Component({
   selector: 'app-input-chat',

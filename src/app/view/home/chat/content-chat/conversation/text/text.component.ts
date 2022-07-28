@@ -32,4 +32,5 @@ export class TextComponent implements OnInit {
     this.isDeleted = true
   }
 
+
 }

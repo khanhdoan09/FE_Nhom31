@@ -47,6 +47,7 @@ export class ChatsSidebarService {
   renderListUser(msg: any) {
     var dataHandler:Array<any> = [];
     dataHandler = msg.data;
+    this.userList = [];
     for (let u of dataHandler) {
       if ( u.type === 0) {
         this.userList.push(u);

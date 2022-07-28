@@ -39,16 +39,16 @@ export class Api {
 
   // default load message of user ti and user long
   public static loadMessageList(name: string, page: number) {
-     return {
-       "action": "onchat",
-       "data": {
-         "event": "GET_PEOPLE_CHAT_MES",
-         "data": {
-           "name": name,
-           "page": "0"
-         }
-       }
-     }
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "GET_PEOPLE_CHAT_MES",
+        "data": {
+          "name": name,
+          "page": "0"
+        }
+      }
+    }
   }
 
   // default send message from user long to user ti
@@ -64,6 +64,17 @@ export class Api {
         }
       }
     }
+  }
 
+  public static create_room(nameRoom: any) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "CREATE_ROOM",
+        "data": {
+          "name": nameRoom
+        }
+      }
+    }
   }
 }

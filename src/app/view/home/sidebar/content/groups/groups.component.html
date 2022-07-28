@@ -4,11 +4,15 @@
     <i class="fa-solid fa-user-group"></i>
     <span class="btn-create__hint">Create groups</span>
   </button>
+  <button class="btn-create" (click)="isShowAddMember =true">
+    <i class="fa-solid fa-circle-plus"></i>
+    <span class="btn-create__hint">Join groups</span>
+    <span class="btn-create__hint">Join Group</span>
+  </button>
 
 </div>
 
 <div class="modal-create-group" *ngIf="isShowing" (click)="isShowing =false"></div>
-
 <div class="modal-create-groupss" *ngIf="isShowing">
   <div class="d-flex justify-content-between align-items-center modal-create-groupss__header">
     <h5>Create New Group</h5>
@@ -21,36 +25,10 @@
       <label>Group Name</label>
       <input type="text" placeholder="Enter Group Name" [(ngModel)]="nameRoom">
     </div>
-
-    <div class="d-flex flex-column">
-      <label>Group Members</label>
-      <div class="modal-create-groupss__body--list-member style-5">
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member1">
-          <label for="member1">Minh Chanh</label>
-        </div>
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member2">
-          <label for="member2">Phi Khanh</label>
-        </div>
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member3">
-          <label for="member3">Hung</label>
-        </div>
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member4">
-          <label for="member4">Nguyen Vass</label>
-        </div>
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member5">
-          <label for="member5">Leesa Kaizas</label>
-        </div>
-        <div class="modal-create-groupss__body--list-member__item">
-          <input type="checkbox" id="member6">
-          <label for="member6">Ruizz VaaMass</label>
-        </div>
-      </div>
-    </div>
+    <span
+      class="fw-bold text-danger">{{this._createGroupService.statusCreated === "error" ? "Group is existed" : ""}}</span>
+    <span
+      class="fw-bold text-success">{{this._createGroupService.statusCreated === "success" ? "Create group success" : ""}}</span>
   </div>
 
   <div class="d-flex modal-create-groupss__footer">
@@ -60,19 +38,58 @@
 </div>
 
 
+<!--copy join-->
+<div class="modal-create-group" *ngIf="isShowAddMember" (click)="isShowAddMember =false"></div>
+<div class="modal-create-groupss" *ngIf="isShowAddMember">
+  <div class="d-flex justify-content-between align-items-center modal-create-groupss__header">
+    <h5>Join Group</h5>
+    <button class="modal-create-groupss__header--close" (click)="isShowAddMember =false">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="modal-create-groupss__body">
+    <div class="modal-create-groupss__body">
+      <div class="d-flex flex-column">
+        <label>Group Name</label>
+        <input type="search" placeholder="Enter Group Name" [(ngModel)]="nameJoinRoom">
+      </div>
+      <span
+        class="fw-bold text-danger">{{this._joinGroupService.statusJoinRoom === "error" ? "Group not found" : ""}}</span>
+      <span
+        class="fw-bold text-success">{{this._joinGroupService.statusJoinRoom === "success" ? "Join the group successfully" : ""}}</span>
+    </div>
+
+    <!--    <div class="d-flex flex-column">-->
+    <!--      <div class="modal-create-groupss__body&#45;&#45;list-member style-5">-->
+    <!--        <div class="modal-create-groupss__body&#45;&#45;list-member__item" *ngFor="let user of this._userListService.userList">-->
+    <!--          <input type="checkbox">-->
+    <!--          <label>{{user.name}}</label>-->
+    <!--        </div>-->
+
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+
+  <div class="d-flex modal-create-groupss__footer">
+    <button class="modal-create-groupss__footer--close" (click)="isShowAddMember =false">Close</button>
+    <button class="modal-create-groupss__footer--create" (click)="joinHandler()">Join Now</button>
+  </div>
+</div>
+<!--end copy-->
 <div action="" id="search-groups" class="mt-3">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="text" placeholder="search groups..." class="search-input" [(ngModel)]="txtSearchGroup">
 </div>
 <div class="groups mt-4 style-5">
   <a class="d-flex justify-content-between align-items-center"
-     *ngFor="let group of this._groupsService.groupList |filter:txtSearchGroup" (click)="selectMessage(group)">
+     *ngFor="let group of this._groupsService.groupList |filter:txtSearchGroup" (click)="selectMessage(group.name)">
     <div class="groups-left d-flex align-items-center ">
-      <span class="groups-left__avatar ">{{group.name.substring(0, 1)}}</span>
-      <span class="groups-left__name">#{{group.name}}</span>
+      <span class="groups-left__avatar ">{{group.name?.substring(0, 1)}}</span>
+      <span class="groups-left__name">{{group.name}}</span>
     </div>
     <div class="groups-right">
-      <span class="groups-right__seen">+92323239</span>
+      <!--      <span class="groups-right__seen">+92323239</span>-->
+      <!--      <i class="fa-solid fa-user-group" (click)="isShowAddMember =true"></i>-->
     </div>
   </a>
 

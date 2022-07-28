@@ -71,7 +71,7 @@ export class ContentChatService {
   // render message to screen
   renderMessage(msg: any) {
     this.cd.reattach()
-    this.messages = msg.data
+    this.messages = msg.data.reverse();
     this.date = null
   }
 }

@@ -135,6 +135,9 @@
   }
 
   &-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &__seen {
       background-color: #f4d7e2;
       color: #ef5973;

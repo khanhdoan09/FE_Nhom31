@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MdbModalRef} from "mdb-angular-ui-kit/modal";
 import {TestConnectService} from 'src/app/service/api/testConnectService';
-import { CreateGroupService } from 'src/app/service/home/sidebar/groups-sideabar/create-group.service';
+import {ChatsSidebarService} from 'src/app/service/home/sidebar/chats-sidebar/chats-sidebar.service';
+import {CreateGroupService} from 'src/app/service/home/sidebar/groups-sideabar/create-group.service';
+import {JoinGroupService} from 'src/app/service/home/sidebar/groups-sideabar/join-group.service';
 import {Api} from "../../../../../service/api/api";
 import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar/groups.service";
 
@@ -13,26 +15,36 @@ import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar
 export class GroupsComponent implements OnInit {
 
   nameRoom: any = '';
+  nameJoinRoom: any;
+
   isShowing = false;
+  isShowAddMember = false;
   txtSearchGroup: any;
 
+  uName: any = localStorage.getItem('userName');
   constructor(public _groupsService: GroupsService,
-              public _createGroupService: CreateGroupService) {
+              public _createGroupService: CreateGroupService,
+              public _joinGroupService: JoinGroupService,
+  ) {
     this._groupsService.runService();
-    // this._createGroupService.runService(this.nameRoom);
   }
 
   ngOnInit(): void {
   }
 
-  openModal() {
+
+  createHandler() {
+    this._createGroupService.runService(this.nameRoom);
+    // this.isShowing = false;
+  }
+
+  joinHandler() {
+      this._joinGroupService.runService(this.nameJoinRoom);
+      this.nameJoinRoom = "";
 
   }
-  createHandler(){
-    this._createGroupService.runService(this.nameRoom);
-    this.isShowing = false;
-  }
+
   selectMessage(group: any) {
-    localStorage.setItem('group', JSON.stringify(group));
+    localStorage.setItem('groupName', (group));
   }
 }

@@ -77,4 +77,15 @@ export class Api {
       }
     }
   }
+  public static join_room(nameRoomJ: any) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "JOIN_ROOM",
+        "data": {
+          "name": nameRoomJ
+        }
+      }
+    }
+  }
 }

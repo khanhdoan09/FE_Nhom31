@@ -7,7 +7,7 @@ import {Api} from "../../../api/api";
 })
 export class CreateGroupService {
   nameRoom: any;
-
+  statusCreated: any;
   constructor(private _testConnectService: TestConnectService) {
   }
 
@@ -24,18 +24,19 @@ export class CreateGroupService {
       });
       setTimeout(() => {
         this._testConnectService.messages.next(Api.create_room(this.nameRoom));
-      }, 500)
-    }, 500)
+      })
+    } )
   }
 
   updateCreateGroup() {
     setTimeout(() => {
       this.init();
-    }, 1500)
+    })
   }
 
   renderDataCreateGroup(msg: any) {
     console.log(msg)
-    return msg.data;
+    this.statusCreated = msg.status;
+    return msg;
   }
 }

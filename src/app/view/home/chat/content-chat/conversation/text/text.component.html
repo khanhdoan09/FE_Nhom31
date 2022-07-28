@@ -1,7 +1,19 @@
 <div *ngIf="text">
   <div class="d-flex align-items-end" [style.flex-direction]="flex_direction"  *ngIf="!isDeleted; else textIsDeleted">
     <div class="text px-3 py-2  d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text">
-      {{this.text}}
+      <div class="d-inline">
+        <span *ngFor="let currentText of arrText">
+          <span *ngIf="checkIsLink(currentText); else normalText">
+            <a target="_blank" href="{{currentText}}">{{currentText}}</a>
+          </span>
+          <ng-template #normalText>
+          <span>
+            {{currentText}}
+          </span>
+        </ng-template>
+        </span>
+      </div>
+<!--      {{this.text | link_pipe}}-->
       <div style="display: block" class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'shortTime' | time_pipe}}</div>
     </div>
 

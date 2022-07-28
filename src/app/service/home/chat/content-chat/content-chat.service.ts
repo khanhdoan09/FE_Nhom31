@@ -11,6 +11,10 @@ import {User} from "../../../../model/user";
 export class ContentChatService {
 
   cd!: ChangeDetectorRef
+  // first just default
+  toMessage = 'chk1'
+  typeMessage = 0
+
   constructor(private connect: TestConnectService) {
 
     localStorage.setItem("userName", "chk2");
@@ -35,9 +39,7 @@ export class ContentChatService {
       this.connect.messages.next(Api.login("", ""));
     },1000)
   }
-  // first just default
-  toMessage = 'chk1'
-  typeMessage = 0
+
 
   messages: any = ['','']
   date:any = null

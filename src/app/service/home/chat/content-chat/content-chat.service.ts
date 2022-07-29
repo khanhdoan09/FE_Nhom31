@@ -4,6 +4,9 @@ import {TestConnectService} from "../../../api/testConnectService";
 import {MessageApi} from "../../../../model/message_api";
 import {ContactTo} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
+import {setIsHasMoreData} from "../../../../model/pagination";
+
+let idSetInterval = 0
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,7 @@ export class ContentChatService {
   cd!: ChangeDetectorRef
   // first just default
   toMessage = 'chk1'
+  pagination = 0
   typeMessage = 0
 
   constructor(private connect: TestConnectService) {
@@ -49,10 +53,11 @@ export class ContentChatService {
     return true
   }
 
-  // update message from api once 0.5s
+  // update message from api once 1.5s
   updateMessage() {
     // setInterval
-    setTimeout(()=>{
+    // setTimeout(()=>{
+      idSetInterval = setInterval(()=>{
       this.getMessageFromApi()
     }, 1500)
   }
@@ -64,14 +69,23 @@ export class ContentChatService {
     });
     // second send signal next then observable will catch it
     setTimeout(()=>{
-      this.connect.messages.next(Api.loadMessageList(this.toMessage, 0));
+      this.connect.messages.next(Api.loadMessageList(this.toMessage));
     }, 1000)
   }
 
   // render message to screen
   renderMessage(msg: any) {
     this.cd.reattach()
-    this.messages = msg.data.reverse();
-    this.date = null
+    if (msg != null) {
+      if (msg.data.length != 0) {
+        this.messages = msg.data;
+        this.date = null
+      }
+      else {
+        setIsHasMoreData(false)
+      }
+    }
   }
 }
+
+export {idSetInterval}

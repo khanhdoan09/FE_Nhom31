@@ -37,6 +37,4 @@ export class TextComponent implements OnInit {
   deleteText(event: MouseEvent): void {
     this.isDeleted = true
   }
-
-
 }

@@ -1,3 +1,5 @@
+import {pagination} from "../../model/pagination";
+
 export class Api {
 
   public static login(name: string, password: string) {
@@ -38,18 +40,34 @@ export class Api {
 
 
   // default load message of user ti and user long
-  public static loadMessageList(name: string, page: number) {
+  // only to get new message
+  public static loadMessageList(name: string) {
     return {
       "action": "onchat",
       "data": {
         "event": "GET_PEOPLE_CHAT_MES",
         "data": {
           "name": name,
-          "page": "0"
+          "page": 1
         }
       }
     }
   }
+
+  // to get old message
+  public static loadOldMessageList(name: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "GET_PEOPLE_CHAT_MES",
+        "data": {
+          "name": name,
+          "page": pagination
+        }
+      }
+    }
+  }
+
 
   // default send message from user long to user ti
   public static sendMessage(to: string, message: string) {

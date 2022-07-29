@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
-import {StatusUser} from "../../../../model/message_api";
-import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  userObject: StatusUser = {status: undefined};
+  statusUser: any;
 
   constructor(private _testConnectService: TestConnectService) { }
 
@@ -28,10 +26,10 @@ export class ProfileService {
   updateInfoUser() {
     setTimeout(() => {
       this.init();
-    }, 1000)
+    }, 50)
   }
   loadInfoUser(msg: any) {
-    this.userObject = msg.data;
-    console.log(this.userObject)
+    this.statusUser = msg.status;
+    return this.statusUser;
   }
 }

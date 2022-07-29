@@ -16,15 +16,15 @@
         <div class="card">
           <div class="card-body p-4">
             <div class="p-3">
-              <form action="index.html">
+              <form action="">
 
                 <div class="mb-3">
-                  <label class=" label-login">Username</label>
+                  <label class=" label-login" for="username">Username</label>
                   <div class=" div-input input-group mb-3 bg-soft-light rounded-3">
                                             <span class=" " id="basic-addon3">
                                                     <i class="fa-solid fa-user"></i>
                                                 </span>
-                    <input type="text" class="input-control " placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3">
+                    <input type="text" class="input-control" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3" name="username" [(ngModel)]="username" >
                   </div>
                 </div>
 
@@ -32,12 +32,12 @@
                   <div class="float-end">
                     <a href="auth-recoverpw.html" class="text-muted font-size-13">Forgot password?</a>
                   </div>
-                  <label class="label-login">Password</label>
+                  <label class="label-login" for="password">Password</label>
                   <div class="div-input input-group mb-3 bg-soft-light rounded-3">
                                             <span class="" id="basic-addon4">
                                                     <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input type="password" class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4">
+                    <input type="password" class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
 
                   </div>
                 </div>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="d-grid">
-                  <button class="btn  waves-effect waves-light"  type="submit">Sign in</button>
+                  <button class="btn  waves-effect waves-light" (click)="login()"  type="submit">Sign in</button>
                 </div>
 
               </form>

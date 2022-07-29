@@ -5,10 +5,10 @@
         <div class="text-center mb-4">
           <a href="index.html" class="auth-logo mb-3 d-block">
             <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
-<!--            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">-->
+            <!--            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">-->
           </a>
 
-          <h4 >Sign up</h4>
+          <h4>Sign up</h4>
           <p class="text-muted mb-4">Get your Chatvia account now.</p>
 
         </div>
@@ -16,15 +16,27 @@
         <div class="card">
           <div class="card-body p-4">
             <div class="p-3">
-              <form action="index.html">
+              <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
 
+                <div class="mb-3">
+                  <label class="label-register">Full Name</label>
+                  <div class="div-input input-group bg-soft-light rounded-3  mb-3">
+                                            <span class="" id="basic-addon4">
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                </span>
+                    <input formControlName="name" type="email" class="input-control" placeholder="Enter Full Name" aria-label="Enter Email"
+                           aria-describedby="basic-addon5" name="name" [(ngModel)]="name">
+
+                  </div>
+                </div>
                 <div class="mb-3">
                   <label class="label-register">Email</label>
                   <div class="div-input input-group bg-soft-light rounded-3  mb-3">
                                             <span class="" id="basic-addon5">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </span>
-                    <input type="email" class="input-control" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="basic-addon5">
+                    <input formControlName="email" type="email" class="input-control" placeholder="Enter Email" aria-label="Enter Email"
+                           aria-describedby="basic-addon5">
 
                   </div>
                 </div>
@@ -35,7 +47,8 @@
                                             <span class="" id="basic-addon6">
                                                      <i class="fa-solid fa-user"></i>
                                                 </span>
-                    <input type="text" class="input-control" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon6">
+                    <input formControlName="username" type="text" class="input-control" placeholder="Enter Username" aria-label="Enter Username"
+                           aria-describedby="basic-addon6" name="username" [(ngModel)]="username">
 
                   </div>
                 </div>
@@ -46,18 +59,22 @@
                                             <span class="" id="basic-addon7">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input type="password" class="input-control" placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon7">
+                    <input formControlName="password" type="password" class="input-control" placeholder="Enter Password"
+                            aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
+                           [(ngModel)]="password">
 
                   </div>
                 </div>
 
 
                 <div class="d-grid">
-                  <button class="btn btn-primary waves-effect waves-light" type="submit">Sign up</button>
+                  <button class="btn btn-primary waves-effect waves-light" (click)="signUp()" type="submit">Sign up
+                  </button>
                 </div>
 
                 <div class="mt-4 text-center">
-                  <p class="text-muted mb-0">By registering you agree to the Chatvia <a href="#" class="text-primary">Terms of Use</a></p>
+                  <p class="text-muted mb-0">By registering you agree to the Chatvia <a href="/" class="text-primary">Terms
+                    of Use</a></p>
                 </div>
 
               </form>
@@ -66,11 +83,13 @@
         </div>
 
         <div class="mt-5 text-center">
-          <p>Already have an account ? <a href="../logIn" class="fw-medium text-primary"> Signin </a> </p>
+          <p>Already have an account ? <a href="../logIn" class="fw-medium text-primary"> Signin </a></p>
           <p>©
             <script>
               document.write(new Date().getFullYear())
-            </script> Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+            </script>
+            Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+          </p>
         </div>
       </div>
     </div>

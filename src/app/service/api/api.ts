@@ -16,6 +16,22 @@ export class Api {
     }
   }
 
+  public static signUp(name: string, password: string) {
+    // default login with user long
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "REGISTER",
+        "data": {
+          "user": name,
+          "pass": password
+        }
+      }
+    }
+  }
+
+
+
   // get user list
   public static loadUserList() {
     return {

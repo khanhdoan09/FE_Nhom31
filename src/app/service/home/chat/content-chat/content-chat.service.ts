@@ -55,8 +55,6 @@ export class ContentChatService {
 
   // update message from api once 1.5s
   updateMessage() {
-    // setInterval
-    // setTimeout(()=>{
       idSetInterval = setInterval(()=>{
       this.getMessageFromApi()
     }, 1500)

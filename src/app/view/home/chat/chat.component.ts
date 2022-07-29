@@ -18,21 +18,22 @@ export class ChatComponent implements OnInit {
     this.oldContentChatService.cd = cd
   }
 
+  positionScroll:any = null
+
   @HostListener('scroll', ['$event'])
   onScroll(event: any) {
+    this.positionScroll = event.target
     let currentScrollPosition = event.target.offsetHeight + (-event.target.scrollTop + 1)
     if (currentScrollPosition >= event.target.scrollHeight) {
-      // console.log('end')
-      // console.log(pagination)
-      // console.log('cur ' + currentScrollPosition)
-
       clearInterval(idSetInterval)
       updatePagination()
       this.oldContentChatService.updateMessage()
+    }
+  }
 
-      // console.log('new '+ pagination)
-      // currentScrollPosition = 0
-      // console.log(currentScrollPosition)
+  setScrollToBottom() {
+    if(this.positionScroll != null) {
+      this.positionScroll.scrollTop = 0
     }
   }
 

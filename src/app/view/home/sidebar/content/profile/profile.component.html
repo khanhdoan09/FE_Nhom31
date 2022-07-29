@@ -6,7 +6,7 @@
     <img class="image-user__avatar"
          src="https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg"
          alt="">
-    <i class="fa-solid fa-circle  {{this.profileService.userObject.status ? 'image-user__online':'image-user__offline'}}"></i>
+    <!--    <i class="fa-solid fa-circle  {{this.profileService.statusUser ? 'image-user__online':'image-user__offline'}}"></i>-->
   </div>
   <p class="text-center mt-2 fw-bold">{{userName}}</p>
 </div>
@@ -23,8 +23,10 @@
   <p><strong>{{userName}}@gmail.com</strong></p>
 
   <label>Status</label>
-  <p [class.text-success]= "this.profileService.userObject.status"><strong> {{this.profileService.userObject.status ? 'Online':'Offline'}}</strong></p>
-
+<!--  <p [class.text-success]="this.profileService.statusUser.status===">-->
+<!--    <strong> {{this.profileService.statusUser.status ? 'Online' : 'Offline'}}</strong></p>-->
+  <p class="text-success fw-bold">{{this.profileService.statusUser === "success" ? 'Online' : ''}}</p>
+  <p class="text-danger fw-bold">{{this.profileService.statusUser === "error" ? 'Offline' : ''}}</p>
   <label>Location</label>
   <p><strong>Linh Chieu, Thu Duc</strong></p>
 </div>

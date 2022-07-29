@@ -14,7 +14,7 @@ export class OldContentChatService {
   toMessage = 'chk1'
   pagination = 0
   typeMessage = 0
-  oldArrayMessages: any = ['', '']
+  oldArrayMessages: any = []
   date: any = null
 
 
@@ -29,10 +29,9 @@ export class OldContentChatService {
 
   // update message from api once 1.5s
   updateMessage() {
-    // setInterval
     setTimeout(() => {
       this.getMessageFromApi()
-    }, 1500)
+    }, 1000)
   }
 
   getMessageFromApi() {
@@ -52,9 +51,11 @@ export class OldContentChatService {
     if (msg != null) {
       if (msg.data.length != 0) {
         Array.prototype.push.apply(this.oldArrayMessages, msg.data);
-        this.date = null
         console.log(this.oldArrayMessages)
-        this.contentChatService.updateMessage()
+        this.date = null
+        setTimeout(()=>{
+          this.contentChatService.updateMessage()
+        },500)
       }
       else {
         setIsHasMoreData(false)

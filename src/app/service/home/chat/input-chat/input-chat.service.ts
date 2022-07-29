@@ -17,6 +17,7 @@ export class InputChatService {
   }
 
   submitMessage(userText: string) {
+    console.log(userText)
     // first invoke observable by subscribe function
     this.connect.messages.subscribe(msg => {
     });

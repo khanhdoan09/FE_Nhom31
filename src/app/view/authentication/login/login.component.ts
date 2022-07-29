@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  username : string = "";
+  password : string ="";
+
+
   constructor() {
 
   }
@@ -15,4 +19,7 @@ export class LoginComponent implements OnInit {
 
   }
 
+  login() {
+    console.log(this.username+ "_" +this.password);
+  }
 }

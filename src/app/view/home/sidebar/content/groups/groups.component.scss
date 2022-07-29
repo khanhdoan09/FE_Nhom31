@@ -87,9 +87,9 @@
 }
 
 .groups {
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
-  height: 100vh;
+  height: 800px;
 
   & a {
     //padding: 18px 15px;
@@ -107,6 +107,7 @@
 
   &-left {
     padding: 18px 15px;
+
     &__avatar {
       width: 35px;
       height: 35px;
@@ -139,6 +140,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     &__seen {
       background-color: #f4d7e2;
       color: #ef5973;

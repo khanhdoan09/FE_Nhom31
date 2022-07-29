@@ -13,13 +13,14 @@ export class RegisterComponent implements OnInit {
   name : string ="";
   username : string ="";
   password : string="";
+  repassword : string="";
 
   signupForm!: FormGroup;
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService) {
     this.signupForm = this.formBuilder.group( {
       name:[''],
       email: [''],
-      username: [''],
+      repassword: [''],
       password: ['']
     })
   }
@@ -29,7 +30,12 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     console.log("Name: " + this.name +"\tUsername: " +this.username + "\tPass: "+ this.password);
-    this.signUpService.submitSignUp(this.username,this.password)
+    if(this.password === this.repassword) {
+      this.signUpService.submitSignUp(this.username,this.password)
+    }
+    else {
+      alert("Please enter true password!")
+    }
   }
 
 }

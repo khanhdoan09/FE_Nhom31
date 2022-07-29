@@ -18,17 +18,7 @@
             <div class="p-3">
               <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
 
-                <div class="mb-3">
-                  <label class="label-register">Full Name</label>
-                  <div class="div-input input-group bg-soft-light rounded-3  mb-3">
-                                            <span class="" id="basic-addon4">
-                                                    <i class="fa-solid fa-envelope"></i>
-                                                </span>
-                    <input formControlName="name" type="email" class="input-control" placeholder="Enter Full Name" aria-label="Enter Email"
-                           aria-describedby="basic-addon5" name="name" [(ngModel)]="name">
 
-                  </div>
-                </div>
                 <div class="mb-3">
                   <label class="label-register">Email</label>
                   <div class="div-input input-group bg-soft-light rounded-3  mb-3">
@@ -62,6 +52,18 @@
                     <input formControlName="password" type="password" class="input-control" placeholder="Enter Password"
                             aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
                            [(ngModel)]="password">
+
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="label-register">RePassword</label>
+                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">
+                                            <span class="" id="basic-addon8">
+                                                     <i class="fa-solid fa-key"></i>
+                                                </span>
+                    <input formControlName="repassword" type="password" class="input-control" placeholder="Enter Password"
+                           aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
+                           [(ngModel)]="repassword">
 
                   </div>
                 </div>

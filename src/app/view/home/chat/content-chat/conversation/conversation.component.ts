@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-conversation',
@@ -7,7 +7,13 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ConversationComponent implements OnInit {
 
-  //ss
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e:any) {
+    alert(123)
+    // Your Code Here
+  }
+
+
   @Input() left: string= ""
   @Input() right: string= ""
   @Input() flex_direction: string= ""
@@ -21,5 +27,7 @@ export class ConversationComponent implements OnInit {
   @Input() time: string = ""
   ngOnInit(): void {
   }
+
+
 
 }

@@ -1,7 +1,7 @@
 <div class="text-center vh-100 d-flex flex-column  justify-content-between">
   <app-header-bar></app-header-bar>
-  <div class="container__content">
-    <app-content-chat></app-content-chat>
+  <div class="container__content" (scroll)="onScroll($event)">
+    <app-content-chat class="d-flex flex-column-reverse"></app-content-chat>
   </div>
   <app-input-chat></app-input-chat>
 </div>

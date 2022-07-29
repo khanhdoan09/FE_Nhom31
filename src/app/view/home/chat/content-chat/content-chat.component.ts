@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {MessageApi} from "../../../../model/message_api";
 import {Api} from "../../../../service/api/api";
 import {AppComponent} from "../../../../app.component";
@@ -11,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import {ContactTo} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
 import {ContentChatService} from "../../../../service/home/chat/content-chat/content-chat.service";
+import {OldContentChatService} from "../../../../service/home/chat/old-content-chat/old-content-chat.service";
 
 @Component({
   selector: 'app-content-chat',
@@ -20,10 +31,14 @@ import {ContentChatService} from "../../../../service/home/chat/content-chat/con
 })
 export class ContentChatComponent implements OnInit {
 
+  // for load old message
+  // get from chat component
 
-  constructor(public contentChatService: ContentChatService, public cd: ChangeDetectorRef) {
+  constructor(public contentChatService: ContentChatService, public oldContentChatService: OldContentChatService, public cd: ChangeDetectorRef) {
     this.contentChatService.cd = cd
   }
+
+  @HostListener('scroll', ['$event'])
 
   ngOnInit(): void {
 

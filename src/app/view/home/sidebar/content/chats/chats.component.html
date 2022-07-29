@@ -7,28 +7,31 @@
   </div>
   <h5 class="mt-4">Recent</h5>
   <div class="chats style-5">
-    <a *ngFor="let u of this.chatSidebarService.userList| filter:this.chatSidebarService.txtSearch"
+
+    <a *ngFor="let u of this.chatSidebarService.userList | filter:this.chatSidebarService.txtSearch"
        (click)="this.chatSidebarService.selectMessage(u)"
     >
-      <div class="chats-left">
+
+      <div class="chats-left" *ngIf="u.type === 0" >
         <img class="chats-left__avatar"
              src="https://www.w3schools.com/howto/img_avatar.png" alt="">
-        <span class="chats-left__status active">
-          <i class="fa-solid fa-period">
-            <i class="fa-solid fa-circle"></i>
-          </i>
-        </span>
+<!--        <span class="chats-left__status active">-->
+<!--          <i class="fa-solid fa-period">-->
+<!--            <i class="fa-solid fa-circle"></i>-->
+<!--          </i>-->
+<!--        </span>-->
         <div>
           <span class="chats-left__name">{{u.name}}</span>
           <br>
           <span class="chats-left__messages">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, animi asperiores cumque cupiditate debitis eius excepturi expedita fuga id illo impedit inventore modi odit omnis perspiciatis, placeat quisquam reiciendis temporibus.</span>
         </div>
       </div>
-      <div class="chats-right" >
+      <div class="chats-right" *ngIf="u.type === 0" >
         <span class="chats-right__time">{{u.actionTime |  date:'shortTime'}}</span>
         <span class="chats-right__seen">99</span>
       </div>
     </a>
+    <ng-template #abc>123124</ng-template>
   </div>
 </div>
 

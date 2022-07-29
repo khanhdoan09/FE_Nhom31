@@ -20,8 +20,10 @@ export class GroupsComponent implements OnInit {
   isShowing = false;
   isShowAddMember = false;
   txtSearchGroup: any;
+  alertEmpty: any;
 
   uName: any = localStorage.getItem('userName');
+
   constructor(public _groupsService: GroupsService,
               public _createGroupService: CreateGroupService,
               public _joinGroupService: JoinGroupService,
@@ -39,8 +41,12 @@ export class GroupsComponent implements OnInit {
   }
 
   joinHandler() {
-      this._joinGroupService.runService(this.nameJoinRoom);
-      this.nameJoinRoom = "";
+    // if (this.nameJoinRoom.empty()) {
+    //   this.alertEmpty = "Tên rỗng";
+    // }
+    this._joinGroupService.runService(this.nameJoinRoom);
+    this.nameJoinRoom = "";
+
 
   }
 

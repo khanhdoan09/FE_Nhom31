@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {User} from "../../../../model/user";
@@ -13,6 +13,7 @@ export class ChatsSidebarService {
   txtSearch: any;
   test: any = true;
   time: string = "";
+
   constructor(private _testConnectService: TestConnectService) {
   }
 
@@ -42,18 +43,9 @@ export class ChatsSidebarService {
     }, 1000)
   }
 
-  // render message to screen
-
   renderListUser(msg: any) {
-    var dataHandler:Array<any> = [];
-    dataHandler = msg.data;
-    this.userList = [];
-    for (let u of dataHandler) {
-      if ( u.type === 0) {
-        this.userList.push(u);
-      }
-    }
-    console.log(this.userList)
+    this.userList = msg.data;
+    return this.userList;
   }
 
   selectMessage(u: User) {

@@ -65,10 +65,10 @@
 
 
 .chats a {
-  display: flex !important;
+  display: flex ;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  //padding: 10px 15px;
   background-color: transparent;
   border-radius: 5px;
   color: #333;
@@ -79,10 +79,12 @@
   }
 }
 
+
 .chats-left {
   display: flex;
   align-items: center;
   position: relative;
+  padding: 10px 15px;
 }
 
 .chats-left__avatar {

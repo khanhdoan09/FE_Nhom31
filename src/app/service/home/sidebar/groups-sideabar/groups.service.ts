@@ -19,26 +19,18 @@ export class GroupsService {
       });
       setTimeout(() => {
         this._testConnectService.messages.next(Api.loadUserList());
-      }, 500)
-    }, 500)
+      } ,300)
+    },300)
   }
 
   updateGroupList() {
     setTimeout(() => {
       this.init();
-    }, 1500)
+    }, 1000)
   }
 
   renderGroupList(msg: any) {
-    console.log('Danh sách tin nhắn nhóm')
-    var dataHandler:Array<any> = [];
-    dataHandler = msg.data;
-    for (let u of dataHandler) {
-      if (u.type === 1) {
-        this.groupList.push(u);
-      }
-    }
-    console.log(this.groupList);
+    this.groupList = msg.data;
     return this.groupList;
   }
 }

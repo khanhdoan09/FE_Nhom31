@@ -72,7 +72,6 @@ export class Api {
 
   // to get old message
   public static loadOldMessageList(name: string) {
-    console.log(pagination)
     return {
       "action": "onchat",
       "data": {

@@ -4,20 +4,23 @@ import {TestConnectService} from "../../../api/testConnectService";
 import {MessageApi} from "../../../../model/message_api";
 import {ContactTo} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
-import {setIsHasMoreData} from "../../../../model/pagination";
+import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
+import {IContentChat} from "../../../../model/content-chat";
 
 let idSetInterval = 0
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContentChatService {
+export class ContentChatService implements IContentChat{
 
-  cd!: ChangeDetectorRef
   // first just default
   toMessage = 'chk1'
   pagination = 0
   typeMessage = 0
+  isFirstInGetDate = true
+  cd!: ChangeDetectorRef
+  messages: any = []
 
   constructor(private connect: TestConnectService) {
 
@@ -45,17 +48,40 @@ export class ContentChatService {
   }
 
 
-  messages: any = ['','']
   date:any = null
   updateDate(newDate: any) {
-    this.cd.detach()
-    this.date = newDate
-    return true
+
+
+    // = null la do luc dau chua tinh
+    if (this.date != newDate && this.date == null) {
+      this.cd.detach()
+      this.date = newDate
+      return false
+    }
+    // gan ngay dau tien
+    // new khong co isFirstInGetDate thi se gan cho ngay thu hai
+    else if (this.date != newDate && this.date != null && this.isFirstInGetDate) {
+      this.cd.detach()
+      this.isFirstInGetDate = false
+      return true
+    }
+    else if (this.date != newDate && this.date != null) {
+      this.cd.detach()
+      this.date = newDate
+      return true
+    }
+    else {
+      return false
+    }
   }
 
   // update message from api once 1.5s
   updateMessage() {
-      idSetInterval = setInterval(()=>{
+    // this.cd.reattach()
+    idSetInterval = setTimeout(()=>{
+      // reset
+      this.date = ''
+      this.isFirstInGetDate = true
       this.getMessageFromApi()
     }, 1500)
   }
@@ -73,10 +99,11 @@ export class ContentChatService {
 
   // render message to screen
   renderMessage(msg: any) {
-    this.cd.reattach()
+    // this.cd.reattach()
     if (msg != null) {
       if (msg.data.length != 0) {
         this.messages = msg.data;
+        console.log(msg.data)
         this.date = null
       }
       else {

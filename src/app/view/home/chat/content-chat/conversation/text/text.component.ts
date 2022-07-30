@@ -37,4 +37,14 @@ export class TextComponent implements OnInit {
   deleteText(event: MouseEvent): void {
     this.isDeleted = true
   }
+
+  statusTime = 'none';
+  checkActiveTime() {
+    if (this.statusTime == 'block') {
+      this.statusTime = 'none'
+    }
+    else {
+      this.statusTime = 'block'
+    }
+  }
 }

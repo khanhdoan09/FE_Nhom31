@@ -6,14 +6,8 @@ import {Pipe, PipeTransform} from "@angular/core";
 
 export class TimePipe implements PipeTransform {
   transform(value: any): string {
-    let currentHour = value[0]
-    let replaced = ''
-    if (currentHour <= 5) {
-      replaced = value.replace(value[0], Number.parseInt(value[0])+7);
-    }
-    else {
-      replaced = value.replace(value[0], value[0]);
-    }
-    return replaced;
+    let currentTime = value.split(':')[0]
+    let replaced = Number.parseInt(currentTime)+7 +':'+currentTime[1]
+    return value;
   }
 }

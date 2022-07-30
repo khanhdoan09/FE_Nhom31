@@ -17,13 +17,14 @@ export class InputChatService {
   }
 
   submitMessage(userText: string) {
-    console.log(userText)
-    // first invoke observable by subscribe function
-    this.connect.messages.subscribe(msg => {
-    });
-    // second send signal next then observable will catch it
-    setTimeout(()=>{
-      this.connect.messages.next(Api.sendMessage(this.toMessage, userText));
-    },100)
+    if (userText != null || userText != '' || /\s/.test(userText) == false) {
+      // first invoke observable by subscribe function
+      this.connect.messages.subscribe(msg => {
+      });
+      // second send signal next then observable will catch it
+      setTimeout(()=>{
+        this.connect.messages.next(Api.sendMessage(this.toMessage, userText));
+      },100)
+    }
   }
 }

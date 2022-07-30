@@ -11,4 +11,4 @@ function setIsHasMoreData(check:boolean) {
   isHasMoreData = check
 }
 
-export { pagination, updatePagination, setIsHasMoreData };
+export { pagination, updatePagination, setIsHasMoreData, isHasMoreData };

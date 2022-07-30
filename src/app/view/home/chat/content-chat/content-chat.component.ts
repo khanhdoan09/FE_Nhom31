@@ -12,16 +12,8 @@ import {
 import {MessageApi} from "../../../../model/message_api";
 import {Api} from "../../../../service/api/api";
 import {AppComponent} from "../../../../app.component";
-import {TestConnectService} from "../../../../service/api/testConnectService";
-import {WebSocketService} from "../../../../service/websocket/websocket_service";
-import {Subject} from "rxjs";
-import {configure} from "../../../../configure/Configure";
-import {map} from "rxjs/operators";
-import { DatePipe } from '@angular/common';
-import {ContactTo} from "../../../../model/contact-to";
-import {User} from "../../../../model/user";
-import {ContentChatService} from "../../../../service/home/chat/content-chat/content-chat.service";
-import {OldContentChatService} from "../../../../service/home/chat/old-content-chat/old-content-chat.service";
+import {IContentChat} from "../../../../model/content-chat";
+import {isHasMoreData} from "../../../../model/pagination";
 
 @Component({
   selector: 'app-content-chat',
@@ -34,13 +26,14 @@ export class ContentChatComponent implements OnInit {
   // for load old message
   // get from chat component
 
-  constructor(public contentChatService: ContentChatService, public oldContentChatService: OldContentChatService, public cd: ChangeDetectorRef) {
-    this.contentChatService.cd = cd
+  @Input() contentChatService!:IContentChat
+  constructor( public cd: ChangeDetectorRef) {
   }
+
 
   @HostListener('scroll', ['$event'])
 
   ngOnInit(): void {
-
+    this.contentChatService.cd = this.cd
   }
 }

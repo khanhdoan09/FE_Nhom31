@@ -78,7 +78,7 @@ export class ContentChatService implements IContentChat{
   // update message from api once 1.5s
   updateMessage() {
     // this.cd.reattach()
-    idSetInterval = setInterval(()=>{
+    idSetInterval = setTimeout(()=>{
       // reset
       this.date = ''
       this.isFirstInGetDate = true
@@ -99,7 +99,7 @@ export class ContentChatService implements IContentChat{
 
   // render message to screen
   renderMessage(msg: any) {
-    this.cd.reattach()
+    // this.cd.reattach()
     if (msg != null) {
       if (msg.data.length != 0) {
         this.messages = msg.data;

@@ -1,26 +1,19 @@
 <div class="text-center vh-100 d-flex flex-column  justify-content-between">
   <app-header-bar></app-header-bar>
+  <!-- reverse de auto scroll bottom-->
   <div class="container__content d-flex flex-column-reverse" (scroll)="onScroll($event)">
     <!-- new array message -->
-    <app-content-chat class=""></app-content-chat>
+    <app-content-chat class="d-flex flex-column-reverse" [contentChatService]="this.contentChatService"></app-content-chat>
     <!-- old array message -->
-      <div *ngFor="let oldMessage of this.oldContentChatService.oldArrayMessages">
-        <div *ngIf="(this.oldContentChatService.date) != (oldMessage.createAt | date: 'shortDate')? this.oldContentChatService.updateDate(oldMessage.createAt| date: 'shortDate') : false" class="container__time d-flex justify-content-center align-items-center">
-          <hr>
-          <span class="time">{{this.oldContentChatService.date}}</span>
-          <hr>
-        </div>
-        <div *ngIf="oldMessage.name == 'chk1'">
-          <div class="d-flex flex-row">
-            <app-conversation [name]="oldMessage.name" [mes]="oldMessage.mes" [time]="oldMessage.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
-          </div>
-        </div>
-        <div *ngIf="oldMessage.name== 'chk2'">
-          <div class="d-flex flex-row flex-row-reverse">
-            <app-conversation [name]="oldMessage.name" [mes]="oldMessage.mes" [time]="oldMessage.createAt" [color_text]="'black'" [color_time]="'#7a7f9a'" [bg_color]="'rgb(245,247,251)'" [text_position]="'right'"  [flex_direction]="'row-reverse'" [left]="'unset'" [right]="'0'"></app-conversation>
-          </div>
-        </div>
-      </div>
+    <app-content-chat class="d-flex flex-column-reverse" [contentChatService]="this.oldContentChatService"></app-content-chat>
+    <div *ngIf="getIsHasMoreData()==false" class="container__time d-flex justify-content-center align-items-center">
+      <hr>
+      <span class="time" *ngIf="this.oldContentChatService.date != ''; else time">
+        {{this.oldContentChatService.date}}
+      </span>
+      <ng-template #time>{{this.contentChatService.date}}</ng-template>
+      <hr>
+    </div>
   </div>
   <app-input-chat (setScrollToBottomEvent)="setScrollToBottom()"></app-input-chat>
 </div>

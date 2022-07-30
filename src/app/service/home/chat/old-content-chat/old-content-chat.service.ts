@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
-import {setIsHasMoreData} from "../../../../model/pagination";
+import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
 import {ContentChatService} from "../content-chat/content-chat.service";
 
 @Injectable({
@@ -14,24 +14,36 @@ export class OldContentChatService {
   toMessage = 'chk1'
   pagination = 0
   typeMessage = 0
-  oldArrayMessages: any = []
-  date: any = null
+  messages: any = []
+  date: any = ''
 
 
   constructor(private connect: TestConnectService, public contentChatService: ContentChatService) {
+
   }
 
   updateDate(newDate: any) {
-    this.cd.detach()
-    this.date = newDate
-    return true
+    // = null la do luc dau chua tinh
+      if (this.date != newDate && this.date == null) {
+        this.cd.detach()
+        this.date = newDate
+        return false
+      }
+    else if (this.date != newDate && this.date != null) {
+      this.cd.detach()
+      this.date = newDate
+      return true
+    }
+    else {
+      return false
+    }
   }
-
   // update message from api once 1.5s
   updateMessage() {
+    // this.cd.reattach()
     setTimeout(() => {
       this.getMessageFromApi()
-    }, 1000)
+    }, 500)
   }
 
   getMessageFromApi() {
@@ -42,7 +54,7 @@ export class OldContentChatService {
     // second send signal next then observable will catch it
     setTimeout(() => {
       this.connect.messages.next(Api.loadOldMessageList(this.toMessage));
-    }, 1000)
+    }, 500)
   }
 
   // render message to screen
@@ -50,8 +62,7 @@ export class OldContentChatService {
     this.cd.reattach()
     if (msg != null) {
       if (msg.data.length != 0) {
-        Array.prototype.push.apply(this.oldArrayMessages, msg.data);
-        console.log(this.oldArrayMessages)
+        Array.prototype.push.apply(this.messages, msg.data);
         this.date = null
         setTimeout(()=>{
           this.contentChatService.updateMessage()

@@ -5,7 +5,7 @@ import {AnotherTestConnectService} from "../../../../service/api/anotherTestConn
 import {AppComponent} from "../../../../app.component";
 import {InputChatService} from "../../../../service/home/chat/input-chat/input-chat.service";
 import {EmojiSearch} from "@ctrl/ngx-emoji-mart";
-import {ChatComponent} from "../chat.component";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 @Component({
@@ -19,7 +19,13 @@ export class InputChatComponent implements OnInit {
 
   @ViewChild('inputMessage') inputMessage!: ElementRef<HTMLInputElement>;
 
-  constructor(private inputChatService: InputChatService) {
+  title = "Welcome to GiphySearch";
+  http: HttpClient;
+  giphies = [];
+
+  constructor(private inputChatService: InputChatService, http: HttpClient) {
+    this.http = http;
+
   }
 
   ngOnInit(): void {
@@ -33,6 +39,13 @@ export class InputChatComponent implements OnInit {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
 
+  performSearch(searchTerm: HTMLInputElement): void {
+    var apiLink = "https://g.tenor.com/v1/search?q="+searchTerm.value+"&key=LIVDSRZULELA&limit=8";
+    this.http.get<any>(apiLink).subscribe(data => {
+        this.giphies = data;
+        console.log(this.giphies);
+    })
+  }
 
   addEmoji(event:any) {
     const { message } = this;

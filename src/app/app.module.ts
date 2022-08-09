@@ -73,6 +73,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {TimePipe} from "./model/pipe/time-pipe";
 
+
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent, TimePipe],
 
@@ -126,7 +127,7 @@ import {TimePipe} from "./model/pipe/time-pipe";
     Ng2SearchPipeModule,
     PickerModule,
     EmojiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe],

@@ -29,9 +29,18 @@ export class TextComponent implements OnInit {
     this.arrText = this.text.split(/((?<=[\bhttp::\/\/\w+]\s+))/ig)
   }
 
-  checkIsLink(text: string) {
+  checkIsLink(text: string): boolean {
     let regexp = new RegExp(/\bhttp[s]?:\/\/\S+/ig)
-    return regexp.test(text)
+    // link but not link gif
+    return regexp.test(text) && !text.trim().endsWith(".gif")
+  }
+
+  checkIsGif(text: string): boolean {
+    text = text.trim()
+    if (text.startsWith("http") && text.endsWith(".gif")) {
+      return true
+    }
+    return false;
   }
   isDeleted: boolean = false;
   deleteText(event: MouseEvent): void {

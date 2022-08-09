@@ -4,7 +4,14 @@
     <input class="w-100 input_text" placeholder="Type a message. Hit Enter to send" type="text" (blur)="onBlur()" (focus)="onFocus()"
            name="message" [(ngModel)]="message" (ngModelChange)="changeInput()" #inputMessage>
     <div class="container__icon d-flex align-items-center justify-content-center mx-1">
-      <i class="fa-solid fa-link"></i>
+<!--      <div>-->
+<!--        <input name="search" #searchTerm>-->
+<!--        <button (click)="performSearch(searchTerm)">Search</button>-->
+<!--        <br>-->
+<!--        <div *ngFor="let g of giphies">-->
+<!--          <img src="{{g.images.original.url}}">-->
+<!--        </div>-->
+<!--      </div>-->
       <i class="fa-solid fa-face-smile mx-3" (click) ="toggleEmojiPicker()"></i>
       <div class="contain__emoji">
         <emoji-mart class="emoji-mart emoji" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>

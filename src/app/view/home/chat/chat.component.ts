@@ -3,6 +3,7 @@ import {isHasMoreData, pagination, updatePagination} from "../../../model/pagina
 import {ContentChatService, idSetInterval} from "../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {Spinner} from "../../../model/spinner";
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',

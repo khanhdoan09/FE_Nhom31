@@ -4,7 +4,7 @@
 <!--      <span class="time">{{this.contentChatService.date}}</span>-->
 <!--      <hr>-->
 <!--    </div>-->
-    <div *ngIf="message.name == 'chk1'">
+    <div *ngIf="message.name !== 'chk2'">
       <div class="d-flex flex-row">
         <app-conversation [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
       </div>

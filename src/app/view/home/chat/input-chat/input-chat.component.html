@@ -1,13 +1,11 @@
 
 <div class="container__input px-3 py-4">
-  <form class="w-100 d-flex justify-content-between" novalidate #inputForm="ngForm" (submit)="onSubmit(inputForm)">
-<!--    <mat-form-field appearance="outline" class="w-100">-->
-<!--      <input class="w-100 input_text" matInput placeholder="Enter Message" [(ngModel)]="user.text" name="username">-->
-<!--    </mat-form-field>-->
-<!--    <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</button>-->
+  <form class="w-100 d-flex justify-content-between" novalidate #userTextForm="ngForm" (submit)="onSubmit(userTextForm)">
     <input class="w-100 input_text" placeholder="Type a message. Hit Enter to send" type="text" (blur)="onBlur()" (focus)="onFocus()"
-           name="message" [(ngModel)]="message">
+           name="message" [(ngModel)]="message" (ngModelChange)="changeInput()" #inputMessage>
     <div class="container__icon d-flex align-items-center justify-content-center mx-1">
+      <i class="fa-solid fa-link"></i>
+      <i class="fa-solid fa-face-smile mx-3" (click) ="toggleEmojiPicker()"></i>
       <div class="contain__emoji">
         <emoji-mart class="emoji-mart emoji" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
       </div>

@@ -3,6 +3,9 @@
   --left: 0;
   --right: 0;
 }
+.container__text {
+  cursor: pointer;
+}
 .text {
   background-color: rgb(114,105,239);
   color: rgb(252,248,252);
@@ -26,6 +29,7 @@
   .time {
     font-size: 12px;
     color: rgb(252,248,252);
+    display: none;
   }
 }
 

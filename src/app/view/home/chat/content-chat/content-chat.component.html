@@ -1,42 +1,20 @@
-<!-- new array message -->
-<div *ngFor="let message of this.contentChatService.messages">
-  <div *ngIf="(this.contentChatService.date) != (message.createAt | date: 'shortDate')? this.contentChatService.updateDate(message.createAt| date: 'shortDate') : false" class="container__time d-flex justify-content-center align-items-center">
-    <hr>
-    <span class="time">{{this.contentChatService.date}}</span>
-    <hr>
-  </div>
-
-  <div *ngIf="message.name == 'chk1'">
-    <div class="d-flex flex-row">
-      <app-conversation [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
+<div class="d-flex flex-column" *ngFor="let message of this.contentChatService.messages">
+<!--    <div *ngIf="this.contentChatService.updateDate(message.createAt| date: 'shortDate')" class="container__time d-flex justify-content-center align-items-center">-->
+<!--      <hr>-->
+<!--      <span class="time">{{this.contentChatService.date}}</span>-->
+<!--      <hr>-->
+<!--    </div>-->
+    <div *ngIf="message.name == 'chk1'">
+      <div class="d-flex flex-row">
+        <app-conversation [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
+      </div>
+    </div>
+    <div *ngIf="message.name == 'chk2'">
+      <div class="d-flex flex-row flex-row-reverse">
+        <app-conversation [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'black'" [color_time]="'#7a7f9a'" [bg_color]="'rgb(245,247,251)'" [text_position]="'right'"  [flex_direction]="'row-reverse'" [left]="'unset'" [right]="'0'"></app-conversation>
+      </div>
     </div>
   </div>
-  <div *ngIf="message.name == 'chk2'">
-    <div class="d-flex flex-row flex-row-reverse">
-      <app-conversation [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'black'" [color_time]="'#7a7f9a'" [bg_color]="'rgb(245,247,251)'" [text_position]="'right'"  [flex_direction]="'row-reverse'" [left]="'unset'" [right]="'0'"></app-conversation>
-    </div>
-  </div>
-</div>
-
-<!-- old array message -->
-<div *ngFor="let oldMessage of this.oldContentChatService.oldArrayMessages">
-  <!--  <div *ngIf="(this.contentChatService.date) != (message.createAt | date: 'shortDate')? this.contentChatService.updateDate(message.createAt| date: 'shortDate') : false" class="container__time d-flex justify-content-center align-items-center">-->
-  <!--    <hr>-->
-  <!--    <span class="time">{{this.contentChatService.date}}</span>-->
-  <!--    <hr>-->
-  <!--  </div>-->
-  <div *ngIf="oldMessage.name == 'chk1'">
-    <div class="d-flex flex-row">
-      <app-conversation [name]="oldMessage.name" [mes]="oldMessage.mes" [time]="oldMessage.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
-    </div>
-  </div>
-  <div *ngIf="oldMessage.name== 'chk2'">
-    <div class="d-flex flex-row flex-row-reverse">
-      <app-conversation [name]="oldMessage.name" [mes]="oldMessage.mes" [time]="oldMessage.createAt" [color_text]="'black'" [color_time]="'#7a7f9a'" [bg_color]="'rgb(245,247,251)'" [text_position]="'right'"  [flex_direction]="'row-reverse'" [left]="'unset'" [right]="'0'"></app-conversation>
-    </div>
-  </div>
-</div>
-
 
 
 

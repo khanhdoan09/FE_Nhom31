@@ -7,8 +7,13 @@ function updatePagination() {
   }
 }
 
+function resetPagination() {
+  pagination = 0
+}
+
+
 function setIsHasMoreData(check:boolean) {
   isHasMoreData = check
 }
 
-export { pagination, updatePagination, setIsHasMoreData, isHasMoreData };
+export { pagination, updatePagination, setIsHasMoreData, resetPagination ,isHasMoreData };

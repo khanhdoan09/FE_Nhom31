@@ -70,7 +70,7 @@ export class Api {
     }
   }
 
-  // to get old message
+  // to get old message from user
   public static loadOldMessageList(name: string) {
     return {
       "action": "onchat",
@@ -84,8 +84,33 @@ export class Api {
     }
   }
 
+  public static loadMessageListFromGroup(name: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "GET_ROOM_CHAT_MES",
+        "data": {
+          "name": name,
+          "page": 1
+        }
+      }
+    }
+  }
 
-  // default send message from user long to user ti
+  // to get old message from group
+  public static loadOldMessageListFromGroup(name: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "GET_ROOM_CHAT_MES",
+        "data": {
+          "name": name,
+          "page": pagination
+        }
+      }
+    }
+  }
+
   public static sendMessage(to: string, message: string) {
     return {
       "action": "onchat",
@@ -93,6 +118,20 @@ export class Api {
         "event": "SEND_CHAT",
         "data": {
           "type": "people",
+          "to": to,
+          "mes": message
+        }
+      }
+    }
+  }
+
+  public static sendMessageToGroup(to: string, message: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "SEND_CHAT",
+        "data": {
+          "type": "room",
           "to": to,
           "mes": message
         }

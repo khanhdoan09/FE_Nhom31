@@ -2,10 +2,14 @@ import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {Api} from "../../../api/api";
 import {TestConnectService} from "../../../api/testConnectService";
 import {MessageApi} from "../../../../model/message_api";
-import {ContactTo} from "../../../../model/contact-to";
+import {Contact, ContactTo} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
 import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
 import {IContentChat} from "../../../../model/content-chat";
+import {WebSocketService} from "../../../websocket/websocket_service";
+import {Subject} from "rxjs";
+import {configure} from "../../../../configure/Configure";
+import {map} from "rxjs/operators";
 
 let idSetInterval = 0
 
@@ -15,25 +19,33 @@ let idSetInterval = 0
 export class ContentChatService implements IContentChat{
 
   // first just default
-  toMessage = 'chk1'
+  typeChooseText:string=""
+  toMessage = 'test'
   pagination = 0
-  typeMessage = 0
   isFirstInGetDate = true
   cd!: ChangeDetectorRef
   messages: any = []
+  public connect!: Subject<any>;
 
-  constructor(private connect: TestConnectService) {
-
+  constructor(private ws: WebSocketService) {
+    this.create()
     localStorage.setItem("userName", "chk2");
 
     // first invoke observable by subscribe function
-    const loginObservable = this.connect.messages.subscribe(msg => {
+     this.connect.subscribe(msg => {
       let user: MessageApi = msg;
       if (user.status == 'success') {
-        ContactTo.contactTo.subscribe((msg:User)=>{
+        ContactTo.contactTo.subscribe((msg:Contact)=>{
           this.toMessage = msg.name
-          this.typeMessage = msg.type
           this.date = null
+          // choose contact with user
+          if (msg.type == 0) {
+            this.typeChooseText = 'user'
+          }
+          // choose contact with group
+          else {
+            this.typeChooseText = 'group'
+          }
         })
         // load message
         this.updateMessage()
@@ -43,14 +55,26 @@ export class ContentChatService implements IContentChat{
     // second send signal next then observable will catch it
     setTimeout(()=>{
       // login default with user ti
-      this.connect.messages.next(Api.login("", ""));
+      this.connect.next(Api.login("", ""));
     },1000)
   }
 
+  public create() {
+    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
+      (response: MessageEvent): MessageApi => {
+        let data = JSON.parse(response.data);
+        return {
+          status: data.status,
+          data: data.data,
+          mes: data.mes,
+          event: data.event
+        };
+      }
+    ));
+  }
 
   date:any = null
   updateDate(newDate: any) {
-
 
     // = null la do luc dau chua tinh
     if (this.date != newDate && this.date == null) {
@@ -78,7 +102,7 @@ export class ContentChatService implements IContentChat{
   // update message from api once 1.5s
   updateMessage() {
     // this.cd.reattach()
-    idSetInterval = setTimeout(()=>{
+    idSetInterval = setInterval(()=>{
       // reset
       this.date = ''
       this.isFirstInGetDate = true
@@ -88,12 +112,17 @@ export class ContentChatService implements IContentChat{
 
   getMessageFromApi() {
     // first invoke observable by subscribe function
-    this.connect.messages.subscribe(msg => {
+    this.connect.subscribe(msg => {
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
     setTimeout(()=>{
-      this.connect.messages.next(Api.loadMessageList(this.toMessage));
+      if (this.typeChooseText==='user') {
+        this.connect.next(Api.loadMessageList(this.toMessage));
+      }
+      else if (this.typeChooseText==='group') {
+        this.connect.next(Api.loadMessageListFromGroup(this.toMessage));
+      }
     }, 1000)
   }
 
@@ -101,13 +130,30 @@ export class ContentChatService implements IContentChat{
   renderMessage(msg: any) {
     // this.cd.reattach()
     if (msg != null) {
-      if (msg.data.length != 0) {
-        this.messages = msg.data;
-        console.log(msg.data)
-        this.date = null
+      // get text from type user
+      if (this.typeChooseText==='user') {
+        if (msg.data.length != 0) {
+          this.messages = msg.data;
+          console.log(msg.data)
+          this.date = null
+        }
+        else {
+          setIsHasMoreData(false)
+        }
+      }
+      // get text from type group
+      else if (this.typeChooseText==='group') {
+        if (msg.data.chatData.length != 0) {
+          this.messages = msg.data.chatData;
+          console.log(msg.data.chatData)
+          this.date = null
+        }
+        else {
+          setIsHasMoreData(false)
+        }
       }
       else {
-        setIsHasMoreData(false)
+
       }
     }
   }

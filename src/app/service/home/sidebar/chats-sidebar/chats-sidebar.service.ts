@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
-import {User} from "../../../../model/user";
-import {ContactTo} from "../../../../model/contact-to";
+import {Contact, ContactTo} from "../../../../model/contact-to";
+import {resetPagination} from "../../../../model/pagination";
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,8 @@ export class ChatsSidebarService {
     return this.userList;
   }
 
-  selectMessage(u: User) {
-    ContactTo.contactTo.next(u);
+  selectMessage(contact: Contact) {
+    resetPagination()
+    ContactTo.contactTo.next(contact);
   }
 }

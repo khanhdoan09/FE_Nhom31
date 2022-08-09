@@ -8,7 +8,7 @@ function updatePagination() {
 }
 
 function resetPagination() {
-  pagination = 0
+  pagination = 1
 }
 
 

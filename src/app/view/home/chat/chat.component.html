@@ -6,13 +6,16 @@
     <app-content-chat class="d-flex flex-column-reverse" [contentChatService]="this.contentChatService"></app-content-chat>
     <!-- old array message -->
     <app-content-chat class="d-flex flex-column-reverse" [contentChatService]="this.oldContentChatService"></app-content-chat>
-    <div *ngIf="getIsHasMoreData()==false" class="container__time d-flex justify-content-center align-items-center">
-      <hr>
-      <span class="time" *ngIf="this.oldContentChatService.date != ''; else time">
-        {{this.oldContentChatService.date}}
-      </span>
-      <ng-template #time>{{this.contentChatService.date}}</ng-template>
-      <hr>
+<!--    <div *ngIf="getIsHasMoreData()==false" class="container__time d-flex justify-content-center align-items-center">-->
+<!--      <span class="time" *ngIf="this.oldContentChatService.date != ''; else time">-->
+<!--        {{this.oldContentChatService.date}}-->
+<!--      </span>-->
+<!--      <ng-template #time>{{this.contentChatService.date}}</ng-template>-->
+<!--    </div>-->
+    <div class="container__spinner" *ngIf="spinner.isShow">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
   <app-input-chat (setScrollToBottomEvent)="setScrollToBottom()"></app-input-chat>

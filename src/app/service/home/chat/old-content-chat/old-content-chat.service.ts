@@ -9,6 +9,8 @@ import {Subject} from "rxjs";
 import {MessageApi} from "../../../../model/message_api";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
+import {ChatComponent} from "../../../../view/home/chat/chat.component";
+import {Spinner} from "../../../../model/spinner";
 
 @Injectable({
   providedIn: 'root'
@@ -104,10 +106,12 @@ export class OldContentChatService {
         if (msg.data.length != 0) {
           Array.prototype.push.apply(this.messages, msg.data);
           this.date = null
+          Spinner.changeShow(false)
           setTimeout(() => {
             this.contentChatService.updateMessage()
           }, 500)
         } else {
+          Spinner.changeShow(false)
           setIsHasMoreData(false)
         }
       }
@@ -116,11 +120,13 @@ export class OldContentChatService {
         if (msg.data.chatData.length != 0) {
           Array.prototype.push.apply(this.messages, msg.chatData.data);
           this.date = null
+          Spinner.changeShow(false)
           setTimeout(() => {
             this.contentChatService.updateMessage()
           }, 500)
         }
         else {
+          Spinner.changeShow(false)
           setIsHasMoreData(false)
         }
       }

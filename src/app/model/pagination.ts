@@ -16,4 +16,7 @@ function setIsHasMoreData(check:boolean) {
   isHasMoreData = check
 }
 
-export { pagination, updatePagination, setIsHasMoreData, resetPagination ,isHasMoreData };
+interface Gif {
+  media: Array<any>;
+}
+export { pagination, updatePagination, setIsHasMoreData, resetPagination ,isHasMoreData, Gif };

@@ -4,3 +4,4 @@ export class Spinner {
     Spinner.isShow = show;
   }
 }
+

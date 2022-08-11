@@ -22,6 +22,8 @@ export class ChatComponent implements OnInit {
 
   spinner = Spinner
   positionScroll:any = null
+  images: string[] = [];
+
 
   @HostListener('scroll', ['$event'])
   onScroll(event: any) {
@@ -50,11 +52,20 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  addImage(url: any) {
+    this.images.push(url)
+  }
+
+  resetArrayImage() {
+    this.images = []
+  }
   getIsHasMoreData() {
     return isHasMoreData
   }
 
   ngOnInit() {
   }
+
+
 
 }

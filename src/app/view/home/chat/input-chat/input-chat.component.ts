@@ -7,6 +7,7 @@ import {InputChatService} from "../../../../service/home/chat/input-chat/input-c
 import {EmojiSearch} from "@ctrl/ngx-emoji-mart";
 import { HttpClient } from '@angular/common/http';
 import {Gif} from "../../../../model/pagination";
+import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
 
 @Injectable()
 @Component({
@@ -23,10 +24,18 @@ export class InputChatComponent implements OnInit {
 
   title = "Welcome to GiphySearch";
   http: HttpClient;
-  gifs:Gif[] = [];
-  isShowGif:boolean = false
+  gifs: Gif[] = [];
+  isShowGif: boolean = false;
+  @Output() addImage = new EventEmitter<any>();
+  @Output() resetArrayImage = new EventEmitter<any>();
+  arrSendUrlImage:string[] = []
+  arrSendImageToFirebase: string[] = []
 
-  constructor(private inputChatService: InputChatService, http: HttpClient) {
+
+  ref!: AngularFireStorageReference;
+  task!: AngularFireUploadTask;
+
+  constructor(private inputChatService: InputChatService, http: HttpClient, private afStorage: AngularFireStorage) {
     this.http = http;
   }
 
@@ -37,16 +46,17 @@ export class InputChatComponent implements OnInit {
   name = 'Angular';
   message = '';
   showEmojiPicker = false;
+
   toggleEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
 
 
-  addEmoji(event:any) {
+  addEmoji(event: any) {
     // not display input gif
     this.isShowGif = false
     // emoji
-    const { message } = this;
+    const {message} = this;
     const text = `${message}${event.emoji.native}`;
     this.message = text;
   }
@@ -63,6 +73,7 @@ export class InputChatComponent implements OnInit {
     // scroll ve bottom
     this.setScrollToBottomEvent.emit(0)
   }
+
   onBlur() {
     this.isShowGif = false;
     this.showEmojiPicker = false;
@@ -70,17 +81,30 @@ export class InputChatComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     this.isShowGif = false
+    // send text, emoji, gif
     if (this.message != '') {
       this.showEmojiPicker = false;
       this.inputChatService.submitMessage(encodeURI(this.message))
       // reset
       this.message = ""
       this.inputMessage.nativeElement.value = ""
+      this.resetArrayImage.emit();
+    }
+    // send image
+    if (this.arrSendUrlImage.length > 0 && this.arrSendImageToFirebase.length >  0) {
+      // upload to firebase
+      this.ref.put(this.arrSendImageToFirebase[0]);
+      // reset array image to not display
+      this.resetArrayImage.emit();
+      setTimeout(async () => {
+        let urlImage = await this.getUrlImageFromFirebase(this.arrSendUrlImage[0])
+        this.inputChatService.submitMessage(encodeURI(urlImage))
+      }, 2000)
     }
   }
 
   searchGif(searchTerm: any): void {
-    var apiLink = "https://g.tenor.com/v1/search?q="+searchTerm.value+"&key=LIVDSRZULELA&limit=8";
+    var apiLink = "https://g.tenor.com/v1/search?q=" + searchTerm.value + "&key=LIVDSRZULELA&limit=8";
     this.http.get<any>(apiLink).subscribe(data => {
       this.gifs = data.results;
     })
@@ -99,10 +123,33 @@ export class InputChatComponent implements OnInit {
 
   sendGif(url: string) {
     this.isShowGif = false
-    console.log(url)
     if (url != '') {
       this.inputChatService.submitMessage(encodeURI(url))
     }
+  }
+
+  async uploadImage(event: any) {
+    // add image to display
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      // display image
+      this.addImage.emit(reader.result);
+      let userName = localStorage.getItem("userName")
+      // create id name for image
+      const id = "firebase_" + userName + "_" + new Date().getTime() + "_" + Math.random().toString().slice(2, 6) + "_image";
+      this.ref = this.afStorage.ref(id);
+      this.arrSendUrlImage.push(id)
+      this.arrSendImageToFirebase.push(event.target.files[0])
+    }
+  }
+
+  getUrlImageFromFirebase(nameImage: string) {
+    let result = '';
+    let storageRef = this.afStorage.storage.ref().child(nameImage);
+    return storageRef.getDownloadURL().then(urlFB =>{
+      return urlFB
+    });
   }
 }
 

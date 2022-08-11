@@ -72,7 +72,11 @@ import { SettingComponent } from './view/home/sidebar/content/setting/setting.co
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {TimePipe} from "./model/pipe/time-pipe";
-
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireStorageReference} from "@angular/fire/compat/storage";
+import {AngularFireUploadTask} from "@angular/fire/compat/storage";
+import {Storage} from "@angular/fire/storage";
+import {AngularFireModule} from "@angular/fire/compat";
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent, TimePipe],
@@ -128,9 +132,22 @@ import {TimePipe} from "./model/pipe/time-pipe";
     PickerModule,
     EmojiModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDFQY0MddqK2pxKD9Itt0Zd6-D9CeMsVvc",
+      authDomain: "chk2-app-chat.firebaseapp.com",
+      projectId: "chk2-app-chat",
+      storageBucket: "chk2-app-chat.appspot.com",
+      messagingSenderId: "856118698798",
+      appId: "1:856118698798:web:a449c34cc0ea80b2b190bf",
+      measurementId: "G-PJ3T97M4KE"
+    })
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe],
+  providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe,
+    { provide: Storage, useValue: "your" }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

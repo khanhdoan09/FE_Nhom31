@@ -11,7 +11,7 @@ import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 
-let idSetInterval = 0
+let idSetInterval:any = 0
 
 @Injectable({
   providedIn: 'root'

@@ -6,6 +6,9 @@ import {CreateGroupService} from 'src/app/service/home/sidebar/groups-sideabar/c
 import {JoinGroupService} from 'src/app/service/home/sidebar/groups-sideabar/join-group.service';
 import {Api} from "../../../../../service/api/api";
 import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar/groups.service";
+import {Contact, ContactTo} from "../../../../../model/contact-to";
+import {User} from "../../../../../model/user";
+import {resetPagination} from "../../../../../model/pagination";
 
 @Component({
   selector: 'app-groups',
@@ -50,7 +53,8 @@ export class GroupsComponent implements OnInit {
 
   }
 
-  selectMessage(group: any) {
-    localStorage.setItem('groupName', (group));
+  selectMessage(contact: Contact) {
+    resetPagination();
+    ContactTo.contactTo.next(contact);
   }
 }

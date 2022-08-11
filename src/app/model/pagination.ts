@@ -7,8 +7,16 @@ function updatePagination() {
   }
 }
 
+function resetPagination() {
+  pagination = 1
+}
+
+
 function setIsHasMoreData(check:boolean) {
   isHasMoreData = check
 }
 
-export { pagination, updatePagination, setIsHasMoreData, isHasMoreData };
+interface Gif {
+  media: Array<any>;
+}
+export { pagination, updatePagination, setIsHasMoreData, resetPagination ,isHasMoreData, Gif };

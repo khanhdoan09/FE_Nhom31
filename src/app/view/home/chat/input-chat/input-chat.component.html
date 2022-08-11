@@ -1,10 +1,23 @@
 
 <div class="container__input px-3 py-4">
   <form class="w-100 d-flex justify-content-between" novalidate #userTextForm="ngForm" (submit)="onSubmit(userTextForm)">
-    <input class="w-100 input_text" placeholder="Type a message. Hit Enter to send" type="text" (blur)="onBlur()" (focus)="onFocus()"
-           name="message" [(ngModel)]="message" (ngModelChange)="changeInput()" #inputMessage>
+    <input class="w-100 input_text mx-3" placeholder="Type a message. Hit Enter to send" type="text" (blur)="onBlur()" (focus)="onFocus()"
+           name="message" [(ngModel)]="message" (ngModelChange)="changeInput()" autocomplete="off" #inputMessage>
+    <div class="contain__gif d-flex align-items-center justify-content-center">
+      <div *ngIf="isShowGif" class="position-relative">
+        <div class="input__gif">
+          <input type="text" (input)="searchGif($event.target)" name="search" class="input" placeholder="search gif">
+          <br>
+        </div>
+        <div class="container__image-gif">
+          <div *ngFor="let g of gifs">
+            <img src="{{g.media[0].mediumgif.url}}" (click)="sendGif(g.media[0].mediumgif.url)" width="250px" height="250px">
+          </div>
+        </div>
+      </div>
+      <i class="fa-solid fa-list-ul" (click)="changeShowGif()"></i>
+    </div>
     <div class="container__icon d-flex align-items-center justify-content-center mx-1">
-      <i class="fa-solid fa-link"></i>
       <i class="fa-solid fa-face-smile mx-3" (click) ="toggleEmojiPicker()"></i>
       <div class="contain__emoji">
         <emoji-mart class="emoji-mart emoji" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>

@@ -4,15 +4,19 @@
       <div class="d-inline">
         <span *ngFor="let currentText of arrText">
           <!-- check gif link -->
-          <!-- check normal link -->
-          <!-- check text -->
-          <ng-container [ngTemplateOutlet]="checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
+          <ng-container [ngTemplateOutlet]="checkIsImage(currentText) ? imageLink: checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
             <ng-template #gifLink>
-              <img class="gif" src="{{currentText}}" alt="404 gif"/>
+              <img class="gif" src="{{currentText}}" alt="{{currentText}}"/>
             </ng-template>
+          <!-- check normal link -->
             <ng-template #normalLink>
               <a target="_blank" href="{{currentText}}">{{currentText}}</a>
             </ng-template>
+          <!-- check image link -->
+            <ng-template #imageLink>
+              <img src="{{currentText}}" alt="404 image" class="image">
+            </ng-template>
+          <!-- check text -->
             <ng-template #text>
               {{currentText}}
             </ng-template>

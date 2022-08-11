@@ -1,4 +1,4 @@
-<div class="text-center vh-100 d-flex flex-column  justify-content-between">
+<div class="text-center vh-100 d-flex flex-column  justify-content-between position-relative">
   <app-header-bar></app-header-bar>
   <!-- reverse de auto scroll bottom-->
   <div class="container__content d-flex flex-column-reverse" (scroll)="onScroll($event)">
@@ -12,12 +12,17 @@
 <!--      </span>-->
 <!--      <ng-template #time>{{this.contentChatService.date}}</ng-template>-->
 <!--    </div>-->
+    <div class="contain__image d-flex flex-wrap flex-row-reverse w-100">
+        <div *ngFor="let image of images">
+          <img src="{{image}}" alt="404 image" width="150px" height="150px" class="mx-1 my-1">
+        </div>
+    </div>
     <div class="container__spinner" *ngIf="spinner.isShow">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>
-  <app-input-chat (setScrollToBottomEvent)="setScrollToBottom()"></app-input-chat>
+  <app-input-chat (setScrollToBottomEvent)="setScrollToBottom()" (addImage)="addImage($event)" (resetArrayImage)="resetArrayImage()"></app-input-chat>
 </div>
 

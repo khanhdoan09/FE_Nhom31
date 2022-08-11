@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-text',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TextComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afStorage: AngularFireStorage) { }
   // css
   @Input() flex_direction: string= ""
   @Input() left: string= ""
@@ -42,6 +43,15 @@ export class TextComponent implements OnInit {
     }
     return false;
   }
+
+  checkIsImage(text: string): boolean {
+    text = text.trim()
+    if (text.startsWith("https://firebasestorage.googleapis.com/v0/b/chk2-app-chat.appspot.com/o/firebase")) {
+      return true
+    }
+    return false;
+  }
+
   isDeleted: boolean = false;
   deleteText(event: MouseEvent): void {
     this.isDeleted = true
@@ -56,4 +66,5 @@ export class TextComponent implements OnInit {
       this.statusTime = 'block'
     }
   }
+
 }

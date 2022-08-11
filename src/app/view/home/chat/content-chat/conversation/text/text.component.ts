@@ -46,7 +46,7 @@ export class TextComponent implements OnInit {
 
   checkIsImage(text: string): boolean {
     text = text.trim()
-    if (text.startsWith("https://firebasestorage.googleapis.com/v0/b/chk2-app-chat.appspot.com/o/firebase")) {
+    if (text.startsWith("https://firebasestorage.googleapis.com/v0/b/chk2-app-chat.appspot.com/o/firebase") && text.endsWith("_type-file:image")) {
       return true
     }
     return false;

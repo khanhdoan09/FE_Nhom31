@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="form-login col-md-8 col-lg-6 col-xl-5">
         <div class="text-center mb-4">
-          <a href="index.html" class="auth-logo mb-3 d-block">
+          <a href="index.html" class="auth-logo mb-1 d-block">
             <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
             <!--            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">-->
           </a>
@@ -14,12 +14,11 @@
         </div>
 
         <div class="card">
-          <div class="card-body p-4">
+          <div class="">
             <div class="p-3">
               <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
 
-
-                <div class="mb-3">
+                <div class="">
                   <label class="label-register">Email</label>
                   <div class="div-input input-group bg-soft-light rounded-3  mb-3">
                                             <span class="" id="basic-addon5">
@@ -27,11 +26,24 @@
                                                 </span>
                     <input formControlName="email" type="email" class="input-control" placeholder="Enter Email" aria-label="Enter Email"
                            aria-describedby="basic-addon5">
-
+                  </div>
+                  <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                    <div *ngIf="f.email.errors">
+                      <div *ngIf="f.email.errors.required">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          Email không được để trống!
+                        </div>
+                      </div>
+                      <div *ngIf="f.email.errors.email">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          Email phải có ký tự @.
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="mb-3">
+                <div class="">
                   <label class="label-register">Username</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon6">
@@ -41,9 +53,18 @@
                            aria-describedby="basic-addon6" name="username" [(ngModel)]="username">
 
                   </div>
+                  <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
+                    <div *ngIf="f.username.errors">
+                      <div *ngIf="f.username.errors.required">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          Username không được để trống!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="mb-4">
+                <div class="">
                   <label class="label-register">Password</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon7">
@@ -54,37 +75,60 @@
                            [(ngModel)]="password">
 
                   </div>
+                  <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                    <div *ngIf="f.password.errors">
+                        <div *ngIf="f.password.errors.required">
+                          <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                            password không được để trống!
+                          </div>
+                        </div>
+                      <div *ngIf="f.password.errors.minLength(6)">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          password phải ít nhất 6 ký tự!
+                        </div>
+                      </div>
+                      </div>
+                  </div>
                 </div>
-                <div class="mb-4">
-                  <label class="label-register">RePassword</label>
+
+                <div class="mb-1">
+                  <label class="label-register">Confirm Password</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon8">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input formControlName="repassword" type="password" class="input-control" placeholder="Enter Password"
+                    <input formControlName="repassword" type="password" class="input-control" placeholder="Confirm Password"
                            aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
-                           [(ngModel)]="repassword">
+                           [(ngModel)]="confirmPassword">
+                  </div>
 
+                  <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)">
+                    <div *ngIf="f.confirmPassword.errors">
+                      <div *ngIf="f.confirmPassword.errors.required">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          Confirm Password không được để trống!
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
+                  <div class="d-grid">
+                    <button class="btn btn-primary waves-effect waves-light" [disabled]="signupForm.valid"  type="submit">Sign up</button>
+                  </div>
 
-                <div class="d-grid">
-                  <button class="btn btn-primary waves-effect waves-light" (click)="signUp()" type="submit">Sign up
-                  </button>
-                </div>
-
-                <div class="mt-4 text-center">
+                <div class="mt-1 text-center">
                   <p class="text-muted mb-0">By registering you agree to the Chatvia <a href="/" class="text-primary">Terms
                     of Use</a></p>
                 </div>
 
               </form>
+
             </div>
           </div>
         </div>
 
-        <div class="mt-5 text-center">
+        <div class="mt-1 text-center">
           <p>Already have an account ? <a href="../logIn" class="fw-medium text-primary"> Signin </a></p>
           <p>©
             <script>

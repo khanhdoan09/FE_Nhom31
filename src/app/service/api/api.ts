@@ -9,8 +9,8 @@ export class Api {
       "data": {
         "event": "LOGIN",
         "data": {
-          "user": "chk2",
-          "pass": "12345"
+          "user": name,
+          "pass": password
         }
       }
     }

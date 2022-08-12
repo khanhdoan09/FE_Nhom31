@@ -4,7 +4,7 @@
       <div class="d-inline">
         <span *ngFor="let currentText of arrText">
           <!-- check gif link -->
-          <ng-container [ngTemplateOutlet]="checkIsImage(currentText) ? imageLink: checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
+          <ng-container [ngTemplateOutlet]="checkIsFile(currentText) ? file: checkIsImage(currentText) ? imageLink: checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
             <ng-template #gifLink>
               <img class="gif" src="{{currentText}}" alt="{{currentText}}"/>
             </ng-template>
@@ -15,6 +15,39 @@
           <!-- check image link -->
             <ng-template #imageLink>
               <img src="{{currentText}}" alt="404 image" class="image">
+            </ng-template>
+          <!-- check image link -->
+            <ng-template #file>
+              <div class="d-flex flex-wrap align-items-center" (click)="downloadFile(currentText)">
+                <div class="m-0 p-0 h-100" [ngSwitch]="checkExtension(currentText)">
+                    <p *ngSwitchCase="'excel'" class="icon-file">
+                      <i class="fa-solid fa-file-excel"></i>
+                    </p>
+                    <p *ngSwitchCase="'word'" class="icon-file">
+                      <i class="fas fa-file-word"></i>
+                    </p>
+                    <p *ngSwitchCase="'powerpoint'" class="icon-file">
+                      <i class="fa-solid fa-file-powerpoint"></i>
+                    </p>
+                    <p *ngSwitchCase="'pdf'" class="icon-file">
+                      <i class="fa-solid fa-file-pdf"></i>
+                    </p>
+                    <p *ngSwitchCase="'rar'" class="icon-file">
+                      <i class="fa-solid fa-file-zipper"></i>
+                    </p>
+                    <p *ngSwitchCase="'music'" class="icon-file">
+                      <i class="fa-solid fa-file-video"></i>
+                    </p>
+                    <p *ngSwitchCase="'text'" class="icon-file">
+                      <i class="fa-solid fa-file-lines"></i>
+                    </p>
+                    <p *ngSwitchCase="'code'" class="icon-file">
+                      <i class="fa-solid fa-file-code"></i>
+                    </p>
+                  <span *ngSwitchDefault><i class="fa-solid fa-file"></i></span>
+                </div>
+                <p class="mx-3 my-0 p-0 h-100">{{getFileName(currentText)}}</p>
+              </div>
             </ng-template>
           <!-- check text -->
             <ng-template #text>

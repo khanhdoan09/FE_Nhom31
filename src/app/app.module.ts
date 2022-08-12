@@ -73,8 +73,6 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {TimePipe} from "./model/pipe/time-pipe";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {AngularFireStorageReference} from "@angular/fire/compat/storage";
-import {AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {Storage} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 
@@ -142,7 +140,7 @@ import {AngularFireModule} from "@angular/fire/compat";
       messagingSenderId: "856118698798",
       appId: "1:856118698798:web:a449c34cc0ea80b2b190bf",
       measurementId: "G-PJ3T97M4KE"
-    })
+    }),
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe,

@@ -31,7 +31,7 @@ export class InputChatComponent implements OnInit {
   @Output() addImage = new EventEmitter<any>();
   @Output() resetArrayImage = new EventEmitter<any>();
   arrSendUrlImage:string[] = [];
-  arrSendImageToFirebase: string[] = [];
+  arrSendImageToFirebase: any[] = [];
   arrContainAngularFireStorageReference: AngularFireStorageReference[] = [];
 
 
@@ -99,7 +99,6 @@ export class InputChatComponent implements OnInit {
       // reset
       this.message = ""
       this.inputMessage.nativeElement.value = ""
-      // this.resetArrayContainImage()
       // to not display image
       this.resetArrayImage.emit();
     }
@@ -109,22 +108,37 @@ export class InputChatComponent implements OnInit {
     // upload to firebase
     this.ref = this.arrContainAngularFireStorageReference[countImage]
     this.task = this.ref.put(this.arrSendImageToFirebase[countImage]);
-    // state upload
-    this.stateUploadImage = this.task.snapshotChanges().pipe(map((s:any) => s.state));
-    this.stateUploadImage.subscribe((state)=>{
-      if (state === 'success') {
+    let id = this.arrSendUrlImage[countImage]
+    // khong gui lien ma goi firebase de lay url that cua image
+    if (id.includes('png') || id.includes('jpg') || id.includes('jpeg')) {
+      // state upload
+      this.stateUploadImage = this.task.snapshotChanges().pipe(map((s:any) => s.state));
+      this.stateUploadImage.subscribe((state)=>{
+        if (state === 'success') {
           // getUrlImageFromFirebase return a promise; wait this get url image from firebase then submit it to api
           this.getUrlImageFromFirebase(this.arrSendUrlImage[countImage]).then((url:string) =>this.inputChatService.submitMessage(encodeURI(url)))
           // to send more image
           countImage+=1
-            if (countImage != this.arrSendImageToFirebase.length) {
-              this.submitImage(countImage)
-            }
-            else {
-              this.resetArrayContainImage()
-            }
+          if (countImage != this.arrSendImageToFirebase.length) {
+            this.submitImage(countImage)
+          }
+          else {
+            this.resetArrayContainImage()
+          }
         }
-    })
+      })
+    }
+    else {
+      this.inputChatService.submitMessage(encodeURI(this.arrSendUrlImage[countImage]))
+      countImage += 1
+      if (countImage != this.arrSendImageToFirebase.length) {
+        this.submitImage(countImage)
+      }
+      else {
+        this.resetArrayContainImage()
+      }
+    }
+
   }
 
 
@@ -162,7 +176,7 @@ export class InputChatComponent implements OnInit {
       this.addImage.emit(reader.result);
       let userName = localStorage.getItem("userName")
       // create id name for image
-      const id = "firebase_" + userName + "_" + new Date().getTime() + "_" + Math.random().toString().slice(2, 6) + "_image";
+      const id = "firebase_upload_" + userName + "_" + new Date().getTime() + "_" + Math.random().toString().slice(2, 6) + "_upload_chk/"+event.target.files[0].name;
       this.arrContainAngularFireStorageReference.push(this.afStorage.ref(id))
       this.arrSendUrlImage.push(id)
       this.arrSendImageToFirebase.push(event.target.files[0])

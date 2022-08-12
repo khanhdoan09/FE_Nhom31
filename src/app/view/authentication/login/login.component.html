@@ -1,9 +1,9 @@
-<div class="account-pages my-2 pt-sm-5">
+<div class="account-pages ">
   <div class="container">
     <div class="row justify-content-center">
       <div class="form-login col-md-8 col-lg-6 col-xl-5">
         <div class="text-center mb-4">
-          <a href="index.html" class="auth-logo mb-5 d-block">
+          <a href="index.html" class="auth-logo mb-2 d-block">
             <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
 <!--            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">-->
           </a>
@@ -25,6 +25,15 @@
                                                 </span>
                     <input type="text" formControlName="username" class="input-control" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3" name="username" [(ngModel)]="username" >
                   </div>
+                  <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
+                    <div *ngIf="f.username.errors">
+                      <div *ngIf="f.username.errors.required">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          Username không được để trống!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="mb-4">
@@ -39,6 +48,20 @@
                     <input type="password" formControlName="password" class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
 
                   </div>
+                  <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                    <div *ngIf="f.password.errors">
+                      <div *ngIf="f.password.errors.required">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          password không được để trống!
+                        </div>
+                      </div>
+                      <div *ngIf="f.password.errors.minLength(6)">
+                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
+                          password phải ít nhất 6 ký tự!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-check mb-4">
@@ -47,7 +70,7 @@
                 </div>
 
                 <div class="d-grid">
-                  <button class="btn  waves-effect waves-light" (click)="login()"  type="submit">Sign in</button>
+                  <button class="btn  waves-effect waves-light"   type="submit">Sign in</button>
                 </div>
 
               </form>

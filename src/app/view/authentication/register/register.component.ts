@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InputChatService} from "../../../service/home/chat/input-chat/input-chat.service";
 import {SignUpService} from "../../../service/home/authentication/sign-up-service.service";
 
@@ -10,26 +10,43 @@ import {SignUpService} from "../../../service/home/authentication/sign-up-servic
 })
 export class RegisterComponent implements OnInit {
 
-  name : string ="";
+  email : string ="";
   username : string ="";
   password : string="";
+  confirmPassword : string="";
 
   signupForm!: FormGroup;
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService) {
     this.signupForm = this.formBuilder.group( {
-      name:[''],
-      email: [''],
-      username: [''],
-      password: ['']
+      email: ['',[Validators.required, Validators.email]],
+      username:['',[Validators.required]],
+      password: ['',[Validators.required],Validators.minLength(6)],
+      confirmPassword: ['',[Validators.required]]
     })
   }
 
+  get f() {
+    return this.signupForm.controls
+  }
+
   ngOnInit(): void {
+    // this.signupForm = this.formBuilder.group({
+    //   username: ['', [Validators.required]],
+    //   pw: this.formBuilder.group({
+    //     password: ['', Validators.required],
+    //     confirmPassword: ['', Validators.required]
+    //   })
+    // });
   }
 
   signUp() {
-    console.log("Name: " + this.name +"\tUsername: " +this.username + "\tPass: "+ this.password);
-    this.signUpService.submitSignUp(this.username,this.password)
+    console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password);
+    if(this.password === this.confirmPassword) {
+      this.signUpService.submitSignUp(this.username,this.password)
+    }
+    else {
+      alert("Please enter true password!")
+    }
   }
 
 }

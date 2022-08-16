@@ -44,9 +44,12 @@
                     <p *ngSwitchCase="'code'" class="icon-file">
                       <i class="fa-solid fa-file-code"></i>
                     </p>
+                     <p *ngSwitchCase="'database'" class="icon-file">
+                      <i class="fas fa-database"></i>
+                    </p>
                   <span *ngSwitchDefault><i class="fa-solid fa-file"></i></span>
                 </div>
-                <p class="mx-3 my-0 p-0 h-100">{{getFileName(currentText)}}</p>
+                <p class="text-file my-0 p-0 h-100">{{getFileName(currentText)}}</p>
               </div>
             </ng-template>
           <!-- check text -->

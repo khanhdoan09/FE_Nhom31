@@ -77,7 +77,7 @@ export class TextComponent implements OnInit {
 
   checkExtension(text: string): string {
     let extension = text.substring(text.lastIndexOf(".")).trim();
-    if (extension === '.csv' || extension === '.xlsx') {
+    if (extension === '.csv' || extension === '.xlsx' || extension === '.ods') {
       return 'excel';
     }
     else if (extension === '.docx' || extension === '.doc') {
@@ -100,6 +100,9 @@ export class TextComponent implements OnInit {
     }
     else if (extension === '.html' || extension === '.css' || extension === '.js' || extension === '.scss') {
       return 'code'
+    }
+    else if (extension === '.sql' || extension === '.mysql' || extension === '.accdb') {
+      return 'database'
     }
     return 'undefined';
   }

@@ -10,6 +10,12 @@ import {Gif} from "../../../../model/pagination";
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {
+  arrContainAngularFireStorageReference,
+  arrSendUrlFile,
+  arrSendUrlToFirebase,
+  File, resetArrayContainFile
+} from "../../../../model/file";
 
 @Injectable()
 @Component({
@@ -28,11 +34,9 @@ export class InputChatComponent implements OnInit {
   http: HttpClient;
   gifs: Gif[] = [];
   isShowGif: boolean = false;
-  @Output() addImage = new EventEmitter<any>();
+  @Output() addFile = new EventEmitter<any>();
   @Output() resetArrayImage = new EventEmitter<any>();
-  arrSendUrlImage:string[] = [];
-  arrSendImageToFirebase: any[] = [];
-  arrContainAngularFireStorageReference: AngularFireStorageReference[] = [];
+
 
 
   stateUploadImage!: Observable<any>;
@@ -85,12 +89,12 @@ export class InputChatComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     this.isShowGif = false
-    // send image
-    if (this.arrSendUrlImage.length > 0 && this.arrSendImageToFirebase.length >  0) {
+    // send file
+    if (arrSendUrlFile.length > 0 && arrSendUrlToFirebase.length >  0) {
       // reset array image to not display
       this.resetArrayImage.emit();
-      // submit image
-      this.submitImage(0);
+      // submit file
+      this.submitFile(0);
     }
     // send text, emoji, gif
     if (this.message != '') {
@@ -104,11 +108,11 @@ export class InputChatComponent implements OnInit {
     }
   }
 
-  private submitImage(countImage: number) {
+  private submitFile(countFile: number) {
     // upload to firebase
-    this.ref = this.arrContainAngularFireStorageReference[countImage]
-    this.task = this.ref.put(this.arrSendImageToFirebase[countImage]);
-    let id = this.arrSendUrlImage[countImage]
+    this.ref = arrContainAngularFireStorageReference[countFile]
+    this.task = this.ref.put(arrSendUrlToFirebase[countFile]);
+    let id = arrSendUrlFile[countFile]
     // khong gui lien ma goi firebase de lay url that cua image
     if (id.includes('png') || id.includes('jpg') || id.includes('jpeg')) {
       // state upload
@@ -116,26 +120,26 @@ export class InputChatComponent implements OnInit {
       this.stateUploadImage.subscribe((state)=>{
         if (state === 'success') {
           // getUrlImageFromFirebase return a promise; wait this get url image from firebase then submit it to api
-          this.getUrlImageFromFirebase(this.arrSendUrlImage[countImage]).then((url:string) =>this.inputChatService.submitMessage(encodeURI(url)))
+          this.getUrlImageFromFirebase(arrSendUrlFile[countFile]).then((url:string) =>this.inputChatService.submitMessage(encodeURI(url)))
           // to send more image
-          countImage+=1
-          if (countImage != this.arrSendImageToFirebase.length) {
-            this.submitImage(countImage)
+          countFile+=1
+          if (countFile != arrSendUrlToFirebase.length) {
+            this.submitFile(countFile)
           }
           else {
-            this.resetArrayContainImage()
+            resetArrayContainFile()
           }
         }
       })
     }
     else {
-      this.inputChatService.submitMessage(encodeURI(this.arrSendUrlImage[countImage]))
-      countImage += 1
-      if (countImage != this.arrSendImageToFirebase.length) {
-        this.submitImage(countImage)
+      this.inputChatService.submitMessage(encodeURI(arrSendUrlFile[countFile]))
+      countFile += 1
+      if (countFile != arrSendUrlToFirebase.length) {
+        this.submitFile(countFile)
       }
       else {
-        this.resetArrayContainImage()
+        resetArrayContainFile()
       }
     }
 
@@ -167,27 +171,31 @@ export class InputChatComponent implements OnInit {
     }
   }
 
-  uploadImage(event: any) {
+  uploadFile(event: any) {
     // add image to display
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       // display image
-      this.addImage.emit(reader.result);
+      let nameFile = event.target.files[0].name
+      let file!:File
+      // là image nên mới set value cho data, để sau này hiển thị ảnh trước khi gửi
+      if (nameFile.endsWith('.jpg') || nameFile.endsWith('.jpeg') || nameFile.endsWith('.png')) {
+        file = {name: event.target.files[0].name, type:'image', data:reader.result}
+      }
+      else {
+        file = {name: event.target.files[0].name, type:'file', data:''}
+      }
+      this.addFile.emit(file);
       let userName = localStorage.getItem("userName")
       // create id name for image
       const id = "firebase_upload_" + userName + "_" + new Date().getTime() + "_" + Math.random().toString().slice(2, 6) + "_upload_chk/"+event.target.files[0].name;
-      this.arrContainAngularFireStorageReference.push(this.afStorage.ref(id))
-      this.arrSendUrlImage.push(id)
-      this.arrSendImageToFirebase.push(event.target.files[0])
+      arrContainAngularFireStorageReference.unshift(this.afStorage.ref(id))
+      arrSendUrlFile.unshift(id)
+      arrSendUrlToFirebase.unshift(event.target.files[0])
     }
   }
 
-  private resetArrayContainImage() {
-    this.arrSendImageToFirebase=[]
-    this.arrSendUrlImage=[]
-    this.arrContainAngularFireStorageReference=[]
-  }
 
   getUrlImageFromFirebase(nameImage: string) {
     let storageRef = this.afStorage.storage.ref().child(nameImage);

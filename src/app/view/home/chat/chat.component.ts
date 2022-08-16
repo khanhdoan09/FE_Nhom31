@@ -3,6 +3,7 @@ import {isHasMoreData, pagination, updatePagination} from "../../../model/pagina
 import {ContentChatService, idSetInterval} from "../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {Spinner} from "../../../model/spinner";
+import {File} from "../../../model/file";
 
 @Component({
   selector: 'app-chat',
@@ -22,7 +23,7 @@ export class ChatComponent implements OnInit {
 
   spinner = Spinner
   positionScroll:any = null
-  images: string[] = [];
+  files: File[] = [];
 
 
   @HostListener('scroll', ['$event'])
@@ -52,20 +53,63 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  addImage(url: any) {
-    this.images.push(url)
+  addFile(file: File) {
+    this.files.unshift(file)
   }
 
-  resetArrayImage() {
-    this.images = []
+  resetArrayFile() {
+    this.files = []
   }
+
   getIsHasMoreData() {
     return isHasMoreData
+  }
+
+  checkExtension(file: File): string {
+    if (file === undefined) {
+      return 'null'
+    }
+    let extension = file.name.substring(file.name.lastIndexOf(".")).trim();
+    if (extension === '.csv' || extension === '.xlsx' || extension === '.ods') {
+      return 'excel';
+    }
+    else if (extension === '.docx' || extension === '.doc') {
+      return 'word';
+    }
+    else if (extension === '.pptx' || extension === '.ppt') {
+      return 'powerpoint'
+    }
+    else if (extension === '.pdf') {
+      return 'pdf'
+    }
+    else if (extension === '.zip' || extension === '.rar') {
+      return 'rar'
+    }
+    else if (extension === '.mp3' || extension === '.mp4' || extension === '.wav') {
+      return 'music'
+    }
+    else if (extension === '.txt') {
+      return 'text'
+    }
+    else if (extension === '.html' || extension === '.css' || extension === '.js' || extension === '.scss') {
+      return 'code'
+    }
+    else if (extension === '.jpg' || extension === '.jpeg' || extension === '.png') {
+      return 'image'
+    }
+    else if (extension === '.sql' || extension === '.mysql' || extension === '.accdb') {
+      return 'database'
+    }
+    else {
+      return 'undefined';
+    }
   }
 
   ngOnInit() {
   }
 
-
+  removeFileBeforeUpload(index: number) {
+    delete this.files[index]
+  }
 
 }

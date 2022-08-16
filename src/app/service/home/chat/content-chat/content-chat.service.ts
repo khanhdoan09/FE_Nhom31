@@ -144,7 +144,6 @@ export class ContentChatService implements IContentChat{
       else if (this.typeChooseText==='group') {
         if (msg.data.chatData.length != 0) {
           this.messages = msg.data.chatData;
-          console.log(msg.data.chatData)
           this.date = null
         }
         else {

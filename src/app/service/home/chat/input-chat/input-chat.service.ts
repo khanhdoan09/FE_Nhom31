@@ -14,10 +14,10 @@ import {WebSocketService} from "../../../websocket/websocket_service";
 })
 
 export class InputChatService {
-  public connect!: Subject<any>;
+  public anotherconnect!: Subject<any>;
 
   public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
+    this.anotherconnect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
       (response: MessageEvent): MessageApi => {
         let data = JSON.parse(response.data);
         return {
@@ -47,24 +47,26 @@ export class InputChatService {
       // choose contact name
       this.toContact = msg.name
     })
+
   }
 
   submitMessage(contactText: string) {
     if (contactText != null || contactText != '' || /\s/.test(contactText) == false) {
-      // first invoke observable by subscribe function
-      this.connect.subscribe(msg => {
-      });
       // second send signal next then observable will catch it
-      setTimeout(()=>{
         // contact with user
         if (this.typeChooseText === 'user') {
-          this.connect.next(Api.sendMessage(this.toContact, contactText));
+          this.anotherconnect.next(Api.sendMessage(this.toContact, contactText));
+          this.anotherconnect.subscribe(msg => {
+            console.log('aaa:'+msg)
+            console.log(msg)
+          });
         }
         // contact with group
         else {
-          this.connect.next(Api.sendMessageToGroup(this.toContact, contactText));
+          this.anotherconnect.next(Api.sendMessageToGroup(this.toContact, contactText));
         }
-      },100)
     }
+
+
   }
 }

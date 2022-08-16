@@ -64,3 +64,42 @@
   bottom:14%;
   right: 3%;
 }
+
+.icon-file {
+  height: 100%;
+  margin: 3px;
+  padding: 0;
+  font-size: 18px;
+  position: relative;
+  .remove-file-upload {
+    top: -9%;
+    right: -6%;
+    font-size: 15px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #05223fe0;
+    color: white;
+    border-radius: 100%;
+    position: absolute;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 0;
+  }
+}
+
+.normal-file-upload {
+  background-color: #c9dcf5;
+  border-radius: 10px;
+  padding: 3px 15px;
+  margin: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  span {
+    margin-left: 9px;
+  }
+}

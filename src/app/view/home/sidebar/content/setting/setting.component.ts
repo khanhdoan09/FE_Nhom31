@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
 
 @Component({
   selector: 'app-setting',
@@ -11,16 +12,19 @@ import {map} from "rxjs/operators";
 export class SettingComponent implements OnInit {
   userName: any;
   setMode = true;
-  src: any = "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
+  src: any = null || "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
   src_ver2: any = "";
   ref!: AngularFireStorageReference;
   task!: AngularFireUploadTask;
   uploadState!: Observable<any>;
   arrayImage: Array<any> = [];
+  isShow: any;
 
 
-  constructor(private afStorage: AngularFireStorage) {
+  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService) {
     this.userName = localStorage.getItem("userName") || "";
+    this.getUrlImageFromFirebase();
+
   }
 
   ngOnInit(): void {
@@ -40,16 +44,28 @@ export class SettingComponent implements OnInit {
     }
   }
 
-  saveAvatar() {
-    const id = "avatar/" + localStorage.getItem("userName");
-    this.ref = this.afStorage.ref(id);
-    this.task = this.ref.put(this.arrayImage[0]);
-    this.uploadState = this.task.snapshotChanges().pipe(map((s: any) => s.state));
-    this.uploadState.subscribe((state) => {
-      if (state === 'success') {
-        alert('done')
-      }
-    })
+
+  getUrlImageFromFirebase() {
+    let nameUser: any = localStorage.getItem("userName");
+    let storageRef = this.afStorage.storage.ref().child("avatar/" + nameUser);
+    return storageRef.getDownloadURL().then(urlFB => {
+      this.src = urlFB;
+      console.log(this.src)
+    });
+  }
+
+  handleClick() {
+    let fileAvatar: any = document.querySelector("#file-avatar");
+    fileAvatar.click();
+    let saved: any = document.querySelector("#save-avatar");
+
+    console.log(saved)
+
+
+      this.profileService.showMyContainer = true;
+
+
+
   }
 
 

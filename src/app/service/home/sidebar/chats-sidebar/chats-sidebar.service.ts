@@ -3,6 +3,7 @@ import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {Contact, ContactTo} from "../../../../model/contact-to";
 import {resetPagination} from "../../../../model/pagination";
+import {set} from "@angular/fire/database";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class ChatsSidebarService {
       // first invoke observable by subscribe function
       this._testConnectService.messages.subscribe(msg => {
         this.renderListUser(msg);
+        // this.checkStatusUser(msg)
       });
       setTimeout(() => {
         // second send signal next then observable will catch it
@@ -47,6 +49,9 @@ export class ChatsSidebarService {
     this.userList = msg.data;
     return this.userList;
   }
+
+
+
 
   selectMessage(contact: Contact) {
     resetPagination()

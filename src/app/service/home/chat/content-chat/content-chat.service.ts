@@ -11,15 +11,15 @@ import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 
-let idSetInterval:any = 0
+let idSetInterval: any = 0
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContentChatService implements IContentChat{
+export class ContentChatService implements IContentChat {
 
   // first just default
-  typeChooseText:string=""
+  typeChooseText: string = ""
   toMessage = 'test'
   pagination = 0
   isFirstInGetDate = true
@@ -32,10 +32,10 @@ export class ContentChatService implements IContentChat{
     localStorage.setItem("userName", "chk2");
 
     // first invoke observable by subscribe function
-     this.connect.subscribe(msg => {
+    this.connect.subscribe(msg => {
       let user: MessageApi = msg;
       if (user.status == 'success') {
-        ContactTo.contactTo.subscribe((msg:Contact)=>{
+        ContactTo.contactTo.subscribe((msg: Contact) => {
           this.toMessage = msg.name
           this.date = null
           // choose contact with user
@@ -53,10 +53,10 @@ export class ContentChatService implements IContentChat{
     });
 
     // second send signal next then observable will catch it
-    setTimeout(()=>{
+    setTimeout(() => {
       // login default with user ti
       this.connect.next(Api.login("chk2", "12345"));
-    },1000)
+    }, 1000)
   }
 
   public create() {
@@ -73,7 +73,8 @@ export class ContentChatService implements IContentChat{
     ));
   }
 
-  date:any = null
+  date: any = null
+
   updateDate(newDate: any) {
 
     // = null la do luc dau chua tinh
@@ -82,19 +83,17 @@ export class ContentChatService implements IContentChat{
       this.date = newDate
       return false
     }
-    // gan ngay dau tien
+      // gan ngay dau tien
     // new khong co isFirstInGetDate thi se gan cho ngay thu hai
     else if (this.date != newDate && this.date != null && this.isFirstInGetDate) {
       this.cd.detach()
       this.isFirstInGetDate = false
       return true
-    }
-    else if (this.date != newDate && this.date != null) {
+    } else if (this.date != newDate && this.date != null) {
       this.cd.detach()
       this.date = newDate
       return true
-    }
-    else {
+    } else {
       return false
     }
   }
@@ -102,7 +101,7 @@ export class ContentChatService implements IContentChat{
   // update message from api once 1.5s
   updateMessage() {
     // this.cd.reattach()
-    idSetInterval = setInterval(()=>{
+    idSetInterval = setInterval(() => {
       // reset
       this.date = ''
       this.isFirstInGetDate = true
@@ -116,11 +115,10 @@ export class ContentChatService implements IContentChat{
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
-    setTimeout(()=>{
-      if (this.typeChooseText==='user') {
+    setTimeout(() => {
+      if (this.typeChooseText === 'user') {
         this.connect.next(Api.loadMessageList(this.toMessage));
-      }
-      else if (this.typeChooseText==='group') {
+      } else if (this.typeChooseText === 'group') {
         this.connect.next(Api.loadMessageListFromGroup(this.toMessage));
       }
     }, 1000)
@@ -131,26 +129,23 @@ export class ContentChatService implements IContentChat{
     // this.cd.reattach()
     if (msg != null) {
       // get text from type user
-      if (this.typeChooseText==='user') {
+      if (this.typeChooseText === 'user') {
         if (msg.data.length != 0) {
           this.messages = msg.data;
           this.date = null
-        }
-        else {
+        } else {
           setIsHasMoreData(false)
         }
       }
       // get text from type group
-      else if (this.typeChooseText==='group') {
+      else if (this.typeChooseText === 'group') {
         if (msg.data.chatData.length != 0) {
           this.messages = msg.data.chatData;
           this.date = null
-        }
-        else {
+        } else {
           setIsHasMoreData(false)
         }
-      }
-      else {
+      } else {
 
       }
     }

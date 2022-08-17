@@ -4,6 +4,7 @@ import {TestConnectService} from "../../../../../service/api/testConnectService"
 import {ContactTo} from "../../../../../model/contact-to";
 import {User} from "../../../../../model/user";
 import {ChatsSidebarService} from "../../../../../service/home/sidebar/chats-sidebar/chats-sidebar.service";
+import {ProfileService} from 'src/app/service/home/sidebar/profile-sidebar/profile.service';
 
 @Component({
   selector: 'app-chats',
@@ -12,10 +13,9 @@ import {ChatsSidebarService} from "../../../../../service/home/sidebar/chats-sid
 })
 export class ChatsComponent implements OnInit {
 
-  constructor(public chatSidebarService: ChatsSidebarService) {
+  constructor(public chatSidebarService: ChatsSidebarService, public _profileService: ProfileService) {
     this.chatSidebarService.runService()
   }
-
 
 
   ngOnInit(): void {

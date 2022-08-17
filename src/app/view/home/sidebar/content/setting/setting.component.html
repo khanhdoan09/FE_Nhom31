@@ -3,24 +3,100 @@
 </div>
 <div class="setting-info ">
   <img class="setting-info__avatar"
-       src="https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg" alt="">
+       src="{{src}}"
+       alt="">
   <p class="setting-info__name mt-2"><strong>{{userName}}</strong></p>
 </div>
 <div class="list-function">
 
 
-  <mdb-accordion class="w-100">
-    <mdb-accordion-item>
-      <ng-template mdbAccordionItemHeader>Account</ng-template>
-      <ng-template mdbAccordionItemBody>
-        <div class="list-function__item d-flex justify-content-between">
-          <span class="list-function__item--logout">Logout</span>
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </div>
-      </ng-template>
-    </mdb-accordion-item>
+  <div class="mb-3">
+    <mdb-accordion class="w-100">
+      <mdb-accordion-item>
+        <ng-template mdbAccordionItemHeader>Account</ng-template>
+        <ng-template mdbAccordionItemBody style="border: none">
+          <div class="list-function__item d-flex justify-content-between mb-4">
+            <input type="text" value="{{userName}}"
+                   style="border: none; outline: none"
+            />
+          </div>
+          <div class="list-function__item d-flex justify-content-between mb-4">
+            <input type="file" #fileAvatar id="file-avatar" style="display:none;" (change)="uploadFile($event)"/>
+            <span value="Upload" (click)="fileAvatar.click()">Change Avatar</span>
+            <i class="fa-solid fa-image"></i>
+          </div>
+          <div class="list-function__item d-flex justify-content-between mb-4">
+            <span class="list-function__item--logout">Logout</span>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </div>
+          <button class="btn btn-info" (click)="saveAvatar()">Save</button>
+        </ng-template>
+      </mdb-accordion-item>
+    </mdb-accordion>
+  </div>
 
+  <div class="mb-3">
+    <mdb-accordion class="w-100">
+      <mdb-accordion-item>
+        <ng-template mdbAccordionItemHeader>Language</ng-template>
+        <ng-template mdbAccordionItemBody style="border: none">
 
-  </mdb-accordion>
+          <div class="form-check">
+            <input
+              mdbRadio
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+            />
+            <label class="form-check-label" for="flexRadioDefault1"> Vietnamese </label>
+          </div>
 
+          <div class="form-check">
+            <input
+              mdbRadio
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+              [checked]="true"
+            />
+            <label class="form-check-label" for="flexRadioDefault2"> English </label>
+          </div>
+        </ng-template>
+      </mdb-accordion-item>
+    </mdb-accordion>
+  </div>
+  <div class="mb-3">
+    <mdb-accordion class="w-100">
+      <mdb-accordion-item>
+        <ng-template mdbAccordionItemHeader>Theme</ng-template>
+        <ng-template mdbAccordionItemBody style="border: none">
+
+          <div class="form-check">
+            <input
+              mdbRadio
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+
+            />
+            <label class="form-check-label" for="flexRadioDefault1"> Dark </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              mdbRadio
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              [checked]="true"
+            />
+            <label class="form-check-label" for="flexRadioDefault2"> Light </label>
+          </div>
+        </ng-template>
+      </mdb-accordion-item>
+    </mdb-accordion>
+  </div>
 </div>
+

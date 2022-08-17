@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
+import {Subject} from "rxjs";
 
 const oAuthConfig: AuthConfig = {
   issuer : 'https://accounts.google.com',
@@ -8,14 +9,23 @@ const oAuthConfig: AuthConfig = {
   clientId:'241034456767-mpfahua7klavlc54qiom307lq417m8i2.apps.googleusercontent.com',
   scope: 'openid profile email'
 }
-
+export interface UserInfo {
+  info: {
+    sub: string,
+    email: string;
+    name: string,
+    picture: string
+  }
+}
 @Injectable({
   providedIn: 'root'
 })
 export class GoogleApiService {
+  userProfileSubject = new Subject<UserInfo>()
 
   constructor(private readonly oAuthService: OAuthService) {
     oAuthService.configure(oAuthService)
+    oAuthService.logoutUrl ='http://www.google.com/accounts/Logout'
     oAuthService.loadDiscoveryDocument().then( ()=> {
       oAuthService.tryLoginImplicitFlow().then( ()=> {
         if(oAuthService.hasValidAccessToken()) {
@@ -23,12 +33,17 @@ export class GoogleApiService {
           console.log(1234)
         }else {
           oAuthService.loadUserProfile().then( (userProfile)=> {
-            console.log(JSON.stringify(userProfile))
+            this.userProfileSubject.next(userProfile as UserInfo)
           })
         }
       })
 
     })
-
+  }
+  isLoggedIn(): boolean {
+    return this.oAuthService.hasValidAccessToken();
+  }
+  signOut() {
+    this.oAuthService.logOut();
   }
 }

@@ -19,7 +19,12 @@ export class SignUpService {
   submitSignUp(username: string, password: string) {
     // first invoke observable by subscribe function
     this.connect.messages.subscribe(msg => {
-      this.router.navigate(['/logIn']);
+      console.log(msg)
+      if (msg.status === 'success') {
+        this.router.navigate(['/logIn']);
+      } else {
+        alert("Lỗi")
+      }
     });
     // second send signal next then observable will catch it
     setTimeout(()=>{

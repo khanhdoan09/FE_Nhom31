@@ -75,6 +75,8 @@ import {TimePipe} from "./model/pipe/time-pipe";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {Storage} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire/compat";
+import {HttpClientModule} from "@angular/common/http";
+import {OAuthModule} from "angular-oauth2-oidc";
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import {AngularFireModule} from "@angular/fire/compat";
   ],
 
   imports: [
+    HttpClientModule,
+    OAuthModule.forRoot(),
     CarouselModule,
     BrowserModule,
     BrowserAnimationsModule,

@@ -28,17 +28,18 @@ export class RegisterComponent implements OnInit {
     this.signupForm = this.formBuilder.group( {
       email: ['',[Validators.required, Validators.email]],
       username:['',[Validators.required]],
-      password: ['',[Validators.required],Validators.minLength(6)],
+      password: ['',[Validators.required]],
       confirmPassword: ['',[Validators.required]]
     })
   }
 
   signUp() {
-    if (!this.signupForm.invalid) {
+    if (this.signupForm.invalid) {
+      console.log(23456)
       return;
     }
     else {
-      console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password);
+      console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password+ "rePass" + this.confirmPassword);
       if(this.password === this.confirmPassword) {
         this.signUpService.submitSignUp(this.username,this.password)
       }

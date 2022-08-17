@@ -25,4 +25,8 @@ export class SignInService {
       this.connect.messages.next(Api.login(username,password));
     },100)
   }
+
+  logout(){
+    this.router.navigate(['/logIn']);
+  }
 }

@@ -1,0 +1,101 @@
+.container__content {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.container__time hr {
+  color: blue;
+  width: 50%;
+}
+
+.time {
+  background-color: #efeff8;
+  padding: 3px 20px;
+  border-radius: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(209, 214, 219);
+  border-radius: 10px;
+}
+
+.container__time hr {
+  color: blue;
+  width: 50%;
+}
+
+.time {
+  background-color: #efeff8;
+  padding: 3px 20px;
+  border-radius: 5px;
+}
+
+.container__spinner {
+  position: absolute;
+  top: 10%;
+  left: 65%;
+}
+.container__spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.contain__image {
+  position: absolute;
+  bottom: 14%;
+  right: 3%;
+}
+
+.icon-file {
+  height: 100%;
+  margin: 3px;
+  padding: 0;
+  font-size: 18px;
+  position: relative;
+}
+.icon-file .remove-file-upload {
+  top: -9%;
+  right: -6%;
+  font-size: 15px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(5, 34, 63, 0.8784313725);
+  color: white;
+  border-radius: 100%;
+  position: absolute;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 0;
+}
+
+.normal-file-upload {
+  background-color: #c9dcf5;
+  border-radius: 10px;
+  padding: 3px 15px;
+  margin: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+.normal-file-upload span {
+  margin-left: 9px;
+}
+
+/*# sourceMappingURL=chat.component.css.map */

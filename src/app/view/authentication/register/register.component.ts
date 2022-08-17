@@ -17,6 +17,14 @@ export class RegisterComponent implements OnInit {
 
   signupForm!: FormGroup;
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService) {
+
+  }
+
+  get f() {
+    return this.signupForm.controls
+  }
+
+  ngOnInit(): void {
     this.signupForm = this.formBuilder.group( {
       email: ['',[Validators.required, Validators.email]],
       username:['',[Validators.required]],
@@ -25,28 +33,20 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  get f() {
-    return this.signupForm.controls
-  }
-
-  ngOnInit(): void {
-    // this.signupForm = this.formBuilder.group({
-    //   username: ['', [Validators.required]],
-    //   pw: this.formBuilder.group({
-    //     password: ['', Validators.required],
-    //     confirmPassword: ['', Validators.required]
-    //   })
-    // });
-  }
-
   signUp() {
-    console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password);
-    if(this.password === this.confirmPassword) {
-      this.signUpService.submitSignUp(this.username,this.password)
+    if (!this.signupForm.invalid) {
+      return;
     }
     else {
-      alert("Please enter true password!")
+      console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password);
+      if(this.password === this.confirmPassword) {
+        this.signUpService.submitSignUp(this.username,this.password)
+      }
+      else {
+        alert("Please enter true password!")
+      }
     }
+
   }
 
 }

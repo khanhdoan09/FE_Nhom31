@@ -77,7 +77,28 @@ import {Storage} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, RecoverpwComponent, HomeComponent, SidebarComponent, ChatComponent, MenuComponent, ContentComponent, ProfileComponent, TimeComponent, ContentChatComponent, ConversationComponent, InputChatComponent, TextComponent, HeaderBarComponent, ChatsComponent, GroupsComponent, SettingComponent, TimePipe],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    RecoverpwComponent,
+    HomeComponent,
+    SidebarComponent,
+    ChatComponent,
+    MenuComponent,
+    ContentComponent,
+    ProfileComponent,
+    TimeComponent,
+    ContentChatComponent,
+    ConversationComponent,
+    InputChatComponent,
+    TextComponent,
+    HeaderBarComponent,
+    ChatsComponent,
+    GroupsComponent,
+    SettingComponent,
+    TimePipe
+  ],
 
   imports: [
     CarouselModule,

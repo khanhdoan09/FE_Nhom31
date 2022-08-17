@@ -23,10 +23,8 @@
   <p><strong>{{userName}}@gmail.com</strong></p>
 
   <label>Status</label>
-<!--  <p [class.text-success]="this.profileService.statusUser.status===">-->
-<!--    <strong> {{this.profileService.statusUser.status ? 'Online' : 'Offline'}}</strong></p>-->
-  <p class="text-success fw-bold">{{this.profileService.statusUser === "success" ? 'Online' : ''}}</p>
-  <p class="text-danger fw-bold">{{this.profileService.statusUser === "error" ? 'Offline' : ''}}</p>
+  <p class="text-success fw-bold">{{this.profileService.statusUser === true ? 'Online' : ''}}</p>
+  <p class="text-danger fw-bold">{{this.profileService.statusUser === false ? 'Offline' : ''}}</p>
   <label>Location</label>
   <p><strong>Linh Chieu, Thu Duc</strong></p>
 </div>

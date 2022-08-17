@@ -9,11 +9,9 @@ import {ProfileService} from 'src/app/service/home/sidebar/profile-sidebar/profi
 export class ProfileComponent implements OnInit {
   userName: string;
 
-  constructor(
-    public profileService: ProfileService
-  ) {
-    this.profileService.runService();
-    this.userName = localStorage.getItem("userName") || ""
+  constructor(public profileService: ProfileService) {
+    this.userName = localStorage.getItem("userName") || "";
+    this.profileService.runService(this.userName);
   }
 
   ngOnInit(): void {

@@ -1,11 +1,11 @@
 <div class="bg-chats">
-  <h5>Chats</h5>
+  <h5>{{'Trò chuyện'|translate}}</h5>
   <div id="search-form">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="search messages or users" class="search-input"
+    <input type="text" placeholder="{{'Tìm kiếm'| translate}}" class="search-input"
            [(ngModel)]="this.chatSidebarService.txtSearch">
   </div>
-  <h5 class="mt-4">Recent</h5>
+  <h5 class="mt-4">{{'Gần đây'|translate}}</h5>
   <div class="chats style-5">
 
     <a *ngFor="let u of this.chatSidebarService.userList | filter:this.chatSidebarService.txtSearch"

@@ -75,9 +75,16 @@ import {TimePipe} from "./model/pipe/time-pipe";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {Storage} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire/compat";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
 import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -101,7 +108,8 @@ import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.com
     GroupsComponent,
     SettingComponent,
     TimePipe,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+
   ],
 
   imports: [
@@ -168,6 +176,15 @@ import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.com
       appId: "1:856118698798:web:a449c34cc0ea80b2b190bf",
       measurementId: "G-PJ3T97M4KE"
     }),
+    HttpClientModule,
+    TranslateModule.forRoot({
+
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MdbCookiesManagementService, MdbStorageManagementService, DatePipe,

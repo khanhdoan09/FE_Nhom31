@@ -9,6 +9,8 @@ import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar
 import {Contact, ContactTo} from "../../../../../model/contact-to";
 import {User} from "../../../../../model/user";
 import {resetPagination} from "../../../../../model/pagination";
+import {LanguageService} from "../../../../../service/home/language/language.service";
+import {MdbNotificationRef} from "mdb-angular-ui-kit/notification";
 
 @Component({
   selector: 'app-groups',
@@ -30,6 +32,8 @@ export class GroupsComponent implements OnInit {
   constructor(public _groupsService: GroupsService,
               public _createGroupService: CreateGroupService,
               public _joinGroupService: JoinGroupService,
+              public _languageService: LanguageService,
+
   ) {
     this._groupsService.runService();
   }

@@ -107,21 +107,21 @@
 }
 
 .chats-left__status.active {
+  color: #06d7a3;
   font-weight: 700;
   font-size: 12px;
-  color: #06d7a3;
   position: absolute;
-  bottom: 2px;
-  left: 28px;
+  bottom: 11px;
+  left: 40px;
 }
 
 .chats-left__status.non-active {
+  color: #ffd166;
   font-weight: 700;
   font-size: 12px;
-  color: #ffd166;
   position: absolute;
-  bottom: 2px;
-  left: 28px;
+  bottom: 11px;
+  left: 40px;
 }
 
 .chats-left__messages {

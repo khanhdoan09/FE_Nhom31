@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
+import {MessageApi} from "../../../../model/message_api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class JoinGroupService {
   nameJoinRoom: any;
-  statusJoinRoom: any;
-  mesJoinRoom: any;
   userList = [];
+  public dataJoin!: MessageApi;
 
   constructor(
     private _testConnectService: TestConnectService
@@ -35,17 +35,14 @@ export class JoinGroupService {
   updateJoinGroup() {
     setTimeout(() => {
       this.init();
-    },0)
+    }, 0)
   }
 
   renderDataJoinGroup(msg: any) {
-    console.log(msg)
-    this.statusJoinRoom = msg.status;
-    this.mesJoinRoom = msg.mes;
-    this.userList = msg.userList;
+    this.dataJoin = msg;
+    console.log(this.dataJoin)
 
-    // console.log(this.statusJoinRoom)
-    return msg;
+    return this.dataJoin;
   }
 
 }

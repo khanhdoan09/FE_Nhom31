@@ -3,6 +3,7 @@ import {User} from "./user";
 
 export class ContactTo {
   public static contactTo = new Subject<User>();
+  public static isLogin =false;
 }
 
 // api return this format when get list user or list group

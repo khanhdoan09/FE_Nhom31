@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {SignInService} from "../../../service/home/authentication/sign-in.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {GoogleApiService ,UserInfo} from "./login-gg-api/google-api.service";
+import {GoogleApiService ,UserInfo} from "../../../service/home/login-gg-api/google-api.service";
 import {lastValueFrom} from "rxjs";
 
 @Component({

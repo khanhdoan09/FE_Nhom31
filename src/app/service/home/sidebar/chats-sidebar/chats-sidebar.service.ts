@@ -28,7 +28,7 @@ export class ChatsSidebarService {
       // first invoke observable by subscribe function
       this._testConnectService.messages.subscribe(msg => {
         this.renderListUser(msg);
-        // this.checkStatusUser(msg)
+        this.checkStatusUser(msg)
       });
       setTimeout(() => {
         // second send signal next then observable will catch it
@@ -51,7 +51,32 @@ export class ChatsSidebarService {
   }
 
 
+  checkStatusUser(msg: any) {
+    setInterval(() => {
+      this.checkStatusOneUser(msg.data, 0)
+    }, 2500)
+  }
 
+  checkStatusOneUser(arrUser: any, index: number) {
+
+    if (index != arrUser.length) {
+      this._testConnectService.messages.subscribe(msg => {
+        if (msg.data != null || msg.data != undefined) {
+          if (arrUser[index].type === 0) {
+            arrUser[index].status = msg.data.status;
+            // console.log(arrUser[index].name + '~' + msg.data.status);
+            // console.log(arrUser);
+          }
+        } else {
+          arrUser[index].status = false;
+        }
+        this.checkStatusOneUser(arrUser, index + 1)
+      });
+      this._testConnectService.messages.next(Api.get_user_list(arrUser[index].name));
+    } else {
+      return
+    }
+  }
 
   selectMessage(contact: Contact) {
     resetPagination()

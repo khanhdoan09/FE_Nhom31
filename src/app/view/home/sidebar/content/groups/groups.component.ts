@@ -44,13 +44,8 @@ export class GroupsComponent implements OnInit {
   }
 
   joinHandler() {
-    // if (this.nameJoinRoom.empty()) {
-    //   this.alertEmpty = "Tên rỗng";
-    // }
     this._joinGroupService.runService(this.nameJoinRoom);
     this.nameJoinRoom = "";
-
-
   }
 
   selectMessage(contact: Contact) {

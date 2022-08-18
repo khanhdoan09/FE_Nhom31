@@ -12,27 +12,33 @@
        (click)="this.chatSidebarService.selectMessage(u)"
     >
 
-      <div class="chats-left" *ngIf="u.type === 0" >
+      <div class="chats-left" *ngIf="u.type === 0">
         <img class="chats-left__avatar"
              src="https://www.w3schools.com/howto/img_avatar.png" alt="">
-<!--        <p>{{u.status}}</p>-->
-<!--        <span class="chats-left__status active">-->
-<!--          <i class="fa-solid fa-period">-->
-<!--            <i class="fa-solid fa-circle"></i>-->
-<!--          </i>-->
-<!--        </span>-->
+        <span *ngIf="u.status === false || undefined || null else active" class="chats-left__status non-active">
+          <i class="fa-solid fa-period">
+            <i class="fa-solid fa-circle"></i>
+          </i>
+        </span>
+        <ng-template #active>
+            <span class="chats-left__status active">
+              <i class="fa-solid fa-period">
+                <i class="fa-solid fa-circle"></i>
+              </i>
+            </span>
+        </ng-template>
         <div>
           <span class="chats-left__name">{{u.name}}</span>
           <br>
           <span class="chats-left__messages">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, animi asperiores cumque cupiditate debitis eius excepturi expedita fuga id illo impedit inventore modi odit omnis perspiciatis, placeat quisquam reiciendis temporibus.</span>
         </div>
       </div>
-      <div class="chats-right" *ngIf="u.type === 0" >
-        <span class="chats-right__time">{{u.actionTime |  date:'shortTime'}}</span>
-        <span class="chats-right__seen">99</span>
-      </div>
+<!--      <div class="chats-right" *ngIf="u.type === 0">-->
+<!--        <span class="chats-right__time">{{u.actionTime |  date:'shortTime'}}</span>-->
+<!--        <span class="chats-right__seen">99</span>-->
+<!--      </div>-->
     </a>
-    <ng-template #abc>123124</ng-template>
+
   </div>
 </div>
 

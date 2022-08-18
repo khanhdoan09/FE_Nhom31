@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TestConnectService} from 'src/app/service/api/testConnectService';
 import {Api} from "../../../api/api";
+import {MessageApi} from "../../../../model/message_api";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import {Api} from "../../../api/api";
 export class CreateGroupService {
   nameRoom: any;
   statusCreated: any;
+  public dataCreated!: MessageApi;
+
   constructor(private _testConnectService: TestConnectService) {
   }
 
@@ -25,7 +28,7 @@ export class CreateGroupService {
       setTimeout(() => {
         this._testConnectService.messages.next(Api.create_room(this.nameRoom));
       })
-    } )
+    })
   }
 
   updateCreateGroup() {
@@ -35,8 +38,8 @@ export class CreateGroupService {
   }
 
   renderDataCreateGroup(msg: any) {
-    console.log(msg)
-    this.statusCreated = msg.status;
-    return msg;
+    this.dataCreated = msg;
+    console.log( this.dataCreated)
+    return this.dataCreated;
   }
 }

@@ -6,7 +6,6 @@
     <img class="image-user__avatar"
          src="{{this.profileService.src}}"
          alt="">
-    <!--    <i class="fa-solid fa-circle  {{this.profileService.statusUser ? 'image-user__online':'image-user__offline'}}"></i>-->
   </div>
   <p class="text-center mt-2 fw-bold">{{userName}}</p>
 </div>
@@ -16,7 +15,7 @@
 </div>
 
 <div class="about pt-5">
-  <label>UserName</label>
+  <label>Username</label>
   <p><strong>{{userName}}</strong></p>
 
   <label>Email</label>
@@ -24,7 +23,7 @@
 
   <label>Status</label>
   <p class="text-success fw-bold">{{this.profileService.statusUser === true ? 'Online' : ''}}</p>
-  <p class="text-danger fw-bold">{{this.profileService.statusUser === false ? 'Offline' : ''}}</p>
+  <p class="text-danger fw-bold">{{this.profileService.statusUser === false || undefined || null ? 'Offline' : ''}}</p>
   <label>Location</label>
   <p><strong>Linh Chieu, Thu Duc</strong></p>
 </div>

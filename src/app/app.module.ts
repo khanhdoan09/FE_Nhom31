@@ -77,6 +77,7 @@ import {Storage} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
+import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {OAuthModule} from "angular-oauth2-oidc";
     ChatsComponent,
     GroupsComponent,
     SettingComponent,
-    TimePipe
+    TimePipe,
+    PagenotfoundComponent
   ],
 
   imports: [

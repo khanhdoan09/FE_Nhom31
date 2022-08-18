@@ -21,6 +21,7 @@ export class SignInService {
     this.connect.messages.subscribe(msg => {
       console.log(msg)
       if (msg.status === 'success') {
+        ContactTo.isLogin = true;
         this.router.navigate(['/home']);
       } else {
         alert("Lỗi")

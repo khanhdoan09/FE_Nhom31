@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {ContactTo} from "../../model/contact-to";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    if(ContactTo.isLogin ===false) {
+      this.router.navigate(['/logIn'])
+    }
+    else {
+      this.router.navigate(['/home'])
+
+    }
+  }
 
   ngOnInit(): void {
   }

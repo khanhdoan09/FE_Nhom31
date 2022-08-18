@@ -55,7 +55,7 @@ export class ContentChatService implements IContentChat {
     // second send signal next then observable will catch it
     setTimeout(() => {
       // login default with user ti
-      this.connect.next(Api.login("chk2", "12345"));
+      // this.connect.next(Api.login("chk2", "12345"));
     }, 1000)
   }
 

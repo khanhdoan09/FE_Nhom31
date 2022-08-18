@@ -6,11 +6,11 @@ export class Api {
     // default login with user long
     return {
       "action": "onchat",
-      "data": {
-        "event": "LOGIN",
         "data": {
+        "event": "LOGIN",
+          "data": {
           "user": name,
-          "pass": password
+            "pass": password
         }
       }
     }
@@ -25,6 +25,19 @@ export class Api {
         "data": {
           "user": name,
           "pass": password
+        }
+      }
+    }
+  }
+
+  public static reLogin(name: string, code: string) {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "RE_LOGIN",
+        "data": {
+          "user": name,
+          "code": code
         }
       }
     }

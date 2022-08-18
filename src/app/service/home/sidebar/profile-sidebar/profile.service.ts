@@ -28,14 +28,10 @@ export class ProfileService {
   }
 
   init() {
-    setTimeout(() => {
-      this._testConnectService.messages.subscribe(msg => {
-        this.loadInfoUser(msg);
-      });
-      setTimeout(() => {
-        this._testConnectService.messages.next(Api.get_user_list(this.userName));
-      })
-    })
+    this._testConnectService.messages.subscribe(msg => {
+      this.loadInfoUser(msg);
+    });
+    this._testConnectService.messages.next(Api.get_user_list(this.userName));
   }
 
   updateInfoUser() {
@@ -50,7 +46,6 @@ export class ProfileService {
   }
 
   saveAvatar() {
-
     const id = "avatar/" + localStorage.getItem("userName");
     this.ref = this.afStorage.ref(id);
     this.task = this.ref.put(this.arrayImage[0]);

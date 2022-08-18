@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     if (this.signupForm.invalid) {
-      console.log(23456)
       return;
     }
     else {

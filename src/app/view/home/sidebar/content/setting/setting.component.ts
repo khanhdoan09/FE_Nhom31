@@ -7,6 +7,8 @@ import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
 import {MdbNotificationRef, MdbNotificationService} from "mdb-angular-ui-kit/notification";
 import {ToastComponent} from "../../../toast/toast.component";
+import {SignUpService} from "../../../../../service/home/authentication/sign-up-service.service";
+import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
 
 @Component({
   selector: 'app-setting',
@@ -26,7 +28,7 @@ export class SettingComponent implements OnInit {
 
   constructor(private afStorage: AngularFireStorage,
               public profileService: ProfileService,
-              public _languageService: LanguageService) {
+              public _languageService: LanguageService, private signInService: SignInService) {
     this.userName = localStorage.getItem("userName") || "";
     this.getUrlImageFromFirebase();
 
@@ -67,5 +69,7 @@ export class SettingComponent implements OnInit {
   }
 
 
-
+  logout() {
+    this.signInService.logout();
+  }
 }

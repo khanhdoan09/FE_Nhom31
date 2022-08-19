@@ -1,0 +1,55 @@
+.image-user__avatar {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.image-user__online {
+  position: absolute;
+  bottom: 812px;
+  left: 24%;
+  color: #06D6A0;
+}
+.image-user__offline {
+  position: absolute;
+  bottom: 812px;
+  left: 24%;
+  color: #d24444;
+}
+
+@media only screen and (max-width: 992px) {
+  .image-user__avatar {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+  .image-user__online {
+    display: none;
+    position: absolute;
+    bottom: 812px;
+    left: 24%;
+    color: #06D6A0;
+  }
+  .image-user__offline {
+    display: none;
+    position: absolute;
+    bottom: 812px;
+    left: 24%;
+    color: #d24444;
+  }
+}
+.user-status i {
+  font-size: 14px;
+  color: #06d7a3;
+}
+
+.about {
+  border-top: 1px solid #c9c5c5;
+}
+
+/*# sourceMappingURL=profile.component.css.map */

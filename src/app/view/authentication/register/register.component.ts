@@ -38,6 +38,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
     else {
+      // if(this.username === localStorage.getItem("userName")) {
+      //   alert("Tài khoản đã tồn tại");
+      // }
+      // console.log(localStorage.getItem("username"))
       console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password+ "rePass" + this.confirmPassword);
       if(this.password === this.confirmPassword) {
         this.signUpService.submitSignUp(this.username,this.password)

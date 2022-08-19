@@ -35,6 +35,7 @@ export class SignInService {
   }
 
   logout() {
+    localStorage.removeItem("userName")
     this.router.navigate(['/logIn']);
   }
 }

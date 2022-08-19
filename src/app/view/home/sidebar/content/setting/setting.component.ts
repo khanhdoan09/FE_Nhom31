@@ -3,6 +3,7 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
+import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
 
 @Component({
   selector: 'app-setting',
@@ -21,7 +22,7 @@ export class SettingComponent implements OnInit {
   isShow: any;
 
 
-  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService) {
+  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private signInService: SignInService) {
     this.userName = localStorage.getItem("userName") || "";
     this.getUrlImageFromFirebase();
 
@@ -68,5 +69,7 @@ export class SettingComponent implements OnInit {
 
   }
 
-
+  logout() {
+    this.signInService.logout()
+  }
 }

@@ -6,6 +6,7 @@ import {ProfileService} from "../../../../../service/home/sidebar/profile-sideba
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
 
+
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -22,9 +23,9 @@ export class SettingComponent implements OnInit {
   isShow: any;
   selectorVAL = localStorage.getItem("language");
 
-  constructor(private afStorage: AngularFireStorage,
-              public profileService: ProfileService,
-              public _languageService: LanguageService) {
+
+
+  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private signInService: SignInService) {
     this.userName = localStorage.getItem("userName") || "";
     this.getUrlImageFromFirebase();
 
@@ -65,5 +66,7 @@ export class SettingComponent implements OnInit {
   }
 
 
-
+  logout() {
+    this.signInService.logout()
+  }
 }

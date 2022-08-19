@@ -3,6 +3,7 @@ import {SignInService} from "../../../service/home/authentication/sign-in.servic
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GoogleApiService ,UserInfo} from "../../../service/home/login-gg-api/google-api.service";
 import {lastValueFrom} from "rxjs";
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -32,11 +33,25 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.signinForm.controls
   }
+
+  convertText(conversion:string) {
+    // if (conversion=="encrypt") {
+    //   this.conversionEncryptOutput = CryptoJS.AES.encrypt(this.plainText.trim(), this.encPassword.trim()).toString();
+    // }
+    // else {
+    //   this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+    //
+    // }
+  }
   login() {
 
     console.log(this.username+ "_" +this.password);
     this.signInService.submitSignIn(this.username,this.password)
   }
+
+
+
+
 
   isLoggedIn(): boolean {
     return this.google.isLoggedIn();

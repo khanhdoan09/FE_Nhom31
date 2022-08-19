@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../api/testConnectService";
 import {ContactTo} from "../../../model/contact-to";
 import {User} from "../../../model/user";
@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 })
 export class SignUpService {
 
-  constructor(private connect: TestConnectService ,private router: Router) {
-    ContactTo.contactTo.subscribe((msg:User)=>{
+  constructor(private connect: TestConnectService, private router: Router) {
+    ContactTo.contactTo.subscribe((msg: User) => {
 
     })
   }
@@ -20,6 +20,10 @@ export class SignUpService {
     // first invoke observable by subscribe function
     this.connect.messages.subscribe(msg => {
       console.log(msg)
+      if (msg.mes === "Creating account error, Duplicate Username") {
+        alert("Tài khoản đã tồn tại!")
+      }
+
       if (msg.status === 'success') {
         this.router.navigate(['/logIn']);
       } else {
@@ -27,8 +31,8 @@ export class SignUpService {
       }
     });
     // second send signal next then observable will catch it
-    setTimeout(()=>{
-      this.connect.messages.next(Api.signUp(username,password));
-    },100)
+    setTimeout(() => {
+      this.connect.messages.next(Api.signUp(username, password));
+    }, 100)
   }
 }

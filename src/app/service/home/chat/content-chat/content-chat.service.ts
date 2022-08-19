@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {Api} from "../../../api/api";
 import {TestConnectService} from "../../../api/testConnectService";
 import {MessageApi} from "../../../../model/message_api";
-import {Contact, ContactTo} from "../../../../model/contact-to";
+import {Contact, ContactTo, CurrentUser} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
 import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
 import {IContentChat} from "../../../../model/content-chat";
@@ -10,6 +10,7 @@ import {WebSocketService} from "../../../websocket/websocket_service";
 import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 let idSetInterval: any = 0
 
@@ -24,7 +25,7 @@ export class ContentChatService implements IContentChat {
   pagination = 0
   isFirstInGetDate = true
   cd!: ChangeDetectorRef
-  messages: any = []
+  messages: any[] = []
   public connect!: Subject<any>;
 
   constructor(private ws: WebSocketService) {
@@ -32,9 +33,6 @@ export class ContentChatService implements IContentChat {
     localStorage.setItem("userName", "chk2");
 
     // first invoke observable by subscribe function
-    this.connect.subscribe(msg => {
-      let user: MessageApi = msg;
-      if (user.status == 'success') {
         ContactTo.contactTo.subscribe((msg: Contact) => {
           this.toMessage = msg.name
           this.date = null
@@ -49,14 +47,6 @@ export class ContentChatService implements IContentChat {
         })
         // load message
         this.updateMessage()
-      }
-    });
-
-    // second send signal next then observable will catch it
-    setTimeout(() => {
-      // login default with user ti
-      // this.connect.next(Api.login("chk2", "12345"));
-    }, 1000)
   }
 
   public create() {
@@ -106,7 +96,7 @@ export class ContentChatService implements IContentChat {
       this.date = ''
       this.isFirstInGetDate = true
       this.getMessageFromApi()
-    }, 1500)
+    }, 500)
   }
 
   getMessageFromApi() {
@@ -115,41 +105,55 @@ export class ContentChatService implements IContentChat {
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
-    setTimeout(() => {
       if (this.typeChooseText === 'user') {
         this.connect.next(Api.loadMessageList(this.toMessage));
       } else if (this.typeChooseText === 'group') {
         this.connect.next(Api.loadMessageListFromGroup(this.toMessage));
       }
-    }, 1000)
   }
 
   // render message to screen
   renderMessage(msg: any) {
+    if (msg.status == false) {
+      return
+    }
     // this.cd.reattach()
-    if (msg != null) {
+    if (msg != undefined) {
       // get text from type user
       if (this.typeChooseText === 'user') {
-        if (msg.data.length != 0) {
-          this.messages = msg.data;
-          this.date = null
-        } else {
-          setIsHasMoreData(false)
+        if (msg.event === 'GET_PEOPLE_CHAT_MES') {
+          if (msg.data != null && msg.data != undefined) {
+            if (msg.data.length != 0) {
+              this.messages = msg.data;
+              this.date = null
+            } else {
+              setIsHasMoreData(false)
+            }
+          }
         }
       }
       // get text from type group
       else if (this.typeChooseText === 'group') {
-        if (msg.data.chatData.length != 0) {
-          this.messages = msg.data.chatData;
-          this.date = null
-        } else {
-          setIsHasMoreData(false)
+        if (msg.event === 'GET_ROOM_CHAT_MES') {
+          console.log(msg)
+          if (msg.data != null && msg.data != undefined) {
+            if (msg.data.chatData.length != 0) {
+              this.messages = msg.data.chatData;
+              this.date = null
+            } else {
+              setIsHasMoreData(false)
+            }
+          }
         }
       } else {
 
       }
     }
+    else {
+    }
   }
+
+
 }
 
 export {idSetInterval}

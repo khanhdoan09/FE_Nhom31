@@ -9,11 +9,10 @@ export class ConversationComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(e:any) {
-    alert(123)
-    // Your Code Here
   }
 
 
+  @Input() avatar: string='404'
   @Input() left: string= ""
   @Input() right: string= ""
   @Input() flex_direction: string= ""

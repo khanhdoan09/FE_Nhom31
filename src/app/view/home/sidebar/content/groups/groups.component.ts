@@ -51,6 +51,7 @@ export class GroupsComponent implements OnInit {
   }
 
   selectMessage(contact: Contact) {
+    console.log(contact)
     resetPagination();
     ContactTo.contactTo.next(contact);
   }

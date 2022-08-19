@@ -15,8 +15,9 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/logIn'])
     }
     else {
-      this.router.navigate(['/home'])
-
+      setTimeout(()=>{
+        this.router.navigate(['/home'])
+      },500)
     }
   }
 

@@ -2,6 +2,10 @@ import {Injectable} from '@angular/core';
 import {TestConnectService} from 'src/app/service/api/testConnectService';
 import {Api} from "../../../api/api";
 import {MessageApi} from "../../../../model/message_api";
+import {WebSocketService} from "../../../websocket/websocket_service";
+import {Subject} from "rxjs";
+import {configure} from "../../../../configure/Configure";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,23 @@ export class CreateGroupService {
   statusCreated: any;
   public dataCreated!: MessageApi;
 
-  constructor(private _testConnectService: TestConnectService) {
+  public connect!: Subject<any>;
+  constructor(private ws: WebSocketService) {
+    this.create()
+  }
+
+  public create() {
+    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
+      (response: MessageEvent): MessageApi => {
+        let data = JSON.parse(response.data);
+        return {
+          status: data.status,
+          data: data.data,
+          mes: data.mes,
+          event: data.event
+        };
+      }
+    ));
   }
 
 
@@ -22,11 +42,12 @@ export class CreateGroupService {
 
   init() {
     setTimeout(() => {
-      this._testConnectService.messages.subscribe(msg => {
+      this.connect.subscribe(msg => {
+        console.log(msg)
         this.renderDataCreateGroup(msg);
       });
       setTimeout(() => {
-        this._testConnectService.messages.next(Api.create_room(this.nameRoom));
+        this.connect.next(Api.create_room(this.nameRoom));
       })
     })
   }
@@ -39,7 +60,6 @@ export class CreateGroupService {
 
   renderDataCreateGroup(msg: any) {
     this.dataCreated = msg;
-    console.log( this.dataCreated)
-    return this.dataCreated;
+    console.log(this.dataCreated)
   }
 }

@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MdbModalRef} from "mdb-angular-ui-kit/modal";
-import {TestConnectService} from 'src/app/service/api/testConnectService';
-import {ChatsSidebarService} from 'src/app/service/home/sidebar/chats-sidebar/chats-sidebar.service';
 import {CreateGroupService} from 'src/app/service/home/sidebar/groups-sideabar/create-group.service';
 import {JoinGroupService} from 'src/app/service/home/sidebar/groups-sideabar/join-group.service';
-import {Api} from "../../../../../service/api/api";
 import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar/groups.service";
 import {Contact, ContactTo} from "../../../../../model/contact-to";
-import {User} from "../../../../../model/user";
+
 import {resetPagination} from "../../../../../model/pagination";
 import {LanguageService} from "../../../../../service/home/language/language.service";
-import {MdbNotificationRef} from "mdb-angular-ui-kit/notification";
+
 
 @Component({
   selector: 'app-groups',
@@ -26,8 +22,8 @@ export class GroupsComponent implements OnInit {
   isShowAddMember = false;
   txtSearchGroup: any;
   alertEmpty: any;
-
   uName: any = localStorage.getItem('userName');
+
 
   constructor(public _groupsService: GroupsService,
               public _createGroupService: CreateGroupService,
@@ -39,16 +35,18 @@ export class GroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 
   createHandler() {
-    this._createGroupService.runService(this.nameRoom);
+    this._createGroupService.runService(this.nameRoom.trim());
+    this.nameRoom = "";
     // this.isShowing = false;
   }
 
   joinHandler() {
-    this._joinGroupService.runService(this.nameJoinRoom);
+    this._joinGroupService.runService(this.nameJoinRoom.trim());
     this.nameJoinRoom = "";
   }
 
@@ -56,4 +54,6 @@ export class GroupsComponent implements OnInit {
     resetPagination();
     ContactTo.contactTo.next(contact);
   }
+
+
 }

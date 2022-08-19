@@ -28,7 +28,7 @@ export class JoinGroupService {
       });
       setTimeout(() => {
         this._testConnectService.messages.next(Api.join_room(this.nameJoinRoom));
-      }, 0)
+      }, )
     }, 0)
   }
 
@@ -41,7 +41,6 @@ export class JoinGroupService {
   renderDataJoinGroup(msg: any) {
     this.dataJoin = msg;
     console.log(this.dataJoin)
-
     return this.dataJoin;
   }
 

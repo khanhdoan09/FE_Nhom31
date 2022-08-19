@@ -47,7 +47,7 @@
                                             <span class="" id="basic-addon4">
                                                     <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input type="password" formControlName="password" class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
+                    <input type="password" formControlName="password" passwordToggle required class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
 
                   </div>
                   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">

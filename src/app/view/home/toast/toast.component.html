@@ -1,0 +1,24 @@
+<div
+  class="toast bg-success mx-auto"
+  id="basic-primary-example"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  <div class="toast-header text-white bg-success">
+    <strong class="me-auto">Thông báo</strong>
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      aria-label="Close"
+      (click)="notificationRef.close()"
+    ></button>
+  </div>
+  <div class="toast-body text-white">{{this._joinGroupService.dataJoin.status === "error" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? this._joinGroupService.dataJoin.mes : ""}}</div>
+        <div
+          class="toast-body text-white">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Join the group successfully" : ""}}</div>
+</div>
+<!--      <span-->
+<!--        class="fw-bold text-danger"></span>-->
+<!--      <span-->
+<!--        class="fw-bold text-success">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Join the group successfully" : ""}}</span>-->

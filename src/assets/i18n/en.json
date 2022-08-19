@@ -20,7 +20,8 @@
   "Nhập tên nhóm": "Enter Group Name",
   "Tham gia": "Join Now",
   "Tìm kiếm": "Search...",
-  "Nhập tên nhóm": "Enter group name..."
-
-
+  "Nhập tên nhóm": "Enter group name...",
+  "Vui lòng nhập tên nhóm": "Group name is required",
+  "Tham gia nhóm không thành công": "Join group unsuccessful",
+  "Tham gia nhóm thành công": "Join group successful"
 }

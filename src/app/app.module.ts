@@ -80,6 +80,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
 import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ToastComponent } from './view/home/toast/toast.component';
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -109,6 +110,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SettingComponent,
     TimePipe,
     PagenotfoundComponent,
+    ToastComponent,
 
   ],
 

@@ -5,6 +5,8 @@ import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
+import {MdbNotificationRef, MdbNotificationService} from "mdb-angular-ui-kit/notification";
+import {ToastComponent} from "../../../toast/toast.component";
 
 @Component({
   selector: 'app-setting',

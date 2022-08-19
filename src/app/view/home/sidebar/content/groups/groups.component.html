@@ -1,14 +1,17 @@
 <div class="d-flex justify-content-between">
   <h5>{{'Nhóm'|translate}}</h5>
-  <button class="btn-create" (click)="isShowing =true">
-    <i class="fa-solid fa-user-group"></i>
-    <span class="btn-create__hint">{{'Tạo nhóm'|translate}}</span>
-  </button>
-  <button class="btn-create" (click)="isShowAddMember =true">
-    <i class="fa-solid fa-circle-plus"></i>
-    <span class="btn-create__hint">{{'Tham gia nhóm'|translate}}</span>
-    <span class="btn-create__hint">{{'Tham gia nhóm'|translate}}</span>
-  </button>
+  <div>
+    <button class="btn-create pe-3" (click)="isShowing =true">
+      <i class="fa-solid fa-user-group"></i>
+      <span class="btn-create__hint">{{'Tạo nhóm'|translate}}</span>
+    </button>
+    <button class="btn-create" (click)="isShowAddMember =true">
+      <i class="fa-solid fa-circle-plus"></i>
+      <span class="btn-create__hint">{{'Tham gia nhóm'|translate}}</span>
+      <span class="btn-create__hint">{{'Tham gia nhóm'|translate}}</span>
+    </button>
+  </div>
+  <h5></h5>
 
 </div>
 
@@ -20,16 +23,6 @@
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
-
-  <!--  <div class="modal-create-groupss__body">-->
-  <!--    <div class="d-flex flex-column">-->
-  <!--      <label>{{'Tên nhóm'|translate}}</label>-->
-  <!--      <input type="text" placeholder="{{'Nhập tên nhóm'|translate}}" [(ngModel)]="nameRoom">-->
-  <!--    </div>-->
-  <!--    <span-->
-  <!--      class="fw-bold text-danger">{{this._createGroupService.dataCreated.status === "error" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? this._createGroupService.dataCreated.mes : ""}}</span>-->
-  <!--    <span-->
-  <!--      class="fw-bold text-success">{{this._createGroupService.dataCreated.status === "success" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Create group success" : ""}}</span>-->
 
 
   <div class="modal-create-groupss__body">
@@ -46,13 +39,15 @@
             (click)="createHandler()">{{'Tạo nhóm'|translate}}</button>
   </div>
   <div>
-<!--    <p class="fw-bold text-danger">-->
-<!--      {{this._createGroupService.dataCreated.status === "error" || undefined && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? this._createGroupService.dataCreated.mes : ""}}-->
-<!--    </p>-->
-<!--    <p-->
-<!--      class="fw-bold text-success">{{this._createGroupService.dataCreated.status === "success" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Create group success" : ""}}</p>-->
+    <p class="fw-bold text-danger">
+      {{this._createGroupService.dataCreated.status === "error" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm không thành công" : ""}}
+    </p>
+    <p
+      class="fw-bold text-success">{{this._createGroupService.dataCreated.status === "success" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm thành công" : ""}}</p>
 
   </div>
+
+
 </div>
 
 
@@ -71,27 +66,18 @@
         <label>{{'Tên nhóm'|translate}}</label>
         <input type="search" placeholder="{{'Nhập tên nhóm'|translate}}" [(ngModel)]="nameJoinRoom">
       </div>
-<!--      <span-->
-<!--        class="fw-bold text-danger">{{this._joinGroupService.dataJoin.status === "error" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? this._joinGroupService.dataJoin.mes : ""}}</span>-->
-<!--      <span-->
-<!--        class="fw-bold text-success">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Join the group successfully" : ""}}</span>-->
+
     </div>
-
-    <!--    <div class="d-flex flex-column">-->
-    <!--      <div class="modal-create-groupss__body&#45;&#45;list-member style-5">-->
-    <!--        <div class="modal-create-groupss__body&#45;&#45;list-member__item" *ngFor="let user of this._userListService.userList">-->
-    <!--          <input type="checkbox">-->
-    <!--          <label>{{user.name}}</label>-->
-    <!--        </div>-->
-
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 
   <div class="d-flex modal-create-groupss__footer">
     <button class="modal-create-groupss__footer--close" (click)="isShowAddMember =false">{{'Đóng'|translate}}</button>
     <button class="modal-create-groupss__footer--create" (click)="joinHandler()">{{'Tham gia nhóm'|translate}}</button>
   </div>
+  <span
+    class="fw-bold text-danger mt-5">{{this._joinGroupService.dataJoin.status === "error" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm không thành công" : "" |translate}}</span>
+  <span
+    class="fw-bold text-success mt-5">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm thành công" : ""|translate}}</span>
 </div>
 <!--end copy-->
 <div action="" id="search-groups" class="mt-3">

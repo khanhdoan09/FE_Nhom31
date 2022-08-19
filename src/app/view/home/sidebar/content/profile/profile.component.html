@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between">
-  <h5>My profile</h5>
+  <h5>{{'Hồ Sơ'|translate}}</h5>
 </div>
 <div class="text-center image-user">
   <div>
@@ -15,15 +15,15 @@
 </div>
 
 <div class="about pt-5">
-  <label>Username</label>
+  <label>{{'Tên tài khoản'| translate}}</label>
   <p><strong>{{userName}}</strong></p>
 
-  <label>Email</label>
+  <label>{{'Email'|translate}}</label>
   <p><strong>{{userName}}@gmail.com</strong></p>
 
-  <label>Status</label>
+  <label>{{'Trạng thái'| translate}}</label>
   <p class="text-success fw-bold">{{this.profileService.statusUser === true ? 'Online' : ''}}</p>
   <p class="text-danger fw-bold">{{this.profileService.statusUser === false || undefined || null ? 'Offline' : ''}}</p>
-  <label>Location</label>
-  <p><strong>Linh Chieu, Thu Duc</strong></p>
+<!--  <label>Location</label>-->
+<!--  <p><strong>Linh Chieu, Thu Duc</strong></p>-->
 </div>

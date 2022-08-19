@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
-import {Api} from "./service/api/api";
 import {WebSocketService} from "./service/websocket/websocket_service";
 import {TestConnectService} from "./service/api/testConnectService";
-import {MessageApi} from "./model/message_api";
-import {Locale} from "ngx-bootstrap/chronos/locale/locale.class";
-import { AsyncSubject } from 'rxjs';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -16,5 +13,9 @@ import { AsyncSubject } from 'rxjs';
 export class AppComponent {
   title = 'mdb5-angular-ui-kit-pro-advanced';
 
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 }
 

@@ -3,7 +3,9 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
-import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
+import {TranslateService} from "@ngx-translate/core";
+import { LanguageService } from 'src/app/service/home/language/language.service';
+
 
 @Component({
   selector: 'app-setting',
@@ -14,12 +16,13 @@ export class SettingComponent implements OnInit {
   userName: any;
   setMode = true;
   src: any = null || "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
-  src_ver2: any = "";
   ref!: AngularFireStorageReference;
   task!: AngularFireUploadTask;
   uploadState!: Observable<any>;
   arrayImage: Array<any> = [];
   isShow: any;
+  selectorVAL = localStorage.getItem("language");
+
 
 
   constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private signInService: SignInService) {
@@ -59,15 +62,9 @@ export class SettingComponent implements OnInit {
     let fileAvatar: any = document.querySelector("#file-avatar");
     fileAvatar.click();
     let saved: any = document.querySelector("#save-avatar");
-
-    console.log(saved)
-
-
-      this.profileService.showMyContainer = true;
-
-
-
+    this.profileService.showMyContainer = true;
   }
+
 
   logout() {
     this.signInService.logout()

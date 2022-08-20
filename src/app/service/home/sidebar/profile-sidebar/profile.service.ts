@@ -2,8 +2,12 @@ import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {map} from "rxjs/operators";
+import {CurrentUser} from "../../../../model/contact-to";
+import {WebSocketService} from "../../../websocket/websocket_service";
+import {MessageApi} from "../../../../model/message_api";
+import {configure} from "../../../../configure/Configure";
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +21,25 @@ export class ProfileService {
   src: any = "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
   arrayImage: Array<any> = [];
   showMyContainer: boolean = false;
+  public connect!: Subject<any>;
 
-  constructor(private _testConnectService: TestConnectService, private afStorage: AngularFireStorage) {
+  constructor(private afStorage: AngularFireStorage,private ws: WebSocketService) {
+    this.create()
     this.getUrlImageFromFirebase();
+  }
+
+  public create() {
+    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
+      (response: MessageEvent): MessageApi => {
+        let data = JSON.parse(response.data);
+        return {
+          status: data.status,
+          data: data.data,
+          mes: data.mes,
+          event: data.event
+        };
+      }
+    ));
   }
 
   runService(name: any) {
@@ -28,10 +48,10 @@ export class ProfileService {
   }
 
   init() {
-    this._testConnectService.messages.subscribe(msg => {
+    this.connect.subscribe(msg => {
       this.loadInfoUser(msg);
     });
-    this._testConnectService.messages.next(Api.get_user_list(this.userName));
+    this.connect.next(Api.get_user_list(this.userName));
   }
 
   updateInfoUser() {
@@ -46,7 +66,7 @@ export class ProfileService {
   }
 
   saveAvatar() {
-    const id = "avatar/" + localStorage.getItem("userName");
+    const id = "avatar/" + CurrentUser.username;
     this.ref = this.afStorage.ref(id);
     this.task = this.ref.put(this.arrayImage[0]);
     this.uploadState = this.task.snapshotChanges().pipe(map((s: any) => s.state));
@@ -60,9 +80,10 @@ export class ProfileService {
 
   getUrlImageFromFirebase() {
     this.userName = localStorage.getItem("userName");
-    let storageRef = this.afStorage.storage.ref().child("avatar/" + this.userName);
+    let storageRef = this.afStorage.storage.ref().child("avatar/" +  CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       this.src = urlFB;
+      CurrentUser.avatar.next(urlFB)
     });
 
   }

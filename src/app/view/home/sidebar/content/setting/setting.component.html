@@ -25,6 +25,7 @@
             <span value="Upload">{{'Thay đổi ảnh đại diện'|translate}}</span>
             <i class="fa-solid fa-image"></i>
           </div>
+
           <div class="list-function__item d-flex justify-content-between mb-4" (click)="logout()">
             <span class="list-function__item--logout">{{'Đăng xuất' | translate}}</span>
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -37,6 +38,7 @@
     </mdb-accordion>
   </div>
 
+  <<<<<<< Updated upstream
   <div class="mb-3">
     <mdb-accordion class="w-100">
       <mdb-accordion-item>
@@ -52,6 +54,26 @@
     </mdb-accordion>
   </div>
 
+  <!--  <div class="mb-3">-->
+  <!--    <mdb-accordion class="w-100">-->
+  <!--      <mdb-accordion-item>-->
+  <!--        <ng-template mdbAccordionItemHeader>Theme</ng-template>-->
+  <!--        <ng-template mdbAccordionItemBody style="border: none">-->
+  =======
+  <div class="mb-3">
+    <mdb-accordion class="w-100">
+      <mdb-accordion-item>
+        <ng-template mdbAccordionItemHeader>{{'Ngôn ngữ'|translate}}</ng-template>
+        <ng-template mdbAccordionItemBody style="border: none">
+          <select (change)="this._languageService.changeLanguage($event)" class="form-select">
+            <option selected="selected">{{'Chọn ngôn ngữ'|translate}}</option>
+            <option value="en">{{'Tiếng Anh'|translate}}</option>
+            <option value="vn">{{'Việt Nam'|translate}}</option>
+          </select>
+        </ng-template>
+      </mdb-accordion-item>
+    </mdb-accordion>
+  </div>
   <!--  <div class="mb-3">-->
   <!--    <mdb-accordion class="w-100">-->
   <!--      <mdb-accordion-item>-->
@@ -84,4 +106,3 @@
   <!--    </mdb-accordion>-->
   <!--  </div>-->
 </div>
-

@@ -5,10 +5,8 @@ import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
-import {MdbNotificationRef, MdbNotificationService} from "mdb-angular-ui-kit/notification";
-import {ToastComponent} from "../../../toast/toast.component";
-import {SignUpService} from "../../../../../service/home/authentication/sign-up-service.service";
-import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
+import {CurrentUser} from "../../../../../model/contact-to";
+import {LogoutService} from "../../../../../service/home/authentication/logout.service";
 
 @Component({
   selector: 'app-setting',
@@ -26,9 +24,9 @@ export class SettingComponent implements OnInit {
   isShow: any;
   selectorVAL = localStorage.getItem("language");
 
-  constructor(private afStorage: AngularFireStorage,
-              public profileService: ProfileService,
-              public _languageService: LanguageService, private signInService: SignInService) {
+
+
+  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private logOutService: LogoutService, public _languageService: LanguageService) {
     this.userName = localStorage.getItem("userName") || "";
     this.getUrlImageFromFirebase();
 
@@ -54,11 +52,12 @@ export class SettingComponent implements OnInit {
 
   getUrlImageFromFirebase() {
     let nameUser: any = localStorage.getItem("userName");
-    let storageRef = this.afStorage.storage.ref().child("avatar/" + nameUser);
+    let storageRef = this.afStorage.storage.ref().child("avatar/" + CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       this.src = urlFB;
-      console.log(this.src)
-    });
+    }), ()=>{
+      this.src = 'https://www.w3schools.com/howto/howto_css_image_avatar.asp'
+    };
   }
 
   handleClick() {
@@ -68,8 +67,8 @@ export class SettingComponent implements OnInit {
     this.profileService.showMyContainer = true;
   }
 
-
   logout() {
-    this.signInService.logout();
+    this.logOutService.logout()
   }
+
 }

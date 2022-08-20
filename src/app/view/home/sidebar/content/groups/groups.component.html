@@ -39,11 +39,13 @@
             (click)="createHandler()">{{'Tạo nhóm'|translate}}</button>
   </div>
   <div>
-    <p class="fw-bold text-danger">
-      {{this._createGroupService.dataCreated.status === "error" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm không thành công" : ""}}
-    </p>
-    <p
-      class="fw-bold text-success">{{this._createGroupService.dataCreated.status === "success" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm thành công" : ""}}</p>
+    <div *ngIf="this._createGroupService.dataCreated != null && this._createGroupService.dataCreated != undefined">
+          <p class="fw-bold text-danger">
+            {{this._createGroupService.dataCreated.status === "error" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm không thành công" : ""}}
+          </p>
+          <p
+            class="fw-bold text-success">{{this._createGroupService.dataCreated.status === "success" && this._createGroupService.dataCreated.event === "CREATE_ROOM" ? "Tạo nhóm thành công" : ""}}</p>
+    </div>
 
   </div>
 
@@ -74,10 +76,12 @@
     <button class="modal-create-groupss__footer--close" (click)="isShowAddMember =false">{{'Đóng'|translate}}</button>
     <button class="modal-create-groupss__footer--create" (click)="joinHandler()">{{'Tham gia nhóm'|translate}}</button>
   </div>
-  <span
-    class="fw-bold text-danger mt-5">{{this._joinGroupService.dataJoin.status === "error" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm không thành công" : "" |translate}}</span>
-  <span
-    class="fw-bold text-success mt-5">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm thành công" : ""|translate}}</span>
+  <div *ngIf="this._joinGroupService.dataJoin != null && this._joinGroupService.dataJoin != undefined">
+      <span
+        class="fw-bold text-danger mt-5">{{this._joinGroupService.dataJoin.status === "error" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm không thành công" : "" |translate}}</span>
+      <span
+        class="fw-bold text-success mt-5">{{this._joinGroupService.dataJoin.status === "success" && this._joinGroupService.dataJoin.event === "JOIN_ROOM" ? "Tham gia nhóm thành công" : ""|translate}}</span>
+  </div>
 </div>
 <!--end copy-->
 <div action="" id="search-groups" class="mt-3">

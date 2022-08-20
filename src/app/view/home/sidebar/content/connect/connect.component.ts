@@ -18,11 +18,11 @@ export class ConnectComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  f() {
+  get f() {
    return this.connectForm.controls
   }
   connect() {
-    alert(this.userNameConnect)
+    alert(this.userNameConnect.trim())
     this.userNameConnect ="";
   }
 }

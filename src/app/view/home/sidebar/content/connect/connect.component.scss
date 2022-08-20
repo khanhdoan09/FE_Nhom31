@@ -1,0 +1,30 @@
+.connect-form {
+  & input[type=text] {
+    border-radius: 5px;
+    padding: 8px 10px;
+    width: 100%;
+    background-color: #e6ebf5;
+    border: none;
+  }
+
+  .btn_submit {
+    display: flex;
+    justify-content: center;
+
+    & button {
+      width: 40%;
+      border-radius: 5px;
+      border: 1px solid #b2b2ff;
+      background: #dedeff;
+      padding: 5px;
+    }
+
+
+  }
+  .title-error {
+    border-radius: 5px;
+    margin-top: -10px;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+  }
+}

@@ -3,13 +3,18 @@
     <div class="row justify-content-center">
       <div class="form-login col-md-8 col-lg-6 col-xl-5">
         <div class="text-center mb-4">
+<!--<<<<<<< HEAD-->
           <a href="index.html" class="auth-logo mb-1 d-block">
             <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
             <!--            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">-->
           </a>
 
-          <h4>{{'Đăng ký'|translate}}</h4>
-          <p class="text-muted mb-4">Get your Chatvia account now.</p>
+<!--          <h4>{{'Đăng ký'|translate}}</h4>-->
+<!--          <p class="text-muted mb-4">{{'Tạo tài khoản Chatvia của bạn ngay bây giờ.'|translate}}</p>-->
+<!--=======-->
+          <h4>{{'Đăng Ký Tài Khoản' |translate}}</h4>
+          <p class="text-muted mb-4">{{'Đăng ký tài khoản ngay bây giờ'|translate}}</p>
+<!--&gt;>>>>>> main-->
 
         </div>
 
@@ -18,108 +23,238 @@
             <div class="p-3">
               <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
 
-                <div class="">
+                <div class="mb-2">
                   <label class="label-register">Email</label>
-                  <div class="div-input input-group bg-soft-light rounded-3  mb-3">
+                  <div class="div-input input-group bg-soft-light rounded-3">
                                             <span class="" id="basic-addon5">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </span>
-                    <input formControlName="email" type="email"  class="input-control" placeholder="Enter Email" aria-label="Enter Email"
-                           aria-describedby="basic-addon5">
+<!--<<<<<<< HEAD-->
+<!--                    <input formControlName="email" type="email"  class="input-control" placeholder="{{'Nhập Email'|translate}}" aria-label="Enter Email"-->
+<!--=======-->
+                    <input formControlName="email" type="email" class="input-control"
+                           placeholder="{{'Nhập địa chỉ email'|translate}}" aria-describedby="basic-addon5">
                   </div>
-                  <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+
+                  <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched) ">
                     <div *ngIf="f.email.errors">
                       <div *ngIf="f.email.errors.required">
-                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Email không được để trống!
-                        </div>
+<!--<<<<<<< HEAD-->
+<!--                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--                          {{'Email không được để trống!'|translate}}-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div *ngIf="f.email.errors.email">-->
+<!--                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--                          {{'Email phải có ký tự @.'|translate}}-->
+<!--                        </div>-->
+<!--=======-->
+                        <span class="fw-bold text-danger">
+                          {{'Email không được để trống'|translate}}
+                        </span>
                       </div>
                       <div *ngIf="f.email.errors.email">
-                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Email phải có ký tự @.
-                        </div>
+                         <span class="fw-bold text-danger">
+                          {{'Email không đúng định dạng'|translate}}
+                         </span>
+<!--&gt;>>>>>> main-->
                       </div>
                     </div>
+
                   </div>
                 </div>
 
-                <div class="">
-                  <label class="label-register">Username</label>
-                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">
+<!--<<<<<<< HEAD-->
+<!--                <div class="">-->
+<!--                  <label class="label-register">{{'Tên tài khoản'|translate}}</label>-->
+<!--                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">-->
+<!--                                            <span class="" id="basic-addon6">-->
+<!--                                                     <i class="fa-solid fa-user"></i>-->
+<!--                                                </span>-->
+<!--                    <input formControlName="username" type="text" class="input-control" placeholder="{{'Nhập tên tài khoản'|translate}}" aria-label="Enter Username"-->
+<!--=======-->
+                <div class="mb-2">
+                  <label class="label-register">{{'Tên tài khoản'|translate}}</label>
+                  <div class="div-input input-group bg-soft-light rounded-3">
                                             <span class="" id="basic-addon6">
                                                      <i class="fa-solid fa-user"></i>
                                                 </span>
-                    <input formControlName="username" type="text" class="input-control" placeholder="Enter Username" aria-label="Enter Username"
-                           aria-describedby="basic-addon6" name="username" [(ngModel)]="username">
-
+                    <input formControlName="username" type="text" class="input-control"
+                           placeholder="{{'Nhập tên tài khoản'|translate}}" minlength="6" aria-describedby="basic-addon6" name="username" [(ngModel)]="username">
                   </div>
                   <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
                     <div *ngIf="f.username.errors">
                       <div *ngIf="f.username.errors.required">
-                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Username không được để trống!
-                        </div>
+<!--<<<<<<< HEAD-->
+<!--                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--                          {{'Tên tài khoản không được để trống!'|translate}}-->
+<!--                        </div>-->
+<!--=======-->
+                       <span class="fw-bold text-danger">
+                          {{'Tên tài khoản không được để trống'|translate}}
+                       </span>
+<!--&gt;>>>>>> main-->
                       </div>
                     </div>
                   </div>
+                  <div *ngIf="f.username?.invalid && (f.username?.dirty || f.username?.touched)">
+                    <div *ngIf="f.username.errors">
+                      <div *ngIf="f.username.errors.minlength">
+                       <span class="fw-bold text-danger">
+                          {{'Tên tài khoản phải ít nhất 6 kí tự'|translate}}
+                       </span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
-                <div class="">
-                  <label class="label-register">Password</label>
-                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">
+<!--<<<<<<< HEAD-->
+<!--                <div class="">-->
+<!--                  <label class="label-register">{{'Mật khẩu'|translate}}</label>-->
+<!--                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">-->
+<!--                                            <span class="" id="basic-addon7">-->
+<!--                                                     <i class="fa-solid fa-key"></i>-->
+<!--                                                </span>-->
+<!--                    <input formControlName="password" type="password" class="input-control" placeholder="{{'Nhập mật khẩu'|translate}}"-->
+<!--                            aria-label="Enter Password" aria-describedby="basic-addon7" name="password"-->
+<!--=======-->
+                <div class="mb-2">
+                  <label class="label-register">{{'Mật khẩu'|translate}}</label>
+                  <div class="div-input input-group bg-soft-light rounded-3">
                                             <span class="" id="basic-addon7">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input formControlName="password" type="password" class="input-control" placeholder="Enter Password"
-                            aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
-                           [(ngModel)]="password">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="input-control"
+                           placeholder=" {{'Nhập mật khẩu'|translate}}" aria-describedby="basic-addon7" name="password" [(ngModel)]="password">
+                    <div class="mt-2 icon-view" (click)="viewPassword()" *ngIf="this.showPassword">
+                      <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="mt-2 icon-view" (click)="viewPassword()" *ngIf="!this.showPassword">
+                      <i class="fa-solid fa-eye-slash"></i>
+                    </div>
 
                   </div>
+
                   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
                     <div *ngIf="f.password.errors">
-                        <div *ngIf="f.password.errors.required">
-                          <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                            password không được để trống!
-                          </div>
-                        </div>
-<!--                      <div *ngIf="f.password.errors.minLength(6)">-->
-<!--                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
-<!--                          password phải ít nhất 6 ký tự!-->
+<!--<<<<<<< HEAD-->
+<!--                        <div *ngIf="f.password.errors.required">-->
+<!--                          <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--                            {{'Mật khẩu không được để trống!'|translate}}-->
+<!--                          </div>-->
 <!--                        </div>-->
-<!--                      </div>-->
+<!--&lt;!&ndash;                      <div *ngIf="f.password.errors.minLength(6)">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">&ndash;&gt;-->
+<!--&lt;!&ndash;                          password phải ít nhất 6 ký tự!&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--=======-->
+                      <div *ngIf="f.password.errors.required">
+                        <span class="fw-bold text-danger">
+                           {{'Mật khẩu không được để trống'|translate}}
+                        </span>
+<!--&gt;>>>>>> main-->
                       </div>
+                    </div>
                   </div>
+
+                  <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                    <div *ngIf="f.password.errors">
+                      <div *ngIf="f.password.errors.minLength">
+                        <span class="fw-bold text-danger">
+                           {{'Mật khẩu phải ít nhất 6 kí tự'|translate}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
-                <div class="mb-1">
-                  <label class="label-register">Confirm Password</label>
-                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">
+<!--&lt;!&ndash;<<<<<<< HEAD&ndash;&gt;-->
+<!--                <div class="mb-1">-->
+<!--                  <label class="label-register">{{'Xác nhận mật khẩu'|translate}}</label>-->
+<!--                  <div class="div-input input-group bg-soft-light mb-3 rounded-3">-->
+<!--                                            <span class="" id="basic-addon8">-->
+<!--                                                     <i class="fa-solid fa-key"></i>-->
+<!--                                                </span>-->
+<!--                    <input formControlName="confirmPassword" type="password" class="input-control" placeholder="{{'Xác nhận mật khẩu'|translate}}"-->
+<!--                           aria-label="Enter Password" aria-describedby="basic-addon7" name="password"-->
+<!--=======-->
+                <div class="mb-2">
+                  <label class="label-register">{{'Nhập lại mật khẩu'|translate}}</label>
+                  <div class="div-input input-group bg-soft-light  rounded-3">
                                             <span class="" id="basic-addon8">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input formControlName="confirmPassword" type="password" class="input-control" placeholder="Confirm Password"
-                           aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
-                           [(ngModel)]="confirmPassword">
+                    <input [type]="showPasswordConfirm ? 'text' : 'password'" formControlName="confirmPassword"
+                           class="input-control"
+                           placeholder="{{'Nhập lại mật khẩu'|translate}}" aria-describedby="basic-addon7"
+                           name="password" [(ngModel)]="confirmPassword">
+                    <div class="mt-2 icon-view" (click)="viewPasswordConfirm()" *ngIf="this.showPasswordConfirm">
+                      <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="mt-2 icon-view" (click)="viewPasswordConfirm()" *ngIf="!this.showPasswordConfirm">
+                      <i class="fa-solid fa-eye-slash"></i>
+                    </div>
                   </div>
 
                   <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)">
                     <div *ngIf="f.confirmPassword.errors">
                       <div *ngIf="f.confirmPassword.errors.required">
-                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Confirm Password không được để trống!
-                        </div>
+<!--<<<<<<< HEAD-->
+<!--                        <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--                          {{'Xác nhận mật khẩu không được để trống!'|translate}}-->
+<!--                        </div>-->
+<!--=======-->
+                        <span class="fw-bold text-danger">
+                          {{'Xác nhận mật khẩu không được để trống'|translate}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)">
+                    <div *ngIf="f.confirmPassword.errors">
+                      <div *ngIf="f.confirmPassword.errors.mustMatch">
+                        <span class="fw-bold text-danger">
+                          {{'Xác nhận mật khẩu không chính xác'|translate}}
+                        </span>
+<!--&gt;>>>>>> main-->
                       </div>
                     </div>
                   </div>
                 </div>
+<!--<<<<<<< HEAD-->
 
-                  <div class="d-grid">
-                    <button class="btn btn-primary waves-effect waves-light" [disabled]="!signupForm.valid"  type="submit">Sign up</button>
+<!--                  <div class="d-grid">-->
+<!--&lt;!&ndash;                    {{signupForm.valid | json}}&ndash;&gt;-->
+<!--                    <button class="btn btn-primary waves-effect waves-light" [disabled]="!signupForm.valid"  type="submit">{{'Đăng ký'|translate}}</button>-->
+<!--=======-->
+                <div class="my-4">
+                  <ngx-recaptcha2 #captchaElem
+                                  [siteKey]="siteKey"
+                                  formControlName="recaptcha">
+                  </ngx-recaptcha2>
+                  <div *ngIf="f.recaptcha.errors && this.isSubmitted">
+                    <div *ngIf="f.recaptcha.errors.required">
+                      <p class="text-danger fw-bold">
+                        {{'Bạn là robot ?'|translate}}
+                      </p>
+                    </div>
+<!--&gt;>>>>>> main-->
                   </div>
+                </div>
 
-                <div class="mt-1 text-center">
-                  <p class="text-muted mb-0">By registering you agree to the Chatvia <a href="/" class="text-primary">Terms
-                    of Use</a></p>
+<!--<<<<<<< HEAD-->
+<!--                <div class="mt-1 text-center">-->
+<!--                  <p class="text-muted mb-0">{{'Bằng cách đăng ký, bạn đồng ý với Điều khoản sử dụng của Chatvia'|translate}}</p>-->
+<!--=======-->
+
+                <div class="d-grid">
+                  <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    {{'Đăng Ký'|translate}}
+                  </button>
+<!--&gt;>>>>>> main-->
                 </div>
 
               </form>
@@ -128,13 +263,26 @@
           </div>
         </div>
 
-        <div class="mt-1 text-center">
-          <p>Already have an account ? <a routerLink="../logIn" class="fw-medium text-primary"> Signin </a></p>
+<!--<<<<<<< HEAD-->
+<!--        <div class="mt-1 text-center">-->
+<!--          <p>{{'Bạn đã có tài khoản?'|translate}}<a routerLink="../logIn" class="fw-medium text-primary"> {{'Đăng nhập ngay'|translate}} </a></p>-->
+<!--=======-->
+        <div class="mt-4 text-center">
+          <p>{{'Bạn đã có tài khoản ?'|translate}}
+            <a routerLink="../logIn" class="fw-medium text-primary">
+              {{'Đăng Nhập'|translate}}
+            </a>
+          </p>
+<!--&gt;>>>>>> main-->
           <p>©
             <script>
               document.write(new Date().getFullYear())
             </script>
-            Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+<!--<<<<<<< HEAD-->
+<!--            Chatvia. {{'Được tạo bởi nhóm 31 Front End'|translate}}-->
+<!--=======-->
+            {{'Nessenger được tạo bởi CHK'|translate}}
+<!--&gt;>>>>>> main-->
           </p>
         </div>
       </div>

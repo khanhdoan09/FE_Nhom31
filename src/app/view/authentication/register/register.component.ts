@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {InputChatService} from "../../../service/home/chat/input-chat/input-chat.service";
 import {SignUpService} from "../../../service/home/authentication/sign-up-service.service";
-import * as CryptoJS from 'crypto-js';
+import {LanguageService} from 'src/app/service/home/language/language.service';
+import {MustMatch} from "../../../model/valida-password";
 
 @Component({
   selector: 'app-register',
@@ -11,13 +12,20 @@ import * as CryptoJS from 'crypto-js';
 })
 export class RegisterComponent implements OnInit {
 
-  email : string ="";
-  username : string ="";
-  password : string="";
-  confirmPassword : string="";
+  email: string = "";
+  username: string = "";
+  password: string = "";
+  confirmPassword: string = "";
 
   signupForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private signUpService: SignUpService) {
+  isSubmitted: boolean = false
+  siteKey: string = "6LeFoo4hAAAAAD2inkMpcV78AmCGkyrraDJpVYjW";
+  showPassword: boolean = false;
+  showPasswordConfirm: boolean = false;
+
+  constructor(private formBuilder: FormBuilder,
+              private signUpService: SignUpService,
+              private _languageService: LanguageService) {
 
   }
 
@@ -26,47 +34,39 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.signupForm = this.formBuilder.group( {
-      email: ['',[Validators.required, Validators.email]],
-      username:['',[Validators.required]],
-      password: ['',[Validators.required]],
-      confirmPassword: ['',[Validators.required]]
+    this.signupForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required, Validators.minLength(6)],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+      recaptcha: ['', [Validators.required]],
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
     })
   }
-  encryptUsingAES256() {
-    // let _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
-    // let _iv = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
-    // let encrypted = CryptoJS.AES.encrypt(
-    //   JSON.stringify(this.request), _key, {
-    //     keySize: 16,
-    //     iv: _iv,
-    //     mode: CryptoJS.mode.ECB,
-    //     padding: CryptoJS.pad.Pkcs7
-    //   });
-    // this.encrypted = encrypted.toString();
-  }
+
 
   signUp() {
+    this.isSubmitted = true;
+    this.signupForm.markAllAsTouched();
     if (this.signupForm.invalid) {
       return;
-    }
-    else {
-      const encryptPass = CryptoJS.AES.encrypt(this.password.trim(), this.username.trim()).toString();
-      alert(encryptPass)
+    } else {
       // if(this.username === localStorage.getItem("userName")) {
       //   alert("Tài khoản đã tồn tại");
       // }
       // console.log(localStorage.getItem("username"))
-
-      console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password+ "rePass" + this.confirmPassword);
-      if(this.password === this.confirmPassword) {
-        this.signUpService.submitSignUp(this.username,encryptPass)
-      }
-      else {
-        alert("Please enter true password!")
-      }
+      console.log("Name: " + this.username + "\tUsername: " + this.username + "\tPass: " + this.password + "rePass" + this.confirmPassword);
+      this.signUpService.submitSignUp(this.username, this.password)
     }
 
   }
 
+  viewPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  viewPasswordConfirm() {
+    this.showPasswordConfirm = !this.showPasswordConfirm;
+  }
 }

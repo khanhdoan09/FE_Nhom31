@@ -35,6 +35,16 @@
   "Đăng ký ngay": "Signup now",
   "Được tạo bởi nhóm 31 Front End": "Created by team 31 Front End",
   "Tên tài khoản không được để trống!" : "Username cannot be blank!",
-  "Mật khẩu không được để trống!": "Password cannot be blank!"
-
+  "Mật khẩu không được để trống!": "Password cannot be blank!",
+  "Email không được để trống!": "Email cannot be blank!",
+  "Email phải có ký tự @.": "Email must have @ character.",
+  "Xác nhận mật khẩu không được để trống!": "Confirm password not to blank!",
+  "Tạo tài khoản Chatvia của bạn ngay bây giờ.": "Create your Chatvia account now.",
+  "Xác nhận mật khẩu": "Confirm Password",
+  "Bằng cách đăng ký, bạn đồng ý với Điều khoản sử dụng của Chatvia": "By registering you agree to the Chatvia Terms of Use",
+  "Bạn đã có tài khoản?" : "Do you already have an account?",
+  "Đăng nhập ngay": "Singin now",
+  "Nhập Email" : "Enter Email",
+  "Nhập tên tài khoản" :  "Enter Username",
+  "Nhập mật khẩu" :  "Enter Password"
 }

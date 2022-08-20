@@ -9,7 +9,7 @@
           </a>
 
           <h4>{{'Đăng ký'|translate}}</h4>
-          <p class="text-muted mb-4">Get your Chatvia account now.</p>
+          <p class="text-muted mb-4">{{'Tạo tài khoản Chatvia của bạn ngay bây giờ.'|translate}}</p>
 
         </div>
 
@@ -24,19 +24,19 @@
                                             <span class="" id="basic-addon5">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </span>
-                    <input formControlName="email" type="email"  class="input-control" placeholder="Enter Email" aria-label="Enter Email"
+                    <input formControlName="email" type="email"  class="input-control" placeholder="{{'Nhập Email'|translate}}" aria-label="Enter Email"
                            aria-describedby="basic-addon5">
                   </div>
                   <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
                     <div *ngIf="f.email.errors">
                       <div *ngIf="f.email.errors.required">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Email không được để trống!
+                          {{'Email không được để trống!'|translate}}
                         </div>
                       </div>
                       <div *ngIf="f.email.errors.email">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Email phải có ký tự @.
+                          {{'Email phải có ký tự @.'|translate}}
                         </div>
                       </div>
                     </div>
@@ -44,12 +44,12 @@
                 </div>
 
                 <div class="">
-                  <label class="label-register">Username</label>
+                  <label class="label-register">{{'Tên tài khoản'|translate}}</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon6">
                                                      <i class="fa-solid fa-user"></i>
                                                 </span>
-                    <input formControlName="username" type="text" class="input-control" placeholder="Enter Username" aria-label="Enter Username"
+                    <input formControlName="username" type="text" class="input-control" placeholder="{{'Nhập tên tài khoản'|translate}}" aria-label="Enter Username"
                            aria-describedby="basic-addon6" name="username" [(ngModel)]="username">
 
                   </div>
@@ -57,7 +57,7 @@
                     <div *ngIf="f.username.errors">
                       <div *ngIf="f.username.errors.required">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Username không được để trống!
+                          {{'Tên tài khoản không được để trống!'|translate}}
                         </div>
                       </div>
                     </div>
@@ -65,12 +65,12 @@
                 </div>
 
                 <div class="">
-                  <label class="label-register">Password</label>
+                  <label class="label-register">{{'Mật khẩu'|translate}}</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon7">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input formControlName="password" type="password" class="input-control" placeholder="Enter Password"
+                    <input formControlName="password" type="password" class="input-control" placeholder="{{'Nhập mật khẩu'|translate}}"
                             aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
                            [(ngModel)]="password">
 
@@ -79,7 +79,7 @@
                     <div *ngIf="f.password.errors">
                         <div *ngIf="f.password.errors.required">
                           <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                            password không được để trống!
+                            {{'Mật khẩu không được để trống!'|translate}}
                           </div>
                         </div>
 <!--                      <div *ngIf="f.password.errors.minLength(6)">-->
@@ -92,12 +92,12 @@
                 </div>
 
                 <div class="mb-1">
-                  <label class="label-register">Confirm Password</label>
+                  <label class="label-register">{{'Xác nhận mật khẩu'|translate}}</label>
                   <div class="div-input input-group bg-soft-light mb-3 rounded-3">
                                             <span class="" id="basic-addon8">
                                                      <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input formControlName="confirmPassword" type="password" class="input-control" placeholder="Confirm Password"
+                    <input formControlName="confirmPassword" type="password" class="input-control" placeholder="{{'Xác nhận mật khẩu'|translate}}"
                            aria-label="Enter Password" aria-describedby="basic-addon7" name="password"
                            [(ngModel)]="confirmPassword">
                   </div>
@@ -106,7 +106,7 @@
                     <div *ngIf="f.confirmPassword.errors">
                       <div *ngIf="f.confirmPassword.errors.required">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          Confirm Password không được để trống!
+                          {{'Xác nhận mật khẩu không được để trống!'|translate}}
                         </div>
                       </div>
                     </div>
@@ -114,12 +114,12 @@
                 </div>
 
                   <div class="d-grid">
-                    <button class="btn btn-primary waves-effect waves-light" [disabled]="!signupForm.valid"  type="submit">Sign up</button>
+<!--                    {{signupForm.valid | json}}-->
+                    <button class="btn btn-primary waves-effect waves-light" [disabled]="!signupForm.valid"  type="submit">{{'Đăng ký'|translate}}</button>
                   </div>
 
                 <div class="mt-1 text-center">
-                  <p class="text-muted mb-0">By registering you agree to the Chatvia <a href="/" class="text-primary">Terms
-                    of Use</a></p>
+                  <p class="text-muted mb-0">{{'Bằng cách đăng ký, bạn đồng ý với Điều khoản sử dụng của Chatvia'|translate}}</p>
                 </div>
 
               </form>
@@ -129,12 +129,12 @@
         </div>
 
         <div class="mt-1 text-center">
-          <p>Already have an account ? <a routerLink="../logIn" class="fw-medium text-primary"> Signin </a></p>
+          <p>{{'Bạn đã có tài khoản?'|translate}}<a routerLink="../logIn" class="fw-medium text-primary"> {{'Đăng nhập ngay'|translate}} </a></p>
           <p>©
             <script>
               document.write(new Date().getFullYear())
             </script>
-            Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+            Chatvia. {{'Được tạo bởi nhóm 31 Front End'|translate}}
           </p>
         </div>
       </div>

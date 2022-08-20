@@ -21,6 +21,9 @@
     <div class=" px-4 pt-4 hv-100" *ngIf="status === 'setting'">
       <app-setting></app-setting>
     </div>
+    <div class=" px-4 pt-4 hv-100" *ngIf="status === 'connect'">
+      <app-connect></app-connect>
+    </div>
   </div>
 </div>
 <mdb-sidenav-layout>
@@ -53,6 +56,8 @@
               (click)="tabsChange('groups')">{{'Nhóm'|translate}}</li>
           <li id="setting" [class.tab-active]="status==='setting'"
               (click)="tabsChange('setting')">{{'Cài Đặt'|translate}}</li>
+          <li id="connect" [class.tab-active]="status==='connect'"
+              (click)="tabsChange('connect')">{{'Kết nối'|translate}}</li>
         </ul>
       </div>
     </ul>

@@ -43,6 +43,14 @@ export class Api {
     }
   }
 
+  public static logout() {
+    return {
+      "action": "onchat",
+      "data": {
+        "event": "LOGOUT"
+      }
+    }
+  }
 
 
   // get user list

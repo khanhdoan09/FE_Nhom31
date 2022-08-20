@@ -16,7 +16,7 @@ export class SignUpService {
     })
   }
 
-  submitSignUp(username: string, password: string) {
+  submitSignUp(username: string, encryptPassword: string) {
     // first invoke observable by subscribe function
     this.connect.messages.subscribe(msg => {
       console.log(msg)
@@ -32,7 +32,7 @@ export class SignUpService {
     });
     // second send signal next then observable will catch it
     setTimeout(() => {
-      this.connect.messages.next(Api.signUp(username, password));
+      this.connect.messages.next(Api.signUp(username, encryptPassword));
     }, 100)
   }
 }

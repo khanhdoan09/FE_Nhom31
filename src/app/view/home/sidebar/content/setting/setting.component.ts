@@ -5,8 +5,8 @@ import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
-import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
 import {CurrentUser} from "../../../../../model/contact-to";
+import {LogoutService} from "../../../../../service/home/authentication/logout.service";
 
 @Component({
   selector: 'app-setting',
@@ -26,7 +26,7 @@ export class SettingComponent implements OnInit {
 
 
 
-  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private signInService: SignInService, public _languageService: LanguageService) {
+  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private logOutService: LogoutService, public _languageService: LanguageService) {
     this.userName = localStorage.getItem("userName") || "";
     this.getUrlImageFromFirebase();
 
@@ -68,7 +68,7 @@ export class SettingComponent implements OnInit {
   }
 
   logout() {
-    this.signInService.logout()
+    this.logOutService.logout()
   }
 
 }

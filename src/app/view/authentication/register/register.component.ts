@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InputChatService} from "../../../service/home/chat/input-chat/input-chat.service";
 import {SignUpService} from "../../../service/home/authentication/sign-up-service.service";
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-register',
@@ -32,19 +33,34 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['',[Validators.required]]
     })
   }
+  encryptUsingAES256() {
+    // let _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
+    // let _iv = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
+    // let encrypted = CryptoJS.AES.encrypt(
+    //   JSON.stringify(this.request), _key, {
+    //     keySize: 16,
+    //     iv: _iv,
+    //     mode: CryptoJS.mode.ECB,
+    //     padding: CryptoJS.pad.Pkcs7
+    //   });
+    // this.encrypted = encrypted.toString();
+  }
 
   signUp() {
     if (this.signupForm.invalid) {
       return;
     }
     else {
+      const encryptPass = CryptoJS.AES.encrypt(this.password.trim(), this.username.trim()).toString();
+      alert(encryptPass)
       // if(this.username === localStorage.getItem("userName")) {
       //   alert("Tài khoản đã tồn tại");
       // }
       // console.log(localStorage.getItem("username"))
+
       console.log("Name: " + this.username +"\tUsername: " +this.username + "\tPass: "+ this.password+ "rePass" + this.confirmPassword);
       if(this.password === this.confirmPassword) {
-        this.signUpService.submitSignUp(this.username,this.password)
+        this.signUpService.submitSignUp(this.username,encryptPass)
       }
       else {
         alert("Please enter true password!")

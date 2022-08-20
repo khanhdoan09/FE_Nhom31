@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     // }
   }
   login() {
-
+    // const encryptPass = CryptoJS.AES.encrypt(this.password.trim(), this.username.trim()).toString();
     console.log(this.username+ "_" +this.password);
     this.signInService.submitSignIn(this.username,this.password)
   }

@@ -1,0 +1,23 @@
+<form action="" [formGroup]="connectForm" (ngSubmit)="connect()">
+  <div class="mb-3">
+    <label class=" label-login">Tạo mới cuộc trò chuyện</label>
+    <div class=" div-input input-group mb-3 bg-soft-light runded-3">
+
+      <input type="text" formControlName="userNameConnect" class="input-control" placeholder="Nhập tên người trò chuyện"
+             aria-label="Enter Username" aria-describedby="basic-addon3" name="username" [(ngModel)]="userNameConnect">
+    </div>
+<!--    <div *ngIf="f.userNameConnect.invalid && (f.userNameConnect.dirty || f.userNameConnect.touched)">-->
+<!--      <div *ngIf="f.userNameConnect.errors">-->
+<!--        <div *ngIf="f.userNameConnect.errors.required">-->
+<!--          <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
+<!--            Username không được để trống!-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <button type="submit"> Kết nối</button>
+  </div>
+
+
+</form>

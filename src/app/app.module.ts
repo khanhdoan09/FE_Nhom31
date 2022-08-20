@@ -81,6 +81,7 @@ import { PagenotfoundComponent } from './view/home/pagenotfound/pagenotfound.com
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ToastComponent } from './view/home/toast/toast.component';
+import {ConnectComponent} from "./view/home/sidebar/content/connect/connect.component";
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -111,6 +112,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TimePipe,
     PagenotfoundComponent,
     ToastComponent,
+    ConnectComponent,
 
   ],
 

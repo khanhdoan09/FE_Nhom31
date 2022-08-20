@@ -25,5 +25,16 @@
   "Tham gia nhóm không thành công": "Join group unsuccessful",
   "Tham gia nhóm thành công": "Join group successful",
   "Đăng nhập": "Sign in",
-  "Đăng ký": "Sign up"
+  "Đăng ký": "Sign up",
+  "Đăng nhập để tiếp tục đến Chatvia.": "Sign in to continue to Chatvia.",
+  "Tên tài khoản": "Username",
+  "Mật khẩu": "Password",
+  "Ghi nhớ tôi": "Remember me",
+  "Quên mật khẩu?": "Forgot password?",
+  "Không có tài khoản?": "Don't have an account ",
+  "Đăng ký ngay": "Signup now",
+  "Được tạo bởi nhóm 31 Front End": "Created by team 31 Front End",
+  "Tên tài khoản không được để trống!" : "Username cannot be blank!",
+  "Mật khẩu không được để trống!": "Password cannot be blank!"
+
 }

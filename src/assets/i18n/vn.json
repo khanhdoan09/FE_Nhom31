@@ -36,15 +36,9 @@
   "Được tạo bởi nhóm 31 Front End": "Được tạo bởi nhóm 31 Front End",
   "Tên tài khoản không được để trống!" : "Username không được để trống!",
   "Mật khẩu không được để trống!": "Password không được để trống!",
-  "Email không được để trống!": "Email không được để trống!",
-  "Email phải có ký tự @.": "Email phải có ký tự @.",
-  "Xác nhận mật khẩu không được để trống!": "Xác nhận mật khẩu không được để trống!",
+
   "Tạo tài khoản Chatvia của bạn ngay bây giờ." : "Tạo tài khoản Chatvia của bạn ngay bây giờ.",
-  "Xác nhận mật khẩu": "Xác nhận mật khẩu",
-  "Bằng cách đăng ký, bạn đồng ý với Điều khoản sử dụng của Chatvia": "Bằng cách đăng ký, bạn đồng ý với Điều khoản sử dụng của Chatvia",
-  "Bạn đã có tài khoản?" : "Bạn đã có tài khoản?",
-  "Đăng nhập ngay": "Đăng nhập ngay",
-  "Nhập Email" : "Nhập Email",
-  "Nhập tên tài khoản" :  "Nhập tên tài khoản",
-  "Nhập mật khẩu" :  "Nhập mật khẩu"
+  "Nhập lại mật khẩu": "Nhập lại mật khẩu",
+  ""
+
 }

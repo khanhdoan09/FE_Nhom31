@@ -1,13 +1,16 @@
 
 .account-pages {
   padding: 30px 0;
-  background: #f7f7ff;
 
   .form-login {
     background-color: #dedeff;
     padding: 20px 20px 0 20px;
     border-radius: 20px;
-
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     .div-input {
       background: #f5f6fa;
       border: 1px solid #ccc;
@@ -15,6 +18,7 @@
       & span {
         padding: 6px 15px;
       }
+
       .input-control {
         border: none;
         background: #f5f6fa;
@@ -23,40 +27,49 @@
         font-size: 14px;
         border-left: 1px solid #ccc;
       }
+
       .input-control:focus {
-        outline: none!important;
+        outline: none !important;
       }
     }
+
     .label-login {
       margin-bottom: 5px;
       font-weight: 500;
       color: #495057;
     }
+
     & input[type=checkbox] {
       border-radius: 5px;
 
     }
+
     & input[type=checkbox]:checked {
       background: #7269ef;
-      border: 1px solid  #7269ef;
+      border: 1px solid #7269ef;
     }
+
     .check-label {
       font-size: 14px;
     }
+
     & button {
       background: #7269ef;
       color: white;
     }
+
     & button:hover {
       background: #584db7;
     }
 
   }
-  .font-size-13{
+
+  .font-size-13 {
     font-size: 13px !important;
     color: #005ef0 !important;
   }
-
-
 }
-
+.icon-view{
+  cursor: pointer;
+  color: #6868fa;
+}

@@ -11,7 +11,7 @@
           </a>
 
           <h4>{{'Đăng nhập'|translate}}</h4>
-          <p class="text-muted mb-4">{{'Đăng nhập để tiếp tục đến Chatvia.'|translate}}</p>
+          <p class="text-muted mb-4">Sign in to continue to Chatvia.</p>
 
         </div>
 
@@ -20,18 +20,18 @@
             <div class="p-3">
               <form action="" [formGroup]="signinForm" (ngSubmit)="login()">
                 <div class="mb-3">
-                  <label class=" label-login" >{{'Tên tài khoản'|translate}}</label>
+                  <label class=" label-login" >Username</label>
                   <div class=" div-input input-group mb-3 bg-soft-light rounded-3">
                                             <span class=" " id="basic-addon3">
                                                     <i class="fa-solid fa-user"></i>
                                                 </span>
-                    <input type="text" formControlName="username" class="input-control" placeholder="{{'Nhập tên tài khoản'|translate}}" aria-label="Enter Username" aria-describedby="basic-addon3" name="username" [(ngModel)]="username" >
+                    <input type="text" formControlName="username" class="input-control" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3" name="username" [(ngModel)]="username" >
                   </div>
                   <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
                     <div *ngIf="f.username.errors">
                       <div *ngIf="f.username.errors.required">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          {{'Tên tài khoản không được để trống!'|translate}}
+                          Username không được để trống!
                         </div>
                       </div>
                     </div>
@@ -40,21 +40,21 @@
 
                 <div class="mb-4">
                   <div class="float-end">
-                    <a href="auth-recoverpw.html" class="text-muted font-size-13">{{'Quên mật khẩu?'|translate}}</a>
+                    <a href="auth-recoverpw.html" class="text-muted font-size-13">Forgot password?</a>
                   </div>
-                  <label class="label-login" >{{'Mật khẩu'|translate}}</label>
+                  <label class="label-login" >Password</label>
                   <div class="div-input input-group mb-3 bg-soft-light rounded-3">
                                             <span class="" id="basic-addon4">
                                                     <i class="fa-solid fa-key"></i>
                                                 </span>
-                    <input type="password" formControlName="password" passwordToggle required class="input-control " placeholder="{'Nhập mật khẩu'|translate}}" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
+                    <input type="password" formControlName="password" passwordToggle required class="input-control " placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4" name="password" [(ngModel)]="password">
 
                   </div>
                   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
                     <div *ngIf="f.password.errors">
                       <div *ngIf="f.password.errors.required">
                         <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">
-                          {{'Mật khẩu không được để trống!'|translate}}
+                          password không được để trống!
                         </div>
                       </div>
 <!--                      <div *ngIf="f.password.errors.minLength(6)">-->
@@ -68,12 +68,11 @@
 
                 <div class="form-check mb-4">
                   <input type="checkbox" class="form-check-input" id="remember-check">
-                  <label class="check-label" for="remember-check">{{'Ghi nhớ tôi'|translate}}</label>
+                  <label class="check-label" for="remember-check">Remember me</label>
                 </div>
 
                 <div class="d-grid">
-<!--                  {{signinForm.valid | json}}-->
-                  <button class="btn  waves-effect waves-light"  type="submit">{{'Đăng nhập'|translate}}</button>
+                  <button class="btn  waves-effect waves-light"   type="submit">Sign in</button>
                 </div>
 
               </form>
@@ -82,11 +81,11 @@
         </div>
 
         <div class="mt-5 text-center">
-          <p>{{'Không có tài khoản?'|translate}}<a routerLink="../register" class="fw-medium text-primary"> Signup now </a> </p>
+          <p>Don't have an account ? <a routerLink="../register" class="fw-medium text-primary"> Signup now </a> </p>
           <p>©
             <script>
               document.write(new Date().getFullYear())
-            </script> Chatvia. {{'Được tạo bởi nhóm 31 Front End'|translate}}</p>
+            </script> Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
         </div>
       </div>
     </div>

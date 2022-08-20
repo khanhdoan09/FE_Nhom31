@@ -4,13 +4,16 @@ body {
 .account-pages {
   margin-top: -35px;
   padding: 30px 0;
-  background: #f7f7ff;
 
   .form-login {
     background: #dedeff;
     padding: 20px 20px 0 20px;
     border-radius: 20px;
-
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     .div-input {
       background: #f5f6fa;
       border: 1px solid #ccc;
@@ -47,4 +50,7 @@ body {
   }
 }
 
-
+.icon-view{
+  cursor: pointer;
+  color: #6868fa;
+}

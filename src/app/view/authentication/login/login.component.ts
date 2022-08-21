@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
               private _languageService: LanguageService) {
     this.signinForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
       recaptcha: ['', [Validators.required]],
     })
     google.userProfileSubject.subscribe(info => {

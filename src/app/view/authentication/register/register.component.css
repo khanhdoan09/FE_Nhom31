@@ -3,14 +3,18 @@ body {
 }
 
 .account-pages {
-  margin-top: -25px;
+  margin-top: -35px;
   padding: 30px 0;
-  background: #f7f7ff;
 }
 .account-pages .form-login {
   background: #dedeff;
   padding: 20px 20px 0 20px;
   border-radius: 20px;
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .account-pages .form-login .div-input {
   background: #f5f6fa;
@@ -41,6 +45,11 @@ body {
 }
 .account-pages .form-login button:hover {
   background: #584db7;
+}
+
+.icon-view {
+  cursor: pointer;
+  color: #6868fa;
 }
 
 /*# sourceMappingURL=register.component.css.map */

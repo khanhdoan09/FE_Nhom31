@@ -1,11 +1,12 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import {SignInService} from "../../../service/home/authentication/sign-in.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {GoogleApiService ,UserInfo} from "../../../service/home/login-gg-api/google-api.service";
+import {GoogleApiService, UserInfo} from "../../../service/home/login-gg-api/google-api.service";
 import {lastValueFrom} from "rxjs";
 import * as CryptoJS from 'crypto-js';
 import {Router} from "@angular/router";
 import {ContactTo} from "../../../model/contact-to";
+import { LanguageService } from 'src/app/service/home/language/language.service';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,23 @@ import {ContactTo} from "../../../model/contact-to";
 export class LoginComponent implements OnInit {
   // mailSnippets: string[] = []
   userInfo?: UserInfo
-
-  username : string = "";
-  password : string ="";
+  showPassword: boolean = false;
+  username: string = "";
+  password: string = "";
   signinForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private signInService: SignInService,private readonly google: GoogleApiService) {
-    this.signinForm = this.formBuilder.group( {
-      username:['',[Validators.required]],
-      password: ['',[Validators.required,Validators.minLength(6)]],
+  isSubmitted: boolean = false
+  siteKey: string = "6LeFoo4hAAAAAD2inkMpcV78AmCGkyrraDJpVYjW";
+
+  constructor(private formBuilder: FormBuilder,
+              private signInService: SignInService,
+              private readonly google: GoogleApiService,
+              private _languageService: LanguageService) {
+    this.signinForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      recaptcha: ['', [Validators.required]],
     })
-    google.userProfileSubject.subscribe( info => {
+    google.userProfileSubject.subscribe(info => {
       this.userInfo = info
     })
   }
@@ -32,11 +40,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
   get f() {
     return this.signinForm.controls
   }
 
-  convertText(conversion:string) {
+  convertText(conversion: string) {
     // if (conversion=="encrypt") {
     //   this.conversionEncryptOutput = CryptoJS.AES.encrypt(this.plainText.trim(), this.encPassword.trim()).toString();
     // }
@@ -45,21 +54,26 @@ export class LoginComponent implements OnInit {
     //
     // }
   }
+
   login() {
-    // const encryptPass = CryptoJS.AES.encrypt(this.password.trim(), this.username.trim()).toString();
-    this.signInService.submitSignIn(this.username,this.password)
+    this.isSubmitted = true;
+    this.signinForm.markAllAsTouched();
+    if (this.signinForm.valid === true) {
+      this.signInService.submitSignIn(this.username, this.password)
+    } else {
+      return;
+    }
   }
-
-
-
 
 
   isLoggedIn(): boolean {
     return this.google.isLoggedIn();
   }
+
   logout() {
     this.google.signOut();
   }
+
   // async getEmails() {
   //   if (!this.userInfo) {
   //     return;
@@ -74,4 +88,7 @@ export class LoginComponent implements OnInit {
   //     })
   //   });
   // }
+  viewPassword() {
+    this.showPassword = !this.showPassword;
+  }
 }

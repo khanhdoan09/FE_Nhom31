@@ -6,6 +6,7 @@ import {WebSocketService} from "../../../websocket/websocket_service";
 import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
+import {ConnectApi} from "../../../websocket/connect-api";
 
 @Injectable({
   providedIn: 'root'
@@ -15,25 +16,8 @@ export class CreateGroupService {
   statusCreated: any;
   public dataCreated!: MessageApi;
 
-  public connect!: Subject<any>;
-  constructor(private ws: WebSocketService) {
-    this.create()
+  constructor(private connect: ConnectApi) {
   }
-
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
-  }
-
 
   runService(nameRoom: any) {
     this.nameRoom = nameRoom;
@@ -42,12 +26,12 @@ export class CreateGroupService {
 
   init() {
     setTimeout(() => {
-      this.connect.subscribe(msg => {
+      this.connect.subject?.subscribe(msg => {
         console.log(msg)
         this.renderDataCreateGroup(msg);
       });
       setTimeout(() => {
-        this.connect.next(Api.create_room(this.nameRoom));
+        this.connect.subject?.next(Api.create_room(this.nameRoom));
       })
     })
   }

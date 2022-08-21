@@ -7,6 +7,7 @@ import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
 import {CurrentUser} from "../../../../../model/contact-to";
 import {LogoutService} from "../../../../../service/home/authentication/logout.service";
+import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
 
 @Component({
   selector: 'app-setting',

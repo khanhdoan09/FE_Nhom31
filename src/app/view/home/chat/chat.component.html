@@ -1,7 +1,7 @@
 <div class="text-center vh-100 d-flex flex-column  justify-content-between position-relative">
     <app-header-bar></app-header-bar>
   <!-- reverse de auto scroll bottom-->
-  <div class="container__content d-flex flex-column-reverse" (scroll)="onScroll($event)">
+  <div class="container__content d-flex flex-column-reverse" (scroll)="onScroll($event)" id="container_scroll">
     <!-- new array message -->
     <app-content-chat class="d-flex flex-column-reverse" [contentChatService]="this.contentChatService"></app-content-chat>
     <!-- old array message -->

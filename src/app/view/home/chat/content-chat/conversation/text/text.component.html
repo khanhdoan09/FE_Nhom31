@@ -6,7 +6,10 @@
           <!-- check gif link -->
           <ng-container [ngTemplateOutlet]="checkIsFile(currentText) ? file: checkIsImage(currentText) ? imageLink: checkIsGif(currentText) ? gifLink : checkIsLink(currentText) ? normalLink : text"></ng-container>
             <ng-template #gifLink>
-              <img class="gif" src="{{currentText}}" alt="{{currentText}}"/>
+              <div *ngIf="checkIsImageExist(currentText); then isGifImage else isNotGifImage">
+              </div>
+              <ng-template #isGifImage><img class="gif" src="{{currentText}}" alt="404 gif"/></ng-template>
+              <ng-template #isNotGifImage><p>{{currentText}}</p></ng-template>
             </ng-template>
           <!-- check normal link -->
             <ng-template #normalLink>
@@ -14,9 +17,11 @@
             </ng-template>
           <!-- check image link -->
             <ng-template #imageLink>
-              <img src="{{currentText}}" alt="404 image" class="image">
+              <div *ngIf="checkIsImageExist(currentText); then isNormalImage else isNotNormalImage">
+              </div>
+              <ng-template #isNormalImage><img class="image" src="{{currentText}}" alt="404 image"/></ng-template>
+              <ng-template #isNotNormalImage><p>{{currentText}}</p></ng-template>
             </ng-template>
-          <!-- check image link -->
             <ng-template #file>
               <div class="d-flex flex-wrap align-items-center" (click)="downloadFile(currentText)">
                 <div class="m-0 p-0 h-100" [ngSwitch]="checkExtension(currentText)">
@@ -58,7 +63,7 @@
             </ng-template>
         </span>
       </div>
-      <div class="time" [style.display]="statusTime"  [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'medium':'UTC +14'}}</div>
+      <div class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'medium':'UTC +14'}}</div>
     </div>
 
     <div mdbDropdown class="dropdown align-self-start mx-2">

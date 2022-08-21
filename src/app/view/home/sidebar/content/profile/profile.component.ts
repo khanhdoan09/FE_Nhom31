@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
   constructor(public profileService: ProfileService,
               public _languageService: LanguageService) {
     this.userName = localStorage.getItem("userName") || "";
-    this.profileService.runService(this.userName);
   }
 
   ngOnInit(): void {

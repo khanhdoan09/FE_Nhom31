@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { LanguageService } from 'src/app/service/home/language/language.service';
+import {ChatsSidebarService} from "../../../../service/home/sidebar/chats-sidebar/chats-sidebar.service";
+import {ProfileService} from "../../../../service/home/sidebar/profile-sidebar/profile.service";
+import {GroupsService} from "../../../../service/home/sidebar/groups-sideabar/groups.service";
+import {IdSetInterval} from "../../../../model/contact-to";
 
 @Component({
   selector: 'app-content',
@@ -8,7 +12,7 @@ import { LanguageService } from 'src/app/service/home/language/language.service'
 })
 export class ContentComponent implements OnInit {
 
-  constructor(public _languageService: LanguageService) {
+  constructor(public _languageService: LanguageService, private chatSidebarService: ChatsSidebarService, private profileService: ProfileService, private _groupsService: GroupsService) {
   }
 
   ngOnInit(): void {
@@ -18,5 +22,18 @@ export class ContentComponent implements OnInit {
 
   tabsChange(status: any) {
     this.status = status
+    if (this.status === 'chats') {
+      IdSetInterval.clearAllInterval()
+      this.chatSidebarService.runService()
+    }
+    else if (this.status === 'profile') {
+      IdSetInterval.clearAllInterval()
+      let userName = localStorage.getItem("userName") || "";
+      this.profileService.runService(userName);
+    }
+    else if (this.status === 'groups') {
+      IdSetInterval.clearAllInterval()
+      this._groupsService.runService();
+    }
   }
 }

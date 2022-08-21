@@ -10,15 +10,7 @@ import {ContactTo} from "../../model/contact-to";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) {
-    if(ContactTo.isLogin ===false) {
-      this.router.navigate(['/logIn'])
-    }
-    else {
-      setTimeout(()=>{
-        this.router.navigate(['/home'])
-      },500)
-    }
+  constructor() {
   }
 
   ngOnInit(): void {

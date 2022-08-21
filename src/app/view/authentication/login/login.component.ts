@@ -59,13 +59,10 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
     this.signinForm.markAllAsTouched();
     if (this.signinForm.valid === true) {
-      console.log(this.username + "_" + this.password);
       this.signInService.submitSignIn(this.username, this.password)
     } else {
       return;
     }
-
-
   }
 
 

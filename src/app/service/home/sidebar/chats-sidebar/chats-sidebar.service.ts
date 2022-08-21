@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
-import {ArrayAvatar, Contact, ContactTo} from "../../../../model/contact-to";
+import {ArrayAvatar, Contact, ContactTo, IdSetInterval} from "../../../../model/contact-to";
 import {resetPagination} from "../../../../model/pagination";
 import {set} from "@angular/fire/database";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
@@ -10,6 +10,11 @@ import {Subject} from "rxjs";
 import {MessageApi} from "../../../../model/message_api";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
+import { resetArrayContainFile } from 'src/app/model/file';
+import {ContentChatService, idSetInterval} from "../../chat/content-chat/content-chat.service";
+import {ConnectApi} from "../../../websocket/connect-api";
+import {OldContentChatService} from "../../chat/old-content-chat/old-content-chat.service";
+import {ChatComponent} from "../../../../view/home/chat/chat.component";
 
 @Injectable({
   providedIn: 'root'
@@ -20,24 +25,8 @@ export class ChatsSidebarService {
   txtSearch: any;
   test: any = true;
   time: string = "";
-  public connect!: Subject<any>;
 
-  constructor(private afStorage: AngularFireStorage,private ws: WebSocketService) {
-    this.create()
-  }
-
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
+  constructor(private afStorage: AngularFireStorage,  private connect: ConnectApi, private contentChatService: ContentChatService, private oldContentChatService: OldContentChatService, private chatComponent: ChatComponent) {
   }
 
   runService() {
@@ -47,18 +36,20 @@ export class ChatsSidebarService {
   }
 
   init = () => {
-    // wait for login
-
     // first invoke observable by subscribe function
-    this.connect.subscribe(msg => {
-      console.log(msg)
-      this.renderListUser(msg);
-      this.checkStatusUser(msg)
-      this.getAvatarUser(msg);
+    this.connect.subject?.subscribe(msg => {
+      if (msg.event != 'GET_USER_LIST') {
+        this.updateUser();
+      }
+      else {
+        this.renderListUser(msg);
+        this.checkStatusUser(msg)
+        this.getAvatarUser(msg);
+      }
     });
 
     // second send signal next then observable will catch it
-    this.connect.next(Api.loadUserList());
+    this.connect.subject?.next(Api.loadUserList());
 
 
   }
@@ -75,7 +66,7 @@ export class ChatsSidebarService {
 
   checkStatusUser(msg: any) {
     this.checkStatusOneUser(msg.data, 0)
-    setInterval(() => {
+    IdSetInterval.idSetIntervalStatus = setInterval(() => {
       this.checkStatusOneUser(msg.data, 0)
     }, 2500)
   }
@@ -86,8 +77,8 @@ export class ChatsSidebarService {
         this.checkStatusOneUser(arrUser, index + 1)
       }
       else {
-        this.connect.next(Api.get_user_list(arrUser[index].name));
-        this.connect.subscribe(msg => {
+        this.connect.subject?.next(Api.get_user_list(arrUser[index].name));
+        this.connect.subject?.subscribe(msg => {
           if ( msg.event != 'CHECK_USER') {
             this.checkStatusOneUser(arrUser, index)
           }
@@ -103,7 +94,7 @@ export class ChatsSidebarService {
   }
 
   getAvatarUser(msg: any) {
-    setInterval(()=>{
+    IdSetInterval.idSetIntervalAvatar = setInterval(()=>{
       this.getOneAvatar(msg.data, 0)
     }, 1000)
   }
@@ -132,7 +123,18 @@ export class ChatsSidebarService {
   }
 
   selectMessage(contact: Contact) {
-    resetPagination()
+    resetPagination();
+    resetArrayContainFile();
+    if (IdSetInterval.idSetIntervalMessage) {
+      clearInterval(IdSetInterval.idSetIntervalMessage)
+    }
+    if (idSetInterval.idSetIntervalGroup) {
+      clearInterval(IdSetInterval.idSetIntervalGroup)
+    }
+    let element: any = document.getElementById("container_scroll");
+    element.scrollTop = element.scrollHeight
+    this.oldContentChatService.messages = []
+    this.contentChatService.runService();
     ContactTo.contactTo.next(contact);
   }
 }

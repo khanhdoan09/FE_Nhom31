@@ -8,6 +8,7 @@ import {CurrentUser} from "../../../../model/contact-to";
 import {WebSocketService} from "../../../websocket/websocket_service";
 import {MessageApi} from "../../../../model/message_api";
 import {configure} from "../../../../configure/Configure";
+import {ConnectApi} from "../../../websocket/connect-api";
 
 @Injectable({
   providedIn: 'root'
@@ -21,26 +22,11 @@ export class ProfileService {
   src: any = "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
   arrayImage: Array<any> = [];
   showMyContainer: boolean = false;
-  public connect!: Subject<any>;
 
-  constructor(private afStorage: AngularFireStorage,private ws: WebSocketService) {
-    this.create()
+  constructor(private afStorage: AngularFireStorage, private connect: ConnectApi) {
     this.getUrlImageFromFirebase();
   }
 
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
-  }
 
   runService(name: any) {
     this.userName = name;
@@ -48,10 +34,10 @@ export class ProfileService {
   }
 
   init() {
-    this.connect.subscribe(msg => {
+    this.connect.subject?.subscribe(msg => {
       this.loadInfoUser(msg);
     });
-    this.connect.next(Api.get_user_list(this.userName));
+    this.connect.subject?.next(Api.get_user_list(this.userName));
   }
 
   updateInfoUser() {
@@ -79,7 +65,7 @@ export class ProfileService {
   }
 
   getUrlImageFromFirebase() {
-    this.userName = localStorage.getItem("userName");
+    this.userName = CurrentUser.username;
     let storageRef = this.afStorage.storage.ref().child("avatar/" +  CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       this.src = urlFB;

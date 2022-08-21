@@ -17,7 +17,7 @@ export class ChatsComponent implements OnInit {
   constructor(public chatSidebarService: ChatsSidebarService,
               public _profileService: ProfileService,
               public _languageService: LanguageService) {
-    this.chatSidebarService.runService()
+    // this.chatSidebarService.runService()
   }
 
 

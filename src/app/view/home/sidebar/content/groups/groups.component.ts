@@ -2,10 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {CreateGroupService} from 'src/app/service/home/sidebar/groups-sideabar/create-group.service';
 import {JoinGroupService} from 'src/app/service/home/sidebar/groups-sideabar/join-group.service';
 import {GroupsService} from "../../../../../service/home/sidebar/groups-sideabar/groups.service";
-import {Contact, ContactTo} from "../../../../../model/contact-to";
+import {Contact, ContactTo, IdSetInterval} from "../../../../../model/contact-to";
 
 import {resetPagination} from "../../../../../model/pagination";
 import {LanguageService} from "../../../../../service/home/language/language.service";
+import {resetArrayContainFile} from "../../../../../model/file";
+import {ContentChatService, idSetInterval} from "../../../../../service/home/chat/content-chat/content-chat.service";
+import {OldContentChatService} from "../../../../../service/home/chat/old-content-chat/old-content-chat.service";
 
 
 @Component({
@@ -29,10 +32,9 @@ export class GroupsComponent implements OnInit {
               public _createGroupService: CreateGroupService,
               public _joinGroupService: JoinGroupService,
               public _languageService: LanguageService,
-
-  ) {
-    this._groupsService.runService();
-  }
+              private contentChatService: ContentChatService,
+              private oldContentChatService: OldContentChatService,)
+  {}
 
   ngOnInit(): void {
 
@@ -51,8 +53,18 @@ export class GroupsComponent implements OnInit {
   }
 
   selectMessage(contact: Contact) {
-    console.log(contact)
     resetPagination();
+    resetArrayContainFile();
+    if (IdSetInterval.idSetIntervalMessage) {
+      clearInterval(IdSetInterval.idSetIntervalMessage)
+    }
+    if (idSetInterval.idSetIntervalGroup) {
+      clearInterval(IdSetInterval.idSetIntervalGroup)
+    }
+    let element: any = document.getElementById("container_scroll");
+    element.scrollTop = element.scrollHeight
+    this.oldContentChatService.messages = []
+    this.contentChatService.runService();
     ContactTo.contactTo.next(contact);
   }
 

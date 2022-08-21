@@ -29,6 +29,13 @@ export class LoginComponent implements OnInit {
               private readonly google: GoogleApiService,
               private _languageService: LanguageService) {
 
+    if (document.cookie.indexOf('username=') != -1 && document.cookie.indexOf('password=') != -1) {
+      setTimeout(()=>{
+        this.signInService.checkSignInWithCookie();
+      },500)
+    }
+
+
     this.signinForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -37,6 +44,7 @@ export class LoginComponent implements OnInit {
     google.userProfileSubject.subscribe(info => {
       this.userInfo = info
     })
+
   }
 
   ngOnInit(): void {

@@ -3,7 +3,6 @@ import {pagination} from "../../model/pagination";
 export class Api {
 
   public static login(name: string, password: string) {
-    // default login with user long
     return {
       "action": "onchat",
         "data": {

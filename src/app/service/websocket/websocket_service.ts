@@ -7,7 +7,13 @@ import * as Rx from "rxjs";
 export class WebSocketService {
   constructor() {}
 
-  private subject!: Rx.Subject<MessageEvent>;
+  private subject: Rx.Subject<MessageEvent> | undefined | null;
+
+  public clearConnect() {
+    this.subject?.unsubscribe()
+    this.subject = null
+  }
+
 
   public connect(url: string): Rx.Subject<MessageEvent> {
     if (!this.subject) {

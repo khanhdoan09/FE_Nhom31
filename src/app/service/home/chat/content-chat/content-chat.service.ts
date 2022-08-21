@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {Api} from "../../../api/api";
 import {TestConnectService} from "../../../api/testConnectService";
 import {MessageApi} from "../../../../model/message_api";
-import {Contact, ContactTo, CurrentUser} from "../../../../model/contact-to";
+import {Contact, ContactTo, CurrentUser, IdSetInterval} from "../../../../model/contact-to";
 import {User} from "../../../../model/user";
 import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
 import {IContentChat} from "../../../../model/content-chat";
@@ -11,6 +11,7 @@ import {Subject} from "rxjs";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {ConnectApi} from "../../../websocket/connect-api";
 
 let idSetInterval: any = 0
 
@@ -26,41 +27,26 @@ export class ContentChatService implements IContentChat {
   isFirstInGetDate = true
   cd!: ChangeDetectorRef
   messages: any[] = []
-  public connect!: Subject<any>;
 
-  constructor(private ws: WebSocketService) {
-    this.create()
-    localStorage.setItem("userName", "chk2");
-
-    // first invoke observable by subscribe function
-        ContactTo.contactTo.subscribe((msg: Contact) => {
-          this.toMessage = msg.name
-          this.date = null
-          // choose contact with user
-          if (msg.type == 0) {
-            this.typeChooseText = 'user'
-          }
-          // choose contact with group
-          else {
-            this.typeChooseText = 'group'
-          }
-        })
-        // load message
-        this.updateMessage()
+  constructor(private connect: ConnectApi) {
   }
 
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
+  public runService() {
+    // first invoke observable by subscribe function
+    ContactTo.contactTo.subscribe((msg: Contact) => {
+      this.toMessage = msg.name
+      this.date = null
+      // choose contact with user
+      if (msg.type == 0) {
+        this.typeChooseText = 'user';
       }
-    ));
+      // choose contact with group
+      else {
+        this.typeChooseText = 'group';
+      }
+    })
+    // load message
+    this.updateMessage()
   }
 
   date: any = null
@@ -97,18 +83,19 @@ export class ContentChatService implements IContentChat {
       this.isFirstInGetDate = true
       this.getMessageFromApi()
     }, 500)
+    IdSetInterval.idSetIntervalMessage = idSetInterval;
   }
 
   getMessageFromApi() {
     // first invoke observable by subscribe function
-    this.connect.subscribe(msg => {
+    this.connect.subject?.subscribe(msg => {
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
       if (this.typeChooseText === 'user') {
-        this.connect.next(Api.loadMessageList(this.toMessage));
+        this.connect.subject?.next(Api.loadMessageList(this.toMessage));
       } else if (this.typeChooseText === 'group') {
-        this.connect.next(Api.loadMessageListFromGroup(this.toMessage));
+        this.connect.subject?.next(Api.loadMessageListFromGroup(this.toMessage));
       }
   }
 
@@ -135,7 +122,6 @@ export class ContentChatService implements IContentChat {
       // get text from type group
       else if (this.typeChooseText === 'group') {
         if (msg.event === 'GET_ROOM_CHAT_MES') {
-          console.log(msg)
           if (msg.data != null && msg.data != undefined) {
             if (msg.data.chatData.length != 0) {
               this.messages = msg.data.chatData;

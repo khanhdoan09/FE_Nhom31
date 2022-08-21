@@ -6,45 +6,36 @@ import {WebSocketService} from "../../websocket/websocket_service";
 import {MessageApi} from "../../../model/message_api";
 import {configure} from "../../../configure/Configure";
 import {map} from "rxjs/operators";
-import {ContactTo} from "../../../model/contact-to";
+import {ArrayAvatar, ContactTo, IdSetInterval} from "../../../model/contact-to";
 import {Api} from "../../api/api";
+import {ConnectApi} from "../../websocket/connect-api";
+import {OldContentChatService} from "../chat/old-content-chat/old-content-chat.service";
+import {ContentChatService} from "../chat/content-chat/content-chat.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogoutService {
-  public anotherconnect!: Subject<any>;
-  constructor(private connect: TestConnectService, private router: Router,private ws: WebSocketService) {
-    this.create();
+  constructor(private router: Router, private connect: ConnectApi, public oldContentChatService: OldContentChatService, public contentChatService: ContentChatService) {
   }
 
-  public create() {
-    this.anotherconnect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
-  }
   logout() {
     // first invoke observable by subscribe function
-    console.log(1234)
-    this.connect.messages.next(Api.logout());
-    this.connect.messages.subscribe(msg => {
+    this.connect.subject?.next(Api.logout());
+    this.connect.subject?.subscribe(msg => {
       console.log(msg)
       if (msg.status === 'success') {
         ContactTo.isLogin = false;
-        // alert(ContactTo.isLogin)
-        this.router.navigate(['/logIn']);
+        this.connect.clearConnect();
+        this.connect.create();
+        IdSetInterval.clearAllInterval();
+        this.oldContentChatService.messages = [];
+        this.contentChatService.messages = [];
+        ArrayAvatar.avatar.clear();
+        this.router.navigate(['logIn']);
       } else {
         alert("Lỗi")
       }
     });
   }
-
 }

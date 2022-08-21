@@ -6,51 +6,31 @@ import {MessageApi} from "../../../../model/message_api";
 import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 import {WebSocketService} from "../../../websocket/websocket_service";
+import {ConnectApi} from "../../../websocket/connect-api";
+import {IdSetInterval} from "../../../../model/contact-to";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupsService {
   groupList: Array<any> = [];
-  public connect!: Subject<any>;
 
-  constructor(private ws: WebSocketService) {
-    this.create()
+  constructor(private connect: ConnectApi) {
   }
-
-
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
-  }
-
 
   runService() {
     this.updateGroupList();
   }
 
   init() {
-    this.connect.subscribe(msg => {
-      if (msg.event === 'GET_USER_LIST') {
-        console.log(msg)
-        this.renderGroupList(msg);
-        return
-      }
-      else {
-        console.log('not load group')
-        this.init()
-      }
-    });
-    this.connect.next(Api.loadUserList());
+    IdSetInterval.idSetIntervalGroup = setInterval(()=>{
+      this.connect.subject?.subscribe(msg => {
+        if (msg.event === 'GET_USER_LIST') {
+          this.renderGroupList(msg);
+        }
+      });
+      this.connect.subject?.next(Api.loadUserList());
+    }, 500)
   }
 
   updateGroupList() {

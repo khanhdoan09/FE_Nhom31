@@ -1,9 +1,23 @@
-import {ChangeDetectorRef, Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  Injectable,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {isHasMoreData, pagination, updatePagination} from "../../../model/pagination";
 import {ContentChatService, idSetInterval} from "../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {Spinner} from "../../../model/spinner";
 import {File} from "../../../model/file";
+import {Contact, ContactTo} from "../../../model/contact-to";
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-chat',
@@ -21,8 +35,8 @@ export class ChatComponent implements OnInit {
 
   }
 
-  spinner = Spinner
-  positionScroll:any = null
+  spinner = Spinner;
+  positionScroll:any = null;
   files: File[] = [];
 
 
@@ -39,7 +53,7 @@ export class ChatComponent implements OnInit {
         updatePagination()
         setTimeout(()=>{
           this.oldContentChatService.updateMessage()
-        },1500)
+        },1000)
       }
     }
     else {
@@ -49,16 +63,16 @@ export class ChatComponent implements OnInit {
 
   setScrollToBottom() {
     if(this.positionScroll != null) {
-      this.positionScroll.scrollTop = 0
+      this.positionScroll.scrollTop = 0;
     }
   }
 
   addFile(file: File) {
-    this.files.unshift(file)
+    this.files.unshift(file);
   }
 
   resetArrayFile() {
-    this.files = []
+    this.files = [];
   }
 
   getIsHasMoreData() {

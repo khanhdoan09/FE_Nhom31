@@ -65,7 +65,7 @@ export class TextComponent implements OnInit {
 
   checkIsFile(text:string) {
     text = text.trim()
-    if (text.startsWith("firebase_upload_") && text.includes("_upload_chk")){
+    if (text.startsWith("firebase_upload_") && text.includes("_upload_")){
       return true;
     }
       return false;
@@ -74,6 +74,19 @@ export class TextComponent implements OnInit {
   getFileName(text: string):string {
     return text.substring(text.lastIndexOf("/")+1)
   }
+
+  checkIsImageExist(url: string) {
+    var image = new Image();
+    var url_image = url;
+    image.src = url_image;
+    if (image.width == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+
 
   checkExtension(text: string): string {
     let extension = text.substring(text.lastIndexOf(".")).trim();
@@ -108,20 +121,25 @@ export class TextComponent implements OnInit {
   }
 
   downloadFile(url: string) {
+    console.log(url)
     let storageRef = this.afStorage.storage.ref().child(url);
     return storageRef.getDownloadURL().then(urlFB =>{
-      // to set correct name file (not id name in firebase) and download file
-      this.setNameFileDownload(urlFB, 'test.csv')
-      // window.open(urlFB, 'xxx.csv');
-      // var link = document.createElement('a');
-      // link.download = 'xxx.csv';
-      // link.href = urlFB;
-      // document.body.appendChild(link);
-      // link.click();
+      this.setNameFileDownload(urlFB)
+    }, ()=>{
+      alert('file not exist')
     });
   }
 
-  setNameFileDownload(url: string, name: string) {
+  checkFileIsExist(url: string) {
+    let storageRef = this.afStorage.storage.ref().child(url);
+    return storageRef.getDownloadURL().then(urlFB =>{
+      return true;
+    }, ()=>{
+        return false;
+    });
+  }
+
+  setNameFileDownload(url: string) {
     var anchor = document.createElement("a");
     anchor.download = "test.csv";
     anchor.href = url;

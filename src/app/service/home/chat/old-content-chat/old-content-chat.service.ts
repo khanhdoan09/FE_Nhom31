@@ -11,6 +11,7 @@ import {configure} from "../../../../configure/Configure";
 import {map} from "rxjs/operators";
 import {ChatComponent} from "../../../../view/home/chat/chat.component";
 import {Spinner} from "../../../../model/spinner";
+import {ConnectApi} from "../../../websocket/connect-api";
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,9 @@ export class OldContentChatService {
   messages: any = []
   date: any = ''
   typeChooseText:string=""
-  public connect!: Subject<any>;
 
 
-  constructor(private ws: WebSocketService, public contentChatService: ContentChatService) {
-    this.create()
+  constructor( public contentChatService: ContentChatService, private connect: ConnectApi) {
     ContactTo.contactTo.subscribe((msg:Contact)=>{
       this.toMessage = msg.name
       this.date = null
@@ -42,20 +41,6 @@ export class OldContentChatService {
         this.typeChooseText = 'group'
       }
     })
-  }
-
-  public create() {
-    this.connect = <Subject<MessageApi>>this.ws.connect(configure.CHAT_URL).pipe(map(
-      (response: MessageEvent): MessageApi => {
-        let data = JSON.parse(response.data);
-        return {
-          status: data.status,
-          data: data.data,
-          mes: data.mes,
-          event: data.event
-        };
-      }
-    ));
   }
 
   updateDate(newDate: any) {
@@ -84,16 +69,16 @@ export class OldContentChatService {
 
   getMessageFromApi() {
     // first invoke observable by subscribe function
-    this.connect.subscribe(msg => {
+    this.connect.subject?.subscribe(msg => {
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
     setTimeout(() => {
       if (this.typeChooseText==='user') {
-        this.connect.next(Api.loadOldMessageList(this.toMessage));
+        this.connect.subject?.next(Api.loadOldMessageList(this.toMessage));
       }
       else if (this.typeChooseText==='group') {
-        this.connect.next(Api.loadOldMessageListFromGroup(this.toMessage));
+        this.connect.subject?.next(Api.loadOldMessageListFromGroup(this.toMessage));
       }
       }, 500)
   }

@@ -7,7 +7,7 @@
          src="{{this.profileService.src}}"
          alt="">
   </div>
-  <p class="text-center mt-2 fw-bold">{{userName}}</p>
+  <p class="text-center mt-2 fw-bold">{{this.profileService.userName}}</p>
 </div>
 <div class="user-description pb-5">
   If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the
@@ -16,10 +16,10 @@
 
 <div class="about pt-5">
   <label>{{'Tên tài khoản'| translate}}</label>
-  <p><strong>{{userName}}</strong></p>
+  <p><strong>{{this.profileService.userName}}</strong></p>
 
   <label>{{'Email'|translate}}</label>
-  <p><strong>{{userName}}@gmail.com</strong></p>
+  <p><strong>{{this.profileService.userName}}@gmail.com</strong></p>
 
   <label>{{'Trạng thái'| translate}}</label>
   <p class="text-success fw-bold">{{this.profileService.statusUser === true ? 'Online' : ''}}</p>

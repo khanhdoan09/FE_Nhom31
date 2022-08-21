@@ -31,7 +31,7 @@ export class ContentChatComponent implements OnInit {
   avatar!:string
   @Input() contentChatService!:IContentChat
   constructor( public cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
-    CurrentUser.avatar.subscribe((url:string)=>{
+    CurrentUser.subject.subscribe((url:string)=>{
       this.avatar=url
     })
   }

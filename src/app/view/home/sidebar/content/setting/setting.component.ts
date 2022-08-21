@@ -5,7 +5,7 @@ import {map} from "rxjs/operators";
 import {ProfileService} from "../../../../../service/home/sidebar/profile-sidebar/profile.service";
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from 'src/app/service/home/language/language.service';
-import {CurrentUser} from "../../../../../model/contact-to";
+import {ArrayAvatar, ContactTo, CurrentUser} from "../../../../../model/contact-to";
 import {LogoutService} from "../../../../../service/home/authentication/logout.service";
 import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
 
@@ -15,7 +15,7 @@ import {SignInService} from "../../../../../service/home/authentication/sign-in.
   styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
-  userName: any;
+  userName: string;
   setMode = true;
   src: any = null || "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-business-male-user-avatar-vector-png-image_1511454.jpg";
   ref!: AngularFireStorageReference;
@@ -28,9 +28,8 @@ export class SettingComponent implements OnInit {
 
 
   constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private logOutService: LogoutService, public _languageService: LanguageService) {
-    this.userName = localStorage.getItem("userName") || "";
+    this.userName = CurrentUser.username;
     this.getUrlImageFromFirebase();
-
   }
 
   ngOnInit(): void {
@@ -52,13 +51,14 @@ export class SettingComponent implements OnInit {
 
 
   getUrlImageFromFirebase() {
-    let nameUser: any = localStorage.getItem("userName");
     let storageRef = this.afStorage.storage.ref().child("avatar/" + CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       this.src = urlFB;
-    }), ()=>{
+      ArrayAvatar.avatar.set(CurrentUser.username, this.src);
+      CurrentUser.subject.next(this.src);
+    }, ()=>{
       this.src = 'https://www.w3schools.com/howto/howto_css_image_avatar.asp'
-    };
+    });
   }
 
   handleClick() {

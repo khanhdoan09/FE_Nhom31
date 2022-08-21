@@ -4,6 +4,7 @@ import {idSetInterval} from "../service/home/chat/content-chat/content-chat.serv
 
 
 export class IdSetInterval {
+  public static idSetIntervalContactTo:any;
   public static idSetIntervalMessage:any;
   public static idSetIntervalStatus:any;
   public static idSetIntervalAvatar:any;
@@ -11,7 +12,6 @@ export class IdSetInterval {
 
 
   public static clearAllInterval() {
-    console.log(IdSetInterval.idSetIntervalMessage + "~" + IdSetInterval.idSetIntervalStatus + "~" + IdSetInterval.idSetIntervalAvatar)
     if (IdSetInterval.idSetIntervalMessage) {
       clearInterval(IdSetInterval.idSetIntervalMessage)
     }
@@ -24,12 +24,30 @@ export class IdSetInterval {
     if (IdSetInterval.idSetIntervalGroup) {
       clearInterval(IdSetInterval.idSetIntervalGroup)
     }
+    if (IdSetInterval.idSetIntervalContactTo) {
+      clearInterval(IdSetInterval.idSetIntervalContactTo)
+    }
   }
 
+  public static clearAllIntervalInSideBar() {
+    if (IdSetInterval.idSetIntervalStatus) {
+      clearInterval(IdSetInterval.idSetIntervalStatus)
+    }
+    if (IdSetInterval.idSetIntervalAvatar) {
+      clearInterval(IdSetInterval.idSetIntervalAvatar)
+    }
+    if (IdSetInterval.idSetIntervalGroup) {
+      clearInterval(IdSetInterval.idSetIntervalGroup)
+    }
+    if (IdSetInterval.idSetIntervalContactTo) {
+      clearInterval(IdSetInterval.idSetIntervalContactTo)
+    }
+  }
 }
+
 export class CurrentUser {
-  public static username=''
-  public static avatar = new Subject<string>();
+  public static username='';
+  public static subject = new Subject<string>();
 }
 
 export class ArrayAvatar {

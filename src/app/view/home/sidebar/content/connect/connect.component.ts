@@ -33,7 +33,7 @@ export class ConnectComponent implements OnInit {
   }
 
   connectToUser() {
-    this.connect.subject?.next(Api.sendMessage(this.userNameConnect, '<< system connect from '+ CurrentUser.username +  ' to ' + this.userNameConnect + ' >>'));
+    this.connect.subject?.next(Api.sendMessage(this.userNameConnect, ''));
     alert('done');
     this.connectForm.reset();
 

@@ -23,10 +23,12 @@ export class LoginComponent implements OnInit {
   isSubmitted: boolean = false
   siteKey: string = "6LeFoo4hAAAAAD2inkMpcV78AmCGkyrraDJpVYjW";
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
               private signInService: SignInService,
               private readonly google: GoogleApiService,
               private _languageService: LanguageService) {
+
     this.signinForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],

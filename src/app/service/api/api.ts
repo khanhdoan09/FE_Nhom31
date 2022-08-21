@@ -63,7 +63,7 @@ export class Api {
     }
   }
 
-  public static get_user_list(username: string) {
+  public static checkStatus(username: string) {
     return {
       "action": "onchat",
       "data": {

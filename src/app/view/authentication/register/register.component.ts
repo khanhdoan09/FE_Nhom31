@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required, Validators.minLength(6)],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', Validators.required],
+      password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
       recaptcha: ['', [Validators.required]],
     }, {
@@ -52,11 +52,6 @@ export class RegisterComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     } else {
-      // if(this.username === localStorage.getItem("userName")) {
-      //   alert("Tài khoản đã tồn tại");
-      // }
-      // console.log(localStorage.getItem("username"))
-      console.log("Name: " + this.username + "\tUsername: " + this.username + "\tPass: " + this.password + "rePass" + this.confirmPassword);
       this.signUpService.submitSignUp(this.username, this.password)
     }
 

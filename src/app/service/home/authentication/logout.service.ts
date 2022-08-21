@@ -25,6 +25,11 @@ export class LogoutService {
     this.connect.subject?.subscribe(msg => {
       console.log(msg)
       if (msg.status === 'success') {
+        // clear cookie
+        document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'isLogin=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
         ContactTo.isLogin = false;
         this.connect.clearConnect();
         this.connect.create();

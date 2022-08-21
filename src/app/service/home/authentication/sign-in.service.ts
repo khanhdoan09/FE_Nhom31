@@ -39,8 +39,9 @@ export class SignInService {
     console.log(CurrentUser.username)
     let storageRef = this.afStorage.storage.ref().child("avatar/" +  CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
-      console.log(urlFB);
-      CurrentUser.avatar.next(urlFB)
+      CurrentUser.subject.next(urlFB);
+    }, ()=>{
+      CurrentUser.subject.next('https://www.w3schools.com/howto/img_avatar.png');
     });
 
   }

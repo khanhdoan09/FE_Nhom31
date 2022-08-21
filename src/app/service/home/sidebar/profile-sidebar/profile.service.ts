@@ -15,7 +15,7 @@ import {ConnectApi} from "../../../websocket/connect-api";
 })
 export class ProfileService {
   statusUser: any;
-  userName: any = localStorage.getItem('userName');
+  userName!: string;
   ref!: AngularFireStorageReference;
   task!: AngularFireUploadTask;
   uploadState!: Observable<any>;
@@ -29,15 +29,15 @@ export class ProfileService {
 
 
   runService(name: any) {
-    this.userName = name;
     this.updateInfoUser();
+    this.userName = CurrentUser.username;
   }
 
   init() {
     this.connect.subject?.subscribe(msg => {
       this.loadInfoUser(msg);
     });
-    this.connect.subject?.next(Api.get_user_list(this.userName));
+    this.connect.subject?.next(Api.checkStatus(this.userName));
   }
 
   updateInfoUser() {
@@ -69,7 +69,9 @@ export class ProfileService {
     let storageRef = this.afStorage.storage.ref().child("avatar/" +  CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       this.src = urlFB;
-      CurrentUser.avatar.next(urlFB)
+      CurrentUser.subject.next(urlFB)
+    }, ()=>{
+      this.src = 'https://www.w3schools.com/howto/img_avatar.png';
     });
 
   }
@@ -82,7 +84,5 @@ export class ProfileService {
       this.arrayImage.push(event.target.files[0]);
       this.src = reader.result;
     }
-
   }
-
 }

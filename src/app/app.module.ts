@@ -82,8 +82,6 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ToastComponent } from './view/home/toast/toast.component';
 import {ConnectComponent} from "./view/home/sidebar/content/connect/connect.component";
-
-
 import {NgxCaptchaModule} from 'ngx-captcha';
 
 

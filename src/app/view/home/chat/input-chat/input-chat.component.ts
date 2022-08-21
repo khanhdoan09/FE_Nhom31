@@ -200,7 +200,9 @@ export class InputChatComponent implements OnInit {
   getUrlImageFromFirebase(nameImage: string) {
     let storageRef = this.afStorage.storage.ref().child(nameImage);
     return storageRef.getDownloadURL().then(urlFB =>{
-      return urlFB + "_type-file:image"
+      return urlFB + "_type-file:image";
+    },()=>{
+      return '404 not found';
     });
   }
 }

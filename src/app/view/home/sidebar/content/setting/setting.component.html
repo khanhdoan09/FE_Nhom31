@@ -48,20 +48,4 @@
       </mdb-accordion-item>
     </mdb-accordion>
   </div>
-
-  <div class="mb-3">
-    <mdb-accordion class="w-100">
-      <mdb-accordion-item>
-        <ng-template mdbAccordionItemHeader>{{'Ngôn ngữ'|translate}}</ng-template>
-        <ng-template mdbAccordionItemBody style="border: none">
-          <select (change)="this._languageService.changeLanguage($event)" class="form-select">
-            <option selected="selected">{{'Chọn ngôn ngữ'|translate}}</option>
-            <option value="en">{{'Tiếng Anh'|translate}}</option>
-            <option value="vn">{{'Việt Nam'|translate}}</option>
-          </select>
-        </ng-template>
-      </mdb-accordion-item>
-    </mdb-accordion>
-  </div>
-
 </div>

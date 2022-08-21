@@ -77,7 +77,7 @@ export class ChatsSidebarService {
         this.checkStatusOneUser(arrUser, index + 1)
       }
       else {
-        this.connect.subject?.next(Api.get_user_list(arrUser[index].name));
+        this.connect.subject?.next(Api.checkStatus(arrUser[index].name));
         this.connect.subject?.subscribe(msg => {
           if ( msg.event != 'CHECK_USER') {
             this.checkStatusOneUser(arrUser, index)

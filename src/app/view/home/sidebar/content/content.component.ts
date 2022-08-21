@@ -23,17 +23,20 @@ export class ContentComponent implements OnInit {
   tabsChange(status: any) {
     this.status = status
     if (this.status === 'chats') {
-      IdSetInterval.clearAllInterval()
+      IdSetInterval.clearAllIntervalInSideBar()
       this.chatSidebarService.runService()
     }
     else if (this.status === 'profile') {
-      IdSetInterval.clearAllInterval()
+      IdSetInterval.clearAllIntervalInSideBar()
       let userName = localStorage.getItem("userName") || "";
       this.profileService.runService(userName);
     }
     else if (this.status === 'groups') {
-      IdSetInterval.clearAllInterval()
+      IdSetInterval.clearAllIntervalInSideBar()
       this._groupsService.runService();
+    }
+    else if (this.status === 'setting') {
+      IdSetInterval.clearAllIntervalInSideBar()
     }
   }
 }

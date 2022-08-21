@@ -8,11 +8,9 @@ import {LanguageService} from "../../../../../service/home/language/language.ser
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  userName: string;
 
   constructor(public profileService: ProfileService,
               public _languageService: LanguageService) {
-    this.userName = localStorage.getItem("userName") || "";
   }
 
   ngOnInit(): void {

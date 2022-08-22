@@ -13,7 +13,7 @@ import {ContentChatService, idSetInterval} from "../../../service/home/chat/cont
 import {OldContentChatService} from "../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {Spinner} from "../../../model/spinner";
 import {File} from "../../../model/file";
-import {Contact, ContactTo} from "../../../model/contact-to";
+import {Contact, ContactTo, IdSetInterval} from "../../../model/contact-to";
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +43,16 @@ export class ChatComponent implements OnInit {
   @HostListener('scroll', ['$event'])
   onScroll(event: any) {
     if (isHasMoreData) {
-      this.positionScroll = event.target
-      let currentScrollPosition = event.target.offsetHeight + (-event.target.scrollTop + 1)
+      this.positionScroll = event.target;
+      let currentScrollPosition = event.target.offsetHeight + (-event.target.scrollTop + 1);
       if (currentScrollPosition >= event.target.scrollHeight) {
         setTimeout(()=>{
-          Spinner.changeShow(true)
+          Spinner.changeShow(true);
         }, 500)
-        clearInterval(idSetInterval)
-        updatePagination()
+        clearInterval(IdSetInterval.idSetIntervalMessage);
+        updatePagination();
         setTimeout(()=>{
-          this.oldContentChatService.updateMessage()
+          this.oldContentChatService.updateMessage();
         },1000)
       }
     }

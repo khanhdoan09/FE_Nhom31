@@ -63,14 +63,19 @@ export class OldContentChatService {
   updateMessage() {
     // this.cd.reattach()
     setTimeout(() => {
-      this.getMessageFromApi()
+      this.getMessageFromApi();
     }, 500)
   }
 
   getMessageFromApi() {
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
-      this.renderMessage(msg)
+      if (msg.event.includes('_CHAT_MES')) {
+        this.renderMessage(msg);
+      }
+      else {
+        this.getMessageFromApi();
+      }
     });
     // second send signal next then observable will catch it
     setTimeout(() => {
@@ -116,7 +121,7 @@ export class OldContentChatService {
         }
       }
       else {
-
+        Spinner.changeShow(false)
       }
     }
   }

@@ -24,7 +24,7 @@ export class ContentComponent implements OnInit {
     this.status = status
     if (this.status === 'chats') {
       IdSetInterval.clearAllIntervalInSideBar()
-      this.chatSidebarService.runService()
+      this.chatSidebarService.runService();
     }
     else if (this.status === 'profile') {
       IdSetInterval.clearAllIntervalInSideBar()

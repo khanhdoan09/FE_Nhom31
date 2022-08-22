@@ -63,6 +63,7 @@ export class OldContentChatService {
   getMessageFromApi() {
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
+      console.log(msg)
       if (msg.event.includes('_CHAT_MES')) {
         this.renderMessage(msg);
       }

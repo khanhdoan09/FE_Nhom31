@@ -7,14 +7,12 @@ import {RegisterComponent} from "./view/authentication/register/register.compone
 import {RecoverpwComponent} from "./view/authentication/recoverpw/recoverpw.component";
 import {PagenotfoundComponent} from "./view/home/pagenotfound/pagenotfound.component";
 import {FilterAuthenticationGuard} from "./model/guard/filter-authentication.guard";
-import {NotRouteLoginGuard} from "./model/guard/not-route-login.guard";
 
 
 const routes: Routes = [
   {
     path: "logIn",
     component: LoginComponent,
-    canActivate: [NotRouteLoginGuard]
   },
   {
     path: "register",

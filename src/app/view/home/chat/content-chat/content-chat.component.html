@@ -1,7 +1,7 @@
 <div class="d-flex flex-column" *ngFor="let message of this.contentChatService.messages;">
     <div *ngIf="message.name !== currentName">
       <div class="d-flex flex-row">
-        <app-conversation [avatar]="getAvatar(message.name)" [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'white'" [color_time]="'rgb(178,175,246)'" [bg_color]="'rgb(114,105,239)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
+        <app-conversation [avatar]="getAvatar(message.name)" [name]="message.name" [mes]="message.mes" [time]="message.createAt" [color_text]="'white'" [color_time]="'rgb(255,248,252)'" [bg_color]="'rgb(182,150,243)'" [text_position]="'left'" [flex_direction]="'row'" [left]="'0'" [right]="'unset'"></app-conversation>
       </div>
     </div>
     <div *ngIf="message.name == currentName">

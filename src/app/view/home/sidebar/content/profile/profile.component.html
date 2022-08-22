@@ -10,20 +10,16 @@
   <p class="text-center mt-2 fw-bold">{{this.profileService.userName}}</p>
 </div>
 <div class="user-description pb-5">
-  If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the
-  individual.
+
 </div>
 
 <div class="about pt-5">
   <label>{{'Tên tài khoản'| translate}}</label>
-  <p><strong>{{this.profileService.userName}}</strong></p>
-
-  <label>{{'Email'|translate}}</label>
-  <p><strong>{{this.profileService.userName}}@gmail.com</strong></p>
+  <p class="text-wrap"><strong>{{this.profileService.userName}}</strong></p>
 
   <label>{{'Trạng thái'| translate}}</label>
-  <p class="text-success fw-bold">{{this.profileService.statusUser === true ? 'Online' : ''}}</p>
-  <p class="text-danger fw-bold">{{this.profileService.statusUser === false || undefined || null ? 'Offline' : ''}}</p>
+  <p class="text-success fw-bold text-wrap">{{this.profileService.statusUser === true ? 'Đang hoạt động' : ''}}</p>
+  <p class="text-danger fw-bold text-wrap">{{this.profileService.statusUser === false || undefined || null ? 'Hoạt động vài phút trước' : ''}}</p>
 <!--  <label>Location</label>-->
 <!--  <p><strong>Linh Chieu, Thu Duc</strong></p>-->
 </div>

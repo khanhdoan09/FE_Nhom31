@@ -41,7 +41,7 @@
   "Đăng ký tài khoản ngay bây giờ": "Đăng ký tài khoản ngay bây giờ",
   "Nhập địa chỉ email": "Nhập địa chỉ email",
   "Nhập lại mật khẩu": "Nhập lại mật khẩu",
-  "Bạn đã có tài khoản ?" : "Bạn đã có tài khoản ?",
+  "Bạn đã có tài khoản ?": "Bạn đã có tài khoản ?",
   "Nessenger được tạo bởi CHK": "Nessenger được tạo bởi CHK",
   "Xác nhận mật khẩu không được để trống": "Xác nhận mật khẩu không được để trống",
   "Email không được để trống": "Email không được để trống",
@@ -49,9 +49,12 @@
   "Xác nhận mật khẩu không chính xác": "Xác nhận mật khẩu không chính xác",
   "Mật khẩu phải ít nhất 6 kí tự": "Mật khẩu phải ít nhất 6 kí tự",
   "Tên tài khoản phải ít nhất 6 kí tự": "Tên tài khoản phải ít nhất 6 kí tự",
-  "Rất tiếc!" : "Rất tiếc!",
+  "Rất tiếc!": "Rất tiếc!",
   "Không tìm thấy trang.": "Không tìm thấy trang.",
   "Trang mà bạn đang tìm kiếm không tồn tại.": "Trang mà bạn đang tìm kiếm không tồn tại.",
-  "VỀ TRANG CHỦ": "VỀ TRANG CHỦ"
-
+  "VỀ TRANG CHỦ": "VỀ TRANG CHỦ",
+  "Tạo mới cuộc trò chuyện": "Tạo mới cuộc trò chuyện",
+  "Nhập tên người trò chuyện": "Nhập tên người trò chuyện",
+  "Kết nối": "Kết nối",
+  "Gõ một tin nhắn. Nhấn Enter để gửi": "Gõ một tin nhắn. Nhấn Enter để gửi"
 }

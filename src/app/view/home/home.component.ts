@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {ContactTo} from "../../model/contact-to";
 
 @Component({
   selector: 'app-home',

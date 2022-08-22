@@ -1,15 +1,8 @@
 import {Injectable} from '@angular/core';
-import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {ArrayAvatar, Contact, ContactTo, IdSetInterval} from "../../../../model/contact-to";
 import {resetPagination} from "../../../../model/pagination";
-import {set} from "@angular/fire/database";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {WebSocketService} from "../../../websocket/websocket_service";
-import {Subject} from "rxjs";
-import {MessageApi} from "../../../../model/message_api";
-import {configure} from "../../../../configure/Configure";
-import {map} from "rxjs/operators";
 import { resetArrayContainFile } from 'src/app/model/file';
 import {ContentChatService, idSetInterval} from "../../chat/content-chat/content-chat.service";
 import {ConnectApi} from "../../../websocket/connect-api";

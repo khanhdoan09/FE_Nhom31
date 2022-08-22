@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {HttpClient} from "@angular/common/http";
-import {pagination} from "../../../../../../model/pagination";
 
 @Component({
   selector: 'app-text',

@@ -46,7 +46,7 @@
 .container__spinner {
   position: absolute;
   top: 10%;
-  left: 65%;
+  left: 50%;
 }
 .container__spinner .spinner-border {
   width: 3rem;

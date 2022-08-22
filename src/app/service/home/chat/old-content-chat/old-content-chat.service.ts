@@ -1,15 +1,8 @@
 import {ChangeDetectorRef, Injectable} from '@angular/core';
-import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {isHasMoreData, setIsHasMoreData} from "../../../../model/pagination";
 import {ContentChatService} from "../content-chat/content-chat.service";
 import {Contact, ContactTo} from "../../../../model/contact-to";
-import {WebSocketService} from "../../../websocket/websocket_service";
-import {Subject} from "rxjs";
-import {MessageApi} from "../../../../model/message_api";
-import {configure} from "../../../../configure/Configure";
-import {map} from "rxjs/operators";
-import {ChatComponent} from "../../../../view/home/chat/chat.component";
 import {Spinner} from "../../../../model/spinner";
 import {ConnectApi} from "../../../websocket/connect-api";
 

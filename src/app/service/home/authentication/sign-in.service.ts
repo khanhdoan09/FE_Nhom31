@@ -29,6 +29,7 @@ export class SignInService {
       this.decryptPassword = this.decrypt(this.cookieValuePassword);
       this.connect.subject?.next(Api.login(this.decryptUsername, this.decryptPassword));
       this.connect.subject?.subscribe(msg => {
+        console.log(msg)
         if (msg.status === 'success') {
           this.signInSuccessfully(this.decryptUsername);
         }

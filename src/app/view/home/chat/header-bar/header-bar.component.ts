@@ -18,15 +18,18 @@ export class HeaderBarComponent implements OnInit {
     ContactTo.contactTo.subscribe((contact:Contact)=>{
       this.userName = contact.name;
       IdSetInterval.idSetIntervalContactTo = setInterval(()=>{
-        this.getUrlImageFromFirebase(this.userName);
-        this.checkStatus();
-      }, 1500)
+        // this.getUrlImageFromFirebase(this.userName);
+        // this.checkStatus();
+      }, 2000)
     })
   }
 
   checkStatus() {
     this.connect.subject?.subscribe(msg => {
-      this.isActive = msg.data.status;
+      console.log(msg)
+      if (msg.event === 'CHECK_USER') {
+        this.isActive = msg.data.status;
+      }
     });
     this.connect.subject?.next(Api.checkStatus(this.userName));
   }
@@ -36,7 +39,7 @@ export class HeaderBarComponent implements OnInit {
     return storageRef.getDownloadURL().then(urlFB => {
       this.avatar = urlFB;
     }, ()=>{
-      this.avatar = 'https://www.w3schools.com/howto/howto_css_image_avatar.asp';
+      this.avatar = 'https://www.w3schools.com/howto/img_avatar.png';
     });
   }
 

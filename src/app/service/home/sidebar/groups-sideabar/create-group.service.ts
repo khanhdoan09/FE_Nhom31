@@ -2,6 +2,10 @@ import {Injectable} from '@angular/core';
 import {Api} from "../../../api/api";
 import {MessageApi} from "../../../../model/message_api";
 import {ConnectApi} from "../../../websocket/connect-api";
+import {IdSetInterval} from "../../../../model/contact-to";
+import {GroupsService} from "./groups.service";
+import {ChatsSidebarService} from "../chats-sidebar/chats-sidebar.service";
+import {ContentChatService} from "../../chat/content-chat/content-chat.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,7 @@ export class CreateGroupService {
   statusCreated: any;
   public dataCreated!: MessageApi;
 
-  constructor(private connect: ConnectApi) {
+  constructor(private connect: ConnectApi, private _groupsService: GroupsService, private chatSidebarService: ChatsSidebarService, public contentChatService: ContentChatService) {
   }
 
   runService(nameRoom: any) {
@@ -20,15 +24,24 @@ export class CreateGroupService {
   }
 
   init() {
-    setTimeout(() => {
-      this.connect.subject?.subscribe(msg => {
-        console.log(msg)
+    this.connect.subject?.subscribe(msg => {
+      this.renderDataCreateGroup(msg);
+      if (msg.event != 'CREATE_ROOM') {
+        this.init();
+      }
+      else {
         this.renderDataCreateGroup(msg);
-      });
-      setTimeout(() => {
-        this.connect.subject?.next(Api.create_room(this.nameRoom));
-      })
+        this.contentChatService.runService();
+        this._groupsService.runService();
+      }
+      return;
     })
+
+    if (IdSetInterval.idSetIntervalMessage) {
+      clearInterval(IdSetInterval.idSetIntervalMessage)
+    }
+    IdSetInterval.clearAllIntervalInSideBar();
+    this.connect.subject?.next(Api.create_room(this.nameRoom));
   }
 
   updateCreateGroup() {

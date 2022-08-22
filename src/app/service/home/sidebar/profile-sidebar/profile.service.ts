@@ -31,6 +31,7 @@ export class ProfileService {
 
   init() {
     this.connect.subject?.subscribe(msg => {
+      console.log(msg)
       this.loadInfoUser(msg);
     });
     this.connect.subject?.next(Api.checkStatus(this.userName));

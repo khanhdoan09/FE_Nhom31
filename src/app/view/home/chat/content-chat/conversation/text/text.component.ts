@@ -121,7 +121,6 @@ export class TextComponent implements OnInit {
   }
 
   downloadFile(url: string) {
-    console.log(url)
     let storageRef = this.afStorage.storage.ref().child(url);
     return storageRef.getDownloadURL().then(urlFB =>{
       this.setNameFileDownload(urlFB)

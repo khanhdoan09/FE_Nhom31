@@ -9,6 +9,7 @@ import {LanguageService} from "../../../../../service/home/language/language.ser
 import {resetArrayContainFile} from "../../../../../model/file";
 import {ContentChatService, idSetInterval} from "../../../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../../../service/home/chat/old-content-chat/old-content-chat.service";
+import {HeaderBarService} from "../../../../../service/home/chat/header-bar/header-bar.service";
 
 
 @Component({
@@ -33,7 +34,8 @@ export class GroupsComponent implements OnInit {
               public _joinGroupService: JoinGroupService,
               public _languageService: LanguageService,
               private contentChatService: ContentChatService,
-              private oldContentChatService: OldContentChatService,)
+              private oldContentChatService: OldContentChatService,
+              private headerBarService: HeaderBarService)
   {}
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class GroupsComponent implements OnInit {
     if (idSetInterval.idSetIntervalGroup) {
       clearInterval(IdSetInterval.idSetIntervalGroup)
     }
+    this.headerBarService.avatar = 'https://www.visualantidote.com/VA/media/VA/Articles/avatarImage.png?ext=.png';
     let element: any = document.getElementById("container_scroll");
     element.scrollTop = element.scrollHeight
     this.oldContentChatService.messages = []

@@ -3,6 +3,7 @@ import {ArrayAvatar, Contact, ContactTo, CurrentUser, IdSetInterval} from "../..
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Api} from "../../../../service/api/api";
 import {ConnectApi} from "../../../../service/websocket/connect-api";
+import {HeaderBarService} from "../../../../service/home/chat/header-bar/header-bar.service";
 
 @Component({
   selector: 'app-header-bar',
@@ -10,38 +11,12 @@ import {ConnectApi} from "../../../../service/websocket/connect-api";
   styleUrls: ['./header-bar.component.scss']
 })
 export class HeaderBarComponent implements OnInit {
-  isActive = false;
-  userName!:string;
-  avatar!:string;
 
-  constructor(private afStorage: AngularFireStorage, private connect: ConnectApi) {
-    ContactTo.contactTo.subscribe((contact:Contact)=>{
-      this.userName = contact.name;
-      IdSetInterval.idSetIntervalContactTo = setInterval(()=>{
-        // this.getUrlImageFromFirebase(this.userName);
-        // this.checkStatus();
-      }, 2000)
-    })
+
+  constructor(private afStorage: AngularFireStorage, private connect: ConnectApi, public headerBarService: HeaderBarService) {
+    this.headerBarService.runService();
   }
 
-  checkStatus() {
-    this.connect.subject?.subscribe(msg => {
-      console.log(msg)
-      if (msg.event === 'CHECK_USER') {
-        this.isActive = msg.data.status;
-      }
-    });
-    this.connect.subject?.next(Api.checkStatus(this.userName));
-  }
-
-  getUrlImageFromFirebase(contactToUsername: string) {
-    let storageRef = this.afStorage.storage.ref().child("avatar/" + contactToUsername);
-    return storageRef.getDownloadURL().then(urlFB => {
-      this.avatar = urlFB;
-    }, ()=>{
-      this.avatar = 'https://www.w3schools.com/howto/img_avatar.png';
-    });
-  }
 
   ngOnInit(): void {
   }

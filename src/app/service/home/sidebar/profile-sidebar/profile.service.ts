@@ -31,7 +31,6 @@ export class ProfileService {
 
   init() {
     this.connect.subject?.subscribe(msg => {
-      console.log(msg)
       this.loadInfoUser(msg);
     });
     this.connect.subject?.next(Api.checkStatus(this.userName));
@@ -56,6 +55,9 @@ export class ProfileService {
     this.uploadState.subscribe((state) => {
       if (state === 'success') {
         alert('done')
+        console.log(CurrentUser.username)
+        this.arrayImage = []
+        CurrentUser.subject.next(this.src);
       }
     });
     this.showMyContainer = false;

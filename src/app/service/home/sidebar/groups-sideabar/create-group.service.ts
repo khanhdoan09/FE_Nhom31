@@ -6,6 +6,7 @@ import {IdSetInterval} from "../../../../model/contact-to";
 import {GroupsService} from "./groups.service";
 import {ChatsSidebarService} from "../chats-sidebar/chats-sidebar.service";
 import {ContentChatService} from "../../chat/content-chat/content-chat.service";
+import {HeaderBarService} from "../../chat/header-bar/header-bar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CreateGroupService {
   statusCreated: any;
   public dataCreated!: MessageApi;
 
-  constructor(private connect: ConnectApi, private _groupsService: GroupsService, private chatSidebarService: ChatsSidebarService, public contentChatService: ContentChatService) {
+  constructor(private connect: ConnectApi, private _groupsService: GroupsService, private chatSidebarService: ChatsSidebarService, public contentChatService: ContentChatService, private headerBarService: HeaderBarService) {
   }
 
   runService(nameRoom: any) {
@@ -33,6 +34,7 @@ export class CreateGroupService {
         this.renderDataCreateGroup(msg);
         this.contentChatService.runService();
         this._groupsService.runService();
+        this.headerBarService.runService();
       }
       return;
     })
@@ -52,6 +54,5 @@ export class CreateGroupService {
 
   renderDataCreateGroup(msg: any) {
     this.dataCreated = msg;
-    console.log(this.dataCreated)
   }
 }

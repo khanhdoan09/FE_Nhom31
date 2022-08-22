@@ -49,5 +49,9 @@
   "Đăng Ký": "Sign Up",
   "Xác nhận mật khẩu không chính xác": "Confirm password must match",
   "Mật khẩu phải ít nhất 6 kí tự": "Password must be at least 6 characters",
-  "Tên tài khoản phải ít nhất 6 kí tự": "Username must be at least 6 characters"
+  "Tên tài khoản phải ít nhất 6 kí tự": "Username must be at least 6 characters",
+  "Rất tiếc!" : "Opps!",
+  "Không tìm thấy trang.": "Page not found.",
+  "Trang mà bạn đang tìm kiếm không tồn tại.": "The page you’re looking for doesn’t exist.",
+  "VỀ TRANG CHỦ": "GO HOME"
 }

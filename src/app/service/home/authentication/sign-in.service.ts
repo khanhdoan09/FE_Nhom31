@@ -67,7 +67,6 @@ export class SignInService {
 
 
   getUrlImageFromFirebase() {
-    console.log(CurrentUser.username)
     let storageRef = this.afStorage.storage.ref().child("avatar/" +  CurrentUser.username);
     return storageRef.getDownloadURL().then(urlFB => {
       CurrentUser.subject.next(urlFB);

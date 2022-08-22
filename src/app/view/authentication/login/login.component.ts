@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private signInService: SignInService,
-              private readonly google: GoogleApiService,
               private _languageService: LanguageService) {
 
     if (document.cookie.indexOf('username=') != -1 && document.cookie.indexOf('password=') != -1) {
@@ -37,9 +36,6 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       recaptcha: ['', [Validators.required]],
-    })
-    google.userProfileSubject.subscribe(info => {
-      this.userInfo = info
     })
 
   }
@@ -63,14 +59,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
-  isLoggedIn(): boolean {
-    return this.google.isLoggedIn();
-  }
-
-  logout() {
-    this.google.signOut();
-  }
 
   viewPassword() {
     this.showPassword = !this.showPassword;

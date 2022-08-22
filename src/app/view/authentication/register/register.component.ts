@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {InputChatService} from "../../../service/home/chat/input-chat/input-chat.service";
+import { FormBuilder, FormGroup,  Validators} from "@angular/forms";
 import {SignUpService} from "../../../service/home/authentication/sign-up-service.service";
 import {LanguageService} from 'src/app/service/home/language/language.service';
 import {MustMatch} from "../../../model/valida-password";

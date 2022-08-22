@@ -4,7 +4,6 @@ import {WebSocketService} from "./websocket_service";
 import {MessageApi} from "../../model/message_api";
 import {configure} from "../../configure/Configure";
 import {map} from "rxjs/operators";
-import * as Rx from "rxjs";
 
 @Injectable({
   providedIn: 'root'

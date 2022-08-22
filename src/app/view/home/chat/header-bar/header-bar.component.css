@@ -1,0 +1,28 @@
+.container__top-bar {
+  border-bottom: 2px solid #f0eff5;
+  margin-bottom: 9px;
+}
+
+.container__status {
+  position: relative;
+  padding: 0 10px;
+}
+.container__status .status {
+  position: absolute;
+  top: 35%;
+  right: 0;
+  background-color: #ffd166;
+  border-radius: 100%;
+  width: 13px;
+  height: 13px;
+}
+.container__status .colorActive {
+  background-color: #06d7a3;
+}
+
+.container__option .option {
+  width: fit-content;
+  background-color: white;
+}
+
+/*# sourceMappingURL=header-bar.component.css.map */

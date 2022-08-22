@@ -1,19 +1,12 @@
 import {
   ChangeDetectorRef,
   Component,
-  ElementRef,
-  EventEmitter,
   HostListener,
   Input,
   OnInit,
-  Output,
-  ViewChild
 } from '@angular/core';
-import {MessageApi} from "../../../../model/message_api";
-import {Api} from "../../../../service/api/api";
 import {AppComponent} from "../../../../app.component";
 import {IContentChat} from "../../../../model/content-chat";
-import {isHasMoreData} from "../../../../model/pagination";
 import {ArrayAvatar, CurrentUser} from "../../../../model/contact-to";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 

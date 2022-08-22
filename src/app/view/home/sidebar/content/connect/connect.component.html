@@ -11,20 +11,12 @@
       <div *ngIf="f.userNameConnect.errors">
         <div *ngIf="f.userNameConnect.errors.required">
           <div class="title-error col alert-danger" role="alert" style="">
-            Tên người dùng không được để trống!
+            {{'Tên tài khoản không được để trống' | translate}}
           </div>
         </div>
       </div>
     </div>
-<!--    <div *ngIf="f.userNameConnect.invalid && (f.userNameConnect.dirty || f.userNameConnect.touched)">-->
-<!--      <div *ngIf="f.userNameConnect.errors">-->
-<!--        <div *ngIf="f.userNameConnect.errors.required">-->
-<!--          <div class="col alert-danger" role="alert" style="border-radius: 5px;margin-top: -10px;padding: 0px 10px">-->
-<!--            Username không được để trống!-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+
 
     <div class="btn_submit">
       <button type="submit" [disabled]="!connectForm.valid"> Kết nối</button>

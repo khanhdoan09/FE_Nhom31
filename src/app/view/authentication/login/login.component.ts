@@ -1,11 +1,8 @@
-import {Component, OnInit, NgZone} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SignInService} from "../../../service/home/authentication/sign-in.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GoogleApiService, UserInfo} from "../../../service/home/login-gg-api/google-api.service";
-import {lastValueFrom} from "rxjs";
-import * as CryptoJS from 'crypto-js';
 import {Router} from "@angular/router";
-import {ContactTo} from "../../../model/contact-to";
 import { LanguageService } from 'src/app/service/home/language/language.service';
 
 @Component({
@@ -55,15 +52,6 @@ export class LoginComponent implements OnInit {
     return this.signinForm.controls
   }
 
-  convertText(conversion: string) {
-    // if (conversion=="encrypt") {
-    //   this.conversionEncryptOutput = CryptoJS.AES.encrypt(this.plainText.trim(), this.encPassword.trim()).toString();
-    // }
-    // else {
-    //   this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
-    //
-    // }
-  }
 
   login() {
     this.isSubmitted = true;
@@ -84,20 +72,6 @@ export class LoginComponent implements OnInit {
     this.google.signOut();
   }
 
-  // async getEmails() {
-  //   if (!this.userInfo) {
-  //     return;
-  //   }
-  //
-  //   const userId = this.userInfo?.info.sub as string
-  //   const messages = await lastValueFrom(this.google.emails(userId))
-  //   messages.messages.forEach( (element: any) => {
-  //     const mail = lastValueFrom(this.google.getMail(userId, element.id))
-  //     mail.then( mail => {
-  //       this.mailSnippets.push(mail.snippet)
-  //     })
-  //   });
-  // }
   viewPassword() {
     this.showPassword = !this.showPassword;
   }

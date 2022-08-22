@@ -1,19 +1,17 @@
 import {
-  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
-  Inject,
   Injectable,
   OnInit,
   ViewChild
 } from '@angular/core';
-import {isHasMoreData, pagination, updatePagination} from "../../../model/pagination";
-import {ContentChatService, idSetInterval} from "../../../service/home/chat/content-chat/content-chat.service";
+import {isHasMoreData, updatePagination} from "../../../model/pagination";
+import {ContentChatService} from "../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {Spinner} from "../../../model/spinner";
 import {File} from "../../../model/file";
-import {Contact, ContactTo, IdSetInterval} from "../../../model/contact-to";
+import { IdSetInterval} from "../../../model/contact-to";
 
 @Injectable({
   providedIn: 'root'

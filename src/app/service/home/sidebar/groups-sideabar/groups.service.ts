@@ -1,11 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
-import {Subject} from "rxjs";
-import {MessageApi} from "../../../../model/message_api";
-import {configure} from "../../../../configure/Configure";
-import {map} from "rxjs/operators";
-import {WebSocketService} from "../../../websocket/websocket_service";
 import {ConnectApi} from "../../../websocket/connect-api";
 import {IdSetInterval} from "../../../../model/contact-to";
 

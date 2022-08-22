@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
-import {TestConnectService} from "../../../api/testConnectService";
 import {Api} from "../../../api/api";
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {Observable, Subject} from "rxjs";
 import {map} from "rxjs/operators";
 import {CurrentUser} from "../../../../model/contact-to";
-import {WebSocketService} from "../../../websocket/websocket_service";
-import {MessageApi} from "../../../../model/message_api";
-import {configure} from "../../../../configure/Configure";
 import {ConnectApi} from "../../../websocket/connect-api";
 
 @Injectable({

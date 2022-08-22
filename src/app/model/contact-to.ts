@@ -1,7 +1,5 @@
 import { Subject} from "rxjs";
 import {User} from "./user";
-import {idSetInterval} from "../service/home/chat/content-chat/content-chat.service";
-
 
 export class IdSetInterval {
   public static idSetIntervalContactTo:any;

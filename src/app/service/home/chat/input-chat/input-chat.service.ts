@@ -36,7 +36,7 @@ export class InputChatService {
         if (this.typeChooseText === 'user') {
           this.connect.subject?.next(Api.sendMessage(this.toContact, contactText));
           this.connect.subject?.subscribe(msg => {
-            console.log(msg)
+
           });
         }
         // contact with group

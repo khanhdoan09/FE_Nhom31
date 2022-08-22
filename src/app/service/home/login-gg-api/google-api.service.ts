@@ -30,7 +30,7 @@ export class GoogleApiService {
       oAuthService.tryLoginImplicitFlow().then( ()=> {
         if(oAuthService.hasValidAccessToken()) {
           oAuthService.initLoginFlow()
-          console.log(1234)
+
         }else {
           oAuthService.loadUserProfile().then( (userProfile)=> {
             this.userProfileSubject.next(userProfile as UserInfo)

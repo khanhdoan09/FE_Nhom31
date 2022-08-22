@@ -24,6 +24,5 @@ export class RecoverpwComponent implements OnInit {
   }
 
   resetPass() {
-    console.log("Email: " + this.email);
   }
 }

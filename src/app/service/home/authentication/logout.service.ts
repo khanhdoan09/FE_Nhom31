@@ -23,7 +23,7 @@ export class LogoutService {
     // first invoke observable by subscribe function
     this.connect.subject?.next(Api.logout());
     this.connect.subject?.subscribe(msg => {
-      console.log(msg)
+
       if (msg.status === 'success') {
         // clear cookie
         document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';

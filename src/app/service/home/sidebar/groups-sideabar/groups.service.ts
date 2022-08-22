@@ -19,7 +19,6 @@ export class GroupsService {
   init() {
     IdSetInterval.idSetIntervalGroup = setInterval(()=>{
       this.connect.subject?.subscribe(msg => {
-        console.log(msg)
         if (msg.event === 'GET_USER_LIST') {
           this.renderGroupList(msg);
         }

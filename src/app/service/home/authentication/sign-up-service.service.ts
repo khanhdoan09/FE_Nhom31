@@ -20,7 +20,7 @@ export class SignUpService {
   submitSignUp(username: string, password: string) {
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
-      console.log(msg)
+
       if (msg.mes === "Creating account error, Duplicate Username") {
         alert("Tài khoản đã tồn tại!")
         return;

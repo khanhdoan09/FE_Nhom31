@@ -29,7 +29,7 @@ export class SignInService {
       this.decryptPassword = this.decrypt(this.cookieValuePassword);
       this.connect.subject?.next(Api.login(this.decryptUsername, this.decryptPassword));
       this.connect.subject?.subscribe(msg => {
-        console.log(msg)
+
         if (msg.status === 'success') {
           this.signInSuccessfully(this.decryptUsername);
         }
@@ -40,7 +40,7 @@ export class SignInService {
   submitSignIn(username: string, password: string) {
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
-      console.log(msg)
+
       if (msg.status === 'success') {
         this.signInSuccessfully(username);
         let encryptedUsername = this.encrypt(username);

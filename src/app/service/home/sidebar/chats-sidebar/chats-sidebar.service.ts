@@ -8,6 +8,7 @@ import {ContentChatService, idSetInterval} from "../../chat/content-chat/content
 import {ConnectApi} from "../../../websocket/connect-api";
 import {OldContentChatService} from "../../chat/old-content-chat/old-content-chat.service";
 import {ChatComponent} from "../../../../view/home/chat/chat.component";
+import {HeaderBarService} from "../../chat/header-bar/header-bar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ChatsSidebarService {
   test: any = true;
   time: string = "";
 
-  constructor(private afStorage: AngularFireStorage,  private connect: ConnectApi, private contentChatService: ContentChatService, private oldContentChatService: OldContentChatService, private chatComponent: ChatComponent) {
+  constructor(private afStorage: AngularFireStorage,  private connect: ConnectApi, private contentChatService: ContentChatService, private oldContentChatService: OldContentChatService, private chatComponent: ChatComponent, private headerBarService: HeaderBarService) {
   }
 
   runService() {
@@ -77,6 +78,9 @@ export class ChatsSidebarService {
           }
           else {
             arrUser[index].status = msg.data.status;
+            if (arrUser[index].name === this.headerBarService.userName) {
+              this.headerBarService.isActive = arrUser[index].status;
+            }
             this.checkStatusOneUser(arrUser, index + 1)
           }
         });
@@ -104,6 +108,9 @@ export class ChatsSidebarService {
               // this.getOneAvatar(arrUser, index + 1)
               arrUser[i].src = urlFB
               ArrayAvatar.avatar.set(arrUser[i].name, urlFB)
+              if (urlFB.includes(`%2F${this.headerBarService.userName}?alt`)) {
+                this.headerBarService.avatar=urlFB;
+              }
             }, (e)=>{
               arrUser[i].src = 'https://www.w3schools.com/howto/img_avatar.png'
               ArrayAvatar.avatar.set(arrUser[i].name, 'https://www.w3schools.com/howto/img_avatar.png')

@@ -68,7 +68,7 @@ export class ChatsSidebarService {
   checkStatusOneUser(arrUser: any, index: number) {
     if (index != arrUser.length) {
       if (arrUser[index].type==1) {
-        this.checkStatusOneUser(arrUser, index + 1)
+        this.checkStatusOneUser(arrUser, index + 1);
       }
       else {
         this.connect.subject?.next(Api.checkStatus(arrUser[index].name));

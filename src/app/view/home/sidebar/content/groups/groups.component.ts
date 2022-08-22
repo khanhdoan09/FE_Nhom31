@@ -54,6 +54,7 @@ export class GroupsComponent implements OnInit {
     this.nameJoinRoom = "";
   }
 
+
   selectMessage(contact: Contact) {
     resetPagination();
     resetArrayContainFile();
@@ -71,5 +72,14 @@ export class GroupsComponent implements OnInit {
     ContactTo.contactTo.next(contact);
   }
 
+  closeJoin() {
+    this.isShowAddMember = false;
+    this._joinGroupService.dataJoin.event = "";
+  }
 
+  closeCreate() {
+    this.isShowAddMember = false;
+    this._createGroupService.dataCreated.event = "";
+
+  }
 }

@@ -53,5 +53,9 @@
   "Rất tiếc!" : "Opps!",
   "Không tìm thấy trang.": "Page not found.",
   "Trang mà bạn đang tìm kiếm không tồn tại.": "The page you’re looking for doesn’t exist.",
-  "VỀ TRANG CHỦ": "GO HOME"
+  "VỀ TRANG CHỦ": "GO HOME",
+  "Tạo mới cuộc trò chuyện": "Create a new chat",
+  "Nhập tên người trò chuyện": "Enter the chat person's name",
+  "Kết nối": "Connect",
+  "Gõ một tin nhắn. Nhấn Enter để gửi": "Type a message. Hit Enter to send"
 }

@@ -10,6 +10,9 @@ import {resetArrayContainFile} from "../../../../../model/file";
 import {ContentChatService, idSetInterval} from "../../../../../service/home/chat/content-chat/content-chat.service";
 import {OldContentChatService} from "../../../../../service/home/chat/old-content-chat/old-content-chat.service";
 import {HeaderBarService} from "../../../../../service/home/chat/header-bar/header-bar.service";
+import {Spinner} from "../../../../../model/spinner";
+import {InputChatComponent} from "../../../chat/input-chat/input-chat.component";
+import {decode} from "punycode";
 
 
 @Component({
@@ -65,9 +68,11 @@ export class GroupsComponent implements OnInit {
       clearInterval(IdSetInterval.idSetIntervalGroup)
     }
     this.headerBarService.avatar = 'https://www.visualantidote.com/VA/media/VA/Articles/avatarImage.png?ext=.png';
+    this.headerBarService.isActive = 'true';
     let element: any = document.getElementById("container_scroll");
-    element.scrollTop = element.scrollHeight
-    this.oldContentChatService.messages = []
+    element.scrollTop = element.scrollHeight;
+    this.oldContentChatService.messages = [];
+    Spinner.isShow = false;
     this.contentChatService.runService();
     ContactTo.contactTo.next(contact);
   }
@@ -80,6 +85,9 @@ export class GroupsComponent implements OnInit {
   closeCreate() {
     this.isShowAddMember = false;
     this._createGroupService.dataCreated.event = "";
+  }
 
+  renderNameGroup(nameGroup: any) {
+    return decodeURI(nameGroup)
   }
 }

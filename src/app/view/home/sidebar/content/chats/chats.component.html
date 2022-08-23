@@ -9,7 +9,7 @@
   <div class="chats style-5">
 
     <a *ngFor="let u of this.chatSidebarService.userList | filter:this.chatSidebarService.txtSearch"
-       (click)="this.chatSidebarService.selectMessage(u)"
+       (click)="this.selectMessage(u)"
     >
 
       <div class="chats-left" *ngIf="u.type === 0">

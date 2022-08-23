@@ -6,9 +6,9 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import { resetArrayContainFile } from 'src/app/model/file';
 import {ContentChatService, idSetInterval} from "../../chat/content-chat/content-chat.service";
 import {ConnectApi} from "../../../websocket/connect-api";
-import {OldContentChatService} from "../../chat/old-content-chat/old-content-chat.service";
 import {ChatComponent} from "../../../../view/home/chat/chat.component";
 import {HeaderBarService} from "../../chat/header-bar/header-bar.service";
+import {Spinner} from "../../../../model/spinner";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class ChatsSidebarService {
   test: any = true;
   time: string = "";
 
-  constructor(private afStorage: AngularFireStorage,  private connect: ConnectApi, private contentChatService: ContentChatService, private oldContentChatService: OldContentChatService, private chatComponent: ChatComponent, private headerBarService: HeaderBarService) {
+  constructor(private afStorage: AngularFireStorage,  private connect: ConnectApi, private contentChatService: ContentChatService, private headerBarService: HeaderBarService) {
   }
 
   runService() {
@@ -133,7 +133,7 @@ export class ChatsSidebarService {
     }
     let element: any = document.getElementById("container_scroll");
     element.scrollTop = element.scrollHeight
-    this.oldContentChatService.messages = []
+    Spinner.isShow = false;
     this.contentChatService.runService();
     ContactTo.contactTo.next(contact);
   }

@@ -48,6 +48,8 @@ export class ChatComponent implements OnInit {
           Spinner.changeShow(true);
         }, 500)
         clearInterval(IdSetInterval.idSetIntervalMessage);
+        clearInterval(IdSetInterval.idSetIntervalStatus)
+        clearInterval(IdSetInterval.idSetIntervalGroup)
         updatePagination();
         setTimeout(()=>{
           this.oldContentChatService.updateMessage();
@@ -55,6 +57,7 @@ export class ChatComponent implements OnInit {
       }
     }
     else {
+      this.oldContentChatService.noMoreMessage();
       Spinner.changeShow(false)
     }
   }

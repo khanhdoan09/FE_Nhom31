@@ -91,12 +91,10 @@
   <a class="d-flex justify-content-between align-items-center"
      *ngFor="let group of this._groupsService.groupList |filter:txtSearchGroup" (click)="selectMessage(group)">
     <div class="groups-left d-flex align-items-center" *ngIf="group.type === 1">
-      <span class="groups-left__avatar ">{{group.name?.substring(0, 1).trim()}}</span>
-      <span class="groups-left__name">{{group.name}}</span>
+      <span class="groups-left__avatar ">{{renderNameGroup(group.name)?.substring(0, 1)!.trim()}}</span>
+      <span class="groups-left__name">{{renderNameGroup(group.name)}}</span>
     </div>
     <div class="groups-right">
-      <!--      <span class="groups-right__seen">+92323239</span>-->
-      <!--      <i class="fa-solid fa-user-group" (click)="isShowAddMember =true"></i>-->
     </div>
   </a>
 

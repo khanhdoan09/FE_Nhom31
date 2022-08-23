@@ -16,9 +16,7 @@ export class HeaderBarService {
 
   runService() {
       ContactTo.contactTo.subscribe((contact:Contact)=>{
-      this.userName = contact.name;
-        // this.getUrlImageFromFirebase(this.userName);
-        // this.checkStatus();
+      this.userName = decodeURI(contact.name);
     })
   }
 

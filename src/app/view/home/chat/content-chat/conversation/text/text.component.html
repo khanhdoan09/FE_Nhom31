@@ -1,5 +1,5 @@
 <div *ngIf="text">
-  <div class="d-flex align-items-end container__text" (click) = 'checkActiveTime()' [style.flex-direction]="flex_direction"  *ngIf="!isDeleted; else textIsDeleted">
+  <div class="d-flex align-items-end container__text" (click) = 'checkActiveTime()' [style.flex-direction]="flex_direction">
     <div class="text px-3 py-2  d-flex flex-column" [style.background-color]="bg_color" [style.color]="color_text">
       <div class="d-inline">
         <span *ngFor="let currentText of arrText">
@@ -66,23 +66,6 @@
       <div class="time" [style.color]="color_time"><i class="fa-solid fa-clock"></i> {{time | date:'medium':'UTC +14'}}</div>
     </div>
 
-    <div mdbDropdown class="dropdown align-self-start mx-2">
-      <div
-        class=""
-        id="dropdownMenuButton"
-        aria-expanded="false"
-        mdbDropdownToggle
-      >
-        <i class="fas fa-ellipsis-v" style="cursor: pointer"></i>
-      </div>
-      <ul  mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" (click)="deleteText($event)">Delete</a></li>
-      </ul >
-    </div>
   </div>
 
 </div>
-
-<ng-template #textIsDeleted>
-  <div class="container__delete">text has remove</div>
-</ng-template>

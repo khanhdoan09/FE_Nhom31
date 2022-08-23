@@ -87,10 +87,8 @@ export class ContentChatService implements IContentChat {
   }
 
   getMessageFromApi() {
-
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
-
       this.renderMessage(msg)
     });
     // second send signal next then observable will catch it
@@ -140,8 +138,6 @@ export class ContentChatService implements IContentChat {
     else {
     }
   }
-
-
 }
 
 export {idSetInterval}

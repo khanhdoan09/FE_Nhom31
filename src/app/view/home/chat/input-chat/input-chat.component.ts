@@ -17,7 +17,9 @@ import {
   File, resetArrayContainFile
 } from "../../../../model/file";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-input-chat',
   templateUrl: './input-chat.component.html',
@@ -101,8 +103,8 @@ export class InputChatComponent implements OnInit {
       this.showEmojiPicker = false;
       this.inputChatService.submitMessage(encodeURI(this.message))
       // reset
-      this.message = ""
-      this.inputMessage.nativeElement.value = ""
+      this.message = "";
+      this.inputMessage.nativeElement.value = "";
       // to not display image
       this.resetArrayImage.emit();
     }

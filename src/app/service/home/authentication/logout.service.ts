@@ -37,7 +37,7 @@ export class LogoutService {
         this.oldContentChatService.messages = [];
         this.contentChatService.messages = [];
         ArrayAvatar.avatar.clear();
-        this.router.navigate(['logIn']);
+        // this.router.navigate(['logIn']);
       } else {
         alert("Lỗi")
       }

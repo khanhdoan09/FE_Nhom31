@@ -5,6 +5,9 @@ import {ContentChatService} from "../content-chat/content-chat.service";
 import {Contact, ContactTo} from "../../../../model/contact-to";
 import {Spinner} from "../../../../model/spinner";
 import {ConnectApi} from "../../../websocket/connect-api";
+import {ChatComponent} from "../../../../view/home/chat/chat.component";
+import {GroupsService} from "../../sidebar/groups-sideabar/groups.service";
+import {ChatsSidebarService} from "../../sidebar/chats-sidebar/chats-sidebar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +24,7 @@ export class OldContentChatService {
   typeChooseText:string=""
 
 
-  constructor( public contentChatService: ContentChatService, private connect: ConnectApi) {
+  constructor( public contentChatService: ContentChatService, private connect: ConnectApi, private _groupsService: GroupsService, private chatSidebarService: ChatsSidebarService) {
     ContactTo.contactTo.subscribe((msg:Contact)=>{
       this.toMessage = msg.name
       this.date = null
@@ -63,7 +66,6 @@ export class OldContentChatService {
   getMessageFromApi() {
     // first invoke observable by subscribe function
     this.connect.subject?.subscribe(msg => {
-
       if (msg.event.includes('_CHAT_MES')) {
         this.renderMessage(msg);
       }
@@ -92,7 +94,8 @@ export class OldContentChatService {
           this.date = null
           Spinner.changeShow(false)
           setTimeout(() => {
-            this.contentChatService.updateMessage()
+            this.contentChatService.updateMessage();
+            this.chatSidebarService.runService();
           }, 500)
         } else {
           Spinner.changeShow(false)
@@ -102,11 +105,12 @@ export class OldContentChatService {
       // get text from type group
       else if (this.typeChooseText==='group') {
         if (msg.data.chatData.length != 0) {
-          Array.prototype.push.apply(this.messages, msg.chatData.data);
+          Array.prototype.push.apply(this.messages, msg.data.chatData);
           this.date = null
           Spinner.changeShow(false)
           setTimeout(() => {
-            this.contentChatService.updateMessage()
+            this.contentChatService.updateMessage();
+            this._groupsService.runService();
           }, 500)
         }
         else {
@@ -117,6 +121,17 @@ export class OldContentChatService {
       else {
         Spinner.changeShow(false)
       }
+    }
+  }
+
+  noMoreMessage() {
+    if (this.typeChooseText === 'user') {
+      this.contentChatService.updateMessage();
+      this.chatSidebarService.runService();
+    }
+    else {
+      this.contentChatService.updateMessage();
+      this._groupsService.runService();
     }
   }
 }

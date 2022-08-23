@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/service/home/language/language.service'
 import {ArrayAvatar, ContactTo, CurrentUser} from "../../../../../model/contact-to";
 import {LogoutService} from "../../../../../service/home/authentication/logout.service";
 import {SignInService} from "../../../../../service/home/authentication/sign-in.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-setting',
@@ -27,7 +28,7 @@ export class SettingComponent implements OnInit {
 
 
 
-  constructor(private afStorage: AngularFireStorage, public profileService: ProfileService , private logOutService: LogoutService, public _languageService: LanguageService) {
+  constructor(private router: Router, private afStorage: AngularFireStorage, public profileService: ProfileService , private logOutService: LogoutService, public _languageService: LanguageService) {
     this.userName = CurrentUser.username;
     this.getUrlImageFromFirebase();
   }
@@ -70,6 +71,7 @@ export class SettingComponent implements OnInit {
 
   logout() {
     this.logOutService.logout()
+    this.router.navigate(['logIn']);
   }
 
 }
